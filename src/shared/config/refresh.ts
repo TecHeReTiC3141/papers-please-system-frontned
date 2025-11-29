@@ -2,7 +2,7 @@ import axios from 'axios'
 import createRefresh from 'react-auth-kit/createRefresh'
 
 export const refresh = createRefresh({
-  interval: 10, // The time in sec to refresh the Access token,
+  interval: 10,
   refreshApiCallback: async (param) => {
     try {
       const api = axios.create({

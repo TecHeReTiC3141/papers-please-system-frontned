@@ -1,7 +1,6 @@
 import { LoginForm } from '@/features/auth/ui/LoginForm'
 import { useMutation } from '@tanstack/react-query'
 import { useLogin } from '@/features/auth/model/use-login'
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import type { LoginRequest } from '@/features/auth/model'
 
 export function LoginPage() {
