@@ -1,8 +1,9 @@
 import { Routes, Route } from 'react-router'
-import Layout from '@/app/layouts/Layout'
-import { LoginPage } from '@/pages/login'
-import { RegisterPage } from '@/pages/register'
-import { NotFoundPage } from '@/pages/not-found'
+import Layout from '@app/layouts/Layout'
+import { LoginPage } from '@pages/login'
+import { RegisterPage } from '@pages/register'
+import { NotFoundPage } from '@pages/not-found'
+import { TicketsPage } from '@pages/tickets'
 
 export default function App() {
   return (
@@ -14,6 +15,8 @@ export default function App() {
 
         {/* App layout */}
         <Route index element={<div>Главная</div>} />
+
+        <Route path="/tickets" element={<TicketsPage />} />
 
         {/* 404 fallback */}
         <Route path="*" element={<NotFoundPage />} />

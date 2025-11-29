@@ -1,8 +1,10 @@
 import createStore from 'react-auth-kit/createStore'
+import { refresh } from './refresh'
 
 export const authStore = createStore({
   authType: 'cookie',
   authName: '_auth',
   cookieDomain: window.location.hostname,
-  cookieSecure: window.location.protocol === 'https:'
+  cookieSecure: window.location.protocol === 'https:',
+  refresh
 })

@@ -1,16 +1,19 @@
 import { useFormik } from 'formik'
 import { loginSchema } from '../lib/validation'
 import { toFormikValidationSchema } from 'zod-formik-adapter'
-import { useLogin } from '../model/use-login'
 import { Field } from '@shared/ui'
+import type { LoginRequest } from '../model'
 
-export function LoginForm() {
-  const login = useLogin()
+type Props = {
+  onSubmit: (params: LoginRequest) => Promise<void>
+  loading: boolean
+}
 
+export function LoginForm({ onSubmit, loading }: Props) {
   const { handleSubmit, values, errors, handleChange } = useFormik({
     initialValues: { email: '', password: '' },
     validationSchema: toFormikValidationSchema(loginSchema),
-    onSubmit: login
+    onSubmit
   })
 
   return (
@@ -46,7 +49,7 @@ export function LoginForm() {
       />
 
       <button className="btn btn-primary w-full" type="submit">
-        Войти
+        {loading ? <span className="loading loading-spinner loading-lg" /> : 'Войти'}
       </button>
     </form>
   )
