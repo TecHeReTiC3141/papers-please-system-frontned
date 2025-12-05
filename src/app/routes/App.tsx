@@ -4,6 +4,8 @@ import { LoginPage } from '@pages/login'
 import { RegisterPage } from '@pages/register'
 import { NotFoundPage } from '@pages/not-found'
 import { TicketsPage } from '@pages/tickets'
+import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
+import { ProfilePage } from '@pages/profile'
 
 export default function App() {
   return (
@@ -15,8 +17,10 @@ export default function App() {
 
         {/* App layout */}
         <Route index element={<div>Главная</div>} />
-
-        <Route path="/tickets" element={<TicketsPage />} />
+        <Route element={<AuthOutlet fallbackPath="/login" />}>
+          <Route path="/tickets" element={<TicketsPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+        </Route>
 
         {/* 404 fallback */}
         <Route path="*" element={<NotFoundPage />} />

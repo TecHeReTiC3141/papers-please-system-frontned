@@ -1,8 +1,12 @@
 import type { BaseEntity } from '../common'
 
-export interface Upk extends BaseEntity {
+export enum Region {
+  ORVECH_VONOR = 'ORVECH_VONOR',
+  EAST_GRESTIN = 'EAST_GRESTIN',
+  PARADIZNA = 'PARADIZNA'
+}
+
+export type Upk = BaseEntity & {
   name: string
-  address?: string
-  createdAt: string
-  updatedAt: string
+  region: Region
 }

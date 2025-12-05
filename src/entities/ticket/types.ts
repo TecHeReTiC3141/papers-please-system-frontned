@@ -7,11 +7,11 @@ export enum TicketType {
 }
 
 export enum TicketStatus {
-  OPEN = 'open',
-  IN_PROGRESS = 'in_progress',
-  NEED_INFO = 'need_info',
-  CLOSED = 'closed',
-  REJECTED = 'rejected'
+  OPEN = 'OPEN',
+  IN_PROGRESS = 'IN_PROGRESS',
+  NEED_INFO = 'NEED_INFO',
+  CLOSED = 'CLOSED',
+  REJECTED = 'rejREJECTEDected'
 }
 
 export enum Priority {

@@ -1,4 +1,5 @@
 import type { BaseEntity } from '../common'
+import type { ShiftBossExtendedInfo, ShiftInspectorExtendedInfo } from '../shift'
 import type { Upk } from '../upk/types'
 
 export enum UserRole {
@@ -9,10 +10,31 @@ export enum UserRole {
   MIGRANT = 'MIGRANT'
 }
 
-export interface User extends BaseEntity {
+export enum Specialization {
+  PASSPORT = 'passport',
+  LOCALS = 'locals',
+  WORK = 'work',
+  TRANSIT = 'transit',
+  SPECIAL = 'special'
+}
+
+export type User = BaseEntity & {
   name: string
   email: string
   passwordHash?: string
   role: UserRole
-  upk?: Upk | null
+  upkId: string | null
 }
+
+export type InspectorExtendedInfo = User & {
+  upk: Upk
+  boss: User
+  shifts: ShiftInspectorExtendedInfo[]
+}
+export type BossExtendedInfo = User & {
+  upk: Upk
+  subordinates: User[]
+  shifts: ShiftBossExtendedInfo[]
+}
+
+export type UserExtendedInfo = User | InspectorExtendedInfo | BossExtendedInfo
