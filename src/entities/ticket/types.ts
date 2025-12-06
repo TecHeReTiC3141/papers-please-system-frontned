@@ -1,9 +1,9 @@
 export enum TicketType {
-  EXTERNAL = 'external',
-  INTERNAL = 'internal',
-  ARREST = 'arrest',
-  CROSSCHECK = 'crosscheck',
-  APPEAL = 'appeal'
+  EXTERNAL = 'EXTERNAL',
+  INTERNAL = 'INTERNAL',
+  ARREST = 'ARREST',
+  CROSSCHECK = 'CROSSCHECK',
+  APPEAL = 'APPEAL'
 }
 
 export enum TicketStatus {
@@ -11,7 +11,7 @@ export enum TicketStatus {
   IN_PROGRESS = 'IN_PROGRESS',
   NEED_INFO = 'NEED_INFO',
   CLOSED = 'CLOSED',
-  REJECTED = 'rejREJECTEDected'
+  REJECTED = 'REJECTED'
 }
 
 export enum Priority {

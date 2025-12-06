@@ -19,7 +19,7 @@ export function Header() {
 
   return (
     <>
-      <header className="navbar justify-between bg-base-200 shadow-md px-8">
+      <header className="navbar justify-between bg-base-200 shadow-md px-8 border-b border-neutral-content">
         <Link to="/" className="text-xl font-bold flex-1">
           Papers Please
         </Link>

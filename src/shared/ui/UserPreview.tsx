@@ -2,13 +2,14 @@ import type { User } from '@/entities/user'
 import classNames from 'classnames'
 
 type Props = {
-  user: User
+  user: User | null
   avatarSize?: number
   showName?: boolean
   isButton?: boolean
 }
 
 export function UserPreview({ user, avatarSize = 24, showName = true, isButton = true }: Props) {
+  if (!user) return null
   const userInitials = user.name
     .split(' ')
     .slice(0, 2)

@@ -1,17 +1,25 @@
 import { useGetTickets } from '@/features/tickets/model'
 import { TicketsBoard, TicketsFilters, TicketsTable } from '@/features/tickets/ui'
 import { useQuery } from '@tanstack/react-query'
-import { useState } from 'react'
-import { TbTable } from 'react-icons/tb'
-import { TbLayoutGrid } from 'react-icons/tb'
+import { useEffect, useState } from 'react'
+import { TbTable, TbLayoutGrid } from 'react-icons/tb'
 
 export function TicketsPage() {
-  const [view, setView] = useState<'table' | 'board'>('table')
   const fetchTickets = useGetTickets()
+
+  const [view, setView] = useState<'table' | 'board'>(() => {
+    return (localStorage.getItem('tickets_view') as 'table' | 'board') ?? 'table'
+  })
+
   const tickets = useQuery({
     queryKey: ['tickets'],
     queryFn: fetchTickets
   })
+
+  // Persist view in localStorage
+  useEffect(() => {
+    localStorage.setItem('tickets_view', view)
+  }, [view])
 
   return (
     <div className="flex flex-col gap-6 p-6">
@@ -46,7 +54,7 @@ export function TicketsPage() {
       {view === 'table' ? (
         <TicketsTable tickets={tickets.data?.items ?? []} loading={tickets.isPending} />
       ) : (
-        <TicketsBoard />
+        <TicketsBoard tickets={tickets.data?.items ?? []} loading={tickets.isPending} />
       )}
     </div>
   )
