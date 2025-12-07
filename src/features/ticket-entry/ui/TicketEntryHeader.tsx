@@ -26,7 +26,7 @@ export function TicketEntryHeader({ ticket }: Props) {
   ]
 
   return (
-    <div>
+    <div className="mt-3">
       <div className={classNames('border-l-4 px-2 flex justify-between items-end pb-2', blColor)}>
         <div className="flex flex-col gap-y-1 items-start ">
           <Link to={`/tickets/${ticket.id}`} className="link link-info link-hover">

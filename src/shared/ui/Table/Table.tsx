@@ -192,7 +192,7 @@ export const Table = <T extends { id: number | string }>({
         )}
 
         <div className="overflow-x-auto rounded-lg shadow w-full">
-          <table className="table table-zebra">
+          <table className="table table-zebra border border-base-content/5">
             <thead>
               <tr>
                 {selectable && (

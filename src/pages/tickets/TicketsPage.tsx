@@ -16,7 +16,6 @@ export function TicketsPage() {
     queryFn: fetchTickets
   })
 
-  // Persist view in localStorage
   useEffect(() => {
     localStorage.setItem('tickets_view', view)
   }, [view])
@@ -29,7 +28,7 @@ export function TicketsPage() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setView('table')}
-            className={`px-3 py-2 rounded-lg flex items-center gap-2 border transition ${
+            className={`px-3 py-2 rounded-lg flex items-center gap-2 border transition cursor-pointer ${
               view === 'table' ? 'bg-gray-200 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-800'
             }`}
           >
@@ -39,7 +38,7 @@ export function TicketsPage() {
 
           <button
             onClick={() => setView('board')}
-            className={`px-3 py-2 rounded-lg flex items-center gap-2 border transition ${
+            className={`px-3 py-2 rounded-lg flex items-center gap-2 border transition cursor-pointer ${
               view === 'board' ? 'bg-gray-200 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-800'
             }`}
           >

@@ -26,7 +26,7 @@ export function InspectorSection({ extendedInspectorInfo }: Props) {
             })
           }}
         >
-          {shift.createdAt}
+          {new Date(shift.startTime).toLocaleDateString()}
         </button>
       )
     },
@@ -49,12 +49,12 @@ export function InspectorSection({ extendedInspectorInfo }: Props) {
     {
       label: 'Salary',
       key: 'wage',
-      dataIndex: 'participation.coeffBonus'
+      dataIndex: 'participation.wage'
     },
     {
       label: 'Penalty',
       key: 'penalty',
-      dataIndex: 'participation.coeffPenalty'
+      dataIndex: 'participation.penalty'
     }
   ]
   return (
@@ -64,7 +64,12 @@ export function InspectorSection({ extendedInspectorInfo }: Props) {
       <InfoField value={<UserPreview user={extendedInspectorInfo.boss} />} label="Boss" />
 
       <h3 className="text-2xl mt-3">Shift info</h3>
-      <Table columns={shiftColumns} data={extendedInspectorInfo.shifts} emptyMessage="No shifts yet" />
+      <Table
+        columns={shiftColumns}
+        data={extendedInspectorInfo.shifts}
+        emptyMessage="No shifts yet"
+        filterable={false}
+      />
     </>
   )
 }

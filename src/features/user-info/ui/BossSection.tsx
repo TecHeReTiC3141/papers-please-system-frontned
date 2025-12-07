@@ -1,5 +1,6 @@
 import type { ShiftBossExtendedInfo } from '@/entities/shift'
 import type { BossExtendedInfo } from '@/entities/user'
+import { formatDate } from '@/shared/lib'
 import { InfoField, Table, UpkDescription } from '@/shared/ui'
 import type { TableColumn } from '@/shared/ui/Table/types'
 import { UserPreview } from '@/shared/ui/UserPreview'
@@ -26,7 +27,7 @@ export function BossSection({ extendedBossInfo }: Props) {
             })
           }}
         >
-          {shift.createdAt}
+          {formatDate(shift.startTime)}
         </button>
       )
     },
@@ -41,7 +42,7 @@ export function BossSection({ extendedBossInfo }: Props) {
       <InfoField value={<UpkDescription upk={extendedBossInfo.upk} />} label="Upk" />
 
       <h3 className="text-2xl mt-3">Shift info</h3>
-      <Table columns={shiftColumns} data={extendedBossInfo.shifts} emptyMessage="No shifts yet" />
+      <Table columns={shiftColumns} data={extendedBossInfo.shifts} emptyMessage="No shifts yet" filterable={false} />
 
       <h3 className="text-2xl mt-3">Subordinates</h3>
       <div className="w-full grid grid-cols-4 gap-x-4 gap-y-3 auto-cols-fr">

@@ -49,10 +49,8 @@ export const TicketsBoard = ({ tickets, loading }: Props) => {
 
     if (ticket.status === newStatus) return
 
-    // обновляем локально
     setLocalTickets((prev) => prev.map((t) => (t.id === active.id ? { ...t, status: newStatus } : t)))
 
-    // отправляем мутацию
     updateStatusMutation.mutate({ id: active.id as string, status: newStatus })
   }
 
@@ -60,7 +58,7 @@ export const TicketsBoard = ({ tickets, loading }: Props) => {
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
       <div className="flex items-stretch w-full gap-4">
         {columnsConfig.map(({ status, filter }) => (
-          <TicketsBoardColumn status={status} tickets={localTickets.filter(filter)} loading={loading} />
+          <TicketsBoardColumn key={status} status={status} tickets={localTickets.filter(filter)} loading={loading} />
         ))}
       </div>
     </DndContext>

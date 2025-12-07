@@ -48,6 +48,14 @@ export function Header() {
                     </Link>
                   </li>
                 )}
+                {userData.role === UserRole.MIGRANT && (
+                  <li>
+                    <Link to="/applications" className="justify-end text-nowrap">
+                      <IoTicketSharp />
+                      Applications
+                    </Link>
+                  </li>
+                )}
                 <li>
                   <button onClick={() => setIsLogoutModalOpened(true)} className="justify-end text-nowrap">
                     <MdLogout />
