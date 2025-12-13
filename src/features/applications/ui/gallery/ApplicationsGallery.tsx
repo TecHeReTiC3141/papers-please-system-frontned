@@ -15,13 +15,13 @@ export function ApplicationsGallery({ tickets, loading }: Props) {
   return (
     <div className="flex flex-col gap-y-4">
       <h4 className="text-xl">Current applications ({applications.length})</h4>
-      <div className="w-full flex items-center flex-wrap gap-x-6">
+      <div className="w-full flex items-center flex-wrap gap-x-6 gap-y-4">
         {applications.map((application) => (
           <ApplicationCard ticket={application} />
         ))}
       </div>
       <h4 className="text-xl">Current appealations ({appealations.length})</h4>
-      <div className="w-full flex items-center flex-wrap gap-x-6">
+      <div className="w-full flex items-center flex-wrap gap-x-6 gap-y-4">
         {appealations.map((appealations) => (
           <ApplicationCard ticket={appealations} />
         ))}

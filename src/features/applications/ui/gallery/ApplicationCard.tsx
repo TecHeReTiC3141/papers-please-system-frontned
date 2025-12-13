@@ -32,16 +32,17 @@ export const ApplicationCard = ({ ticket }: Props) => {
           </Link>
         </div>
         <DetailsList items={dateDetails} />
-        <div className="card-actions justify-between items-center">
+        <div className="card-actions justify-between items-center gap-x-2">
           <ApplicationStatusBadge status={applicationStatus} />
+          <div className="flex-1"></div>
           {applicationStatus === ApplicationStatus.Rejected && (
-            <button className="btn btn-sm btn-primary">
+            <button className="btn btn-xs btn-primary">
               <FaPlus />
               Appealation
             </button>
           )}
           {applicationStatus !== ApplicationStatus.Approved && (
-            <button className="btn btn-sm btn-error">
+            <button className="btn btn-xs btn-error">
               <FaTrash />
               Delete
             </button>

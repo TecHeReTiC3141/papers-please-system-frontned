@@ -59,6 +59,10 @@ export function CreateApplicationPage() {
       <div className="bg-base-200 border border-base-300 rounded-xl p-4">
         <DocumentsAccordion documents={attachedDocuments} onEdit={setEditingDocument} onDelete={setDeletingDocument} />
       </div>
+
+      <button className="btn btn-primary self-end" disabled={attachedDocuments.length === 0}>
+        Create application
+      </button>
       {/* MODALS */}
       <FillNewDocumentModal
         open={isFillNewOpen}
