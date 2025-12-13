@@ -9,6 +9,7 @@ import { ProfilePage } from '@pages/profile'
 import { TicketPage } from '@/pages/ticket'
 import { ApplicationsPage } from '@/pages/applications'
 import { CreateApplicationPage } from '@/pages/create-application'
+import { BasePage } from '../layouts/BasePage'
 
 export default function App() {
   return (
@@ -19,7 +20,7 @@ export default function App() {
         <Route path="/register" element={<RegisterPage />} />
 
         {/* App layout */}
-        <Route index element={<div>Главная</div>} />
+        <Route index element={<BasePage />} />
         <Route element={<AuthOutlet fallbackPath="/login" />}>
           <Route path="/tickets" element={<TicketsPage />} />
           <Route path="/tickets/:id" element={<TicketPage />} />
