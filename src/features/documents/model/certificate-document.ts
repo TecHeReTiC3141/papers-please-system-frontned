@@ -1,14 +1,15 @@
 import { DocumentType } from '@/entities/document/types'
-import { dateValidator } from '@/shared/validation'
 import z from 'zod'
+import { BaseDocumentSchema } from './base-document-schema'
 
-export const CertificateSchema = z.object({
-  type: z.literal(DocumentType.CERTIFICATE),
-
-  certificateType: z.string().min(1, 'Required'), // "medical", "vaccination", etc.
+export const CertificateBodySchema = z.object({
+  certificateType: z.string().min(1, 'Required'),
   holderName: z.string().min(1, 'Required'),
   issuedBy: z.string().min(1, 'Required'),
-  issueDate: dateValidator,
-
   additionalInfo: z.string().optional()
+})
+
+export const CertificateDocumentSchema = BaseDocumentSchema.extend({
+  documentType: z.literal(DocumentType.CERTIFICATE),
+  body: CertificateBodySchema
 })

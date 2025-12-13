@@ -9,13 +9,13 @@ export function VisaData({ document }: Props) {
   return (
     <DetailsList
       items={[
-        { label: 'Holder name', value: document.holderName },
-        { label: 'Nationality', value: document.nationality },
-        { label: 'Purpose', value: document.purpose },
-        { label: 'Duration (days)', value: document.durationDays },
-        { label: 'Issue date', value: document.issueDate },
-        { label: 'Expires at', value: document.expiresAt },
-        { label: 'Visa ID', value: document.visaId }
+        { label: 'Holder name', value: document.body.holderName },
+        { label: 'Nationality', value: document.body.nationality },
+        { label: 'Purpose', value: document.body.purpose },
+        { label: 'Duration (days)', value: document.body.durationDays },
+        { label: 'Issue date', value: document.validFrom },
+        { label: 'Expires at', value: document.validUntil },
+        { label: 'Visa ID', value: document.body.visaId }
       ]}
     />
   )

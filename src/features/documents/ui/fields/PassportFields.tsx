@@ -4,31 +4,27 @@ import { Region } from '@/entities/upk'
 
 export function PassportFields() {
   return (
-    <div className="flex flex-col gap-4 mt-2">
+    <div className="flex flex-col gap-4 mt-2 w-full">
       <Field
-        label="Name"
-        control={<FormikField name="fullName" className="input input-bordered bg-neutral-800 w-full" />}
-        message={<ErrorMessage name="fullName" />}
+        label="Full name"
+        control={<FormikField name="body.fullName" className="input input-bordered bg-neutral-800 w-full" />}
+        message={<ErrorMessage name="body.fullName" />}
         validationStatus="error"
       />
 
       <Field
         label="Country"
-        control={<FormikField name="country" className="input input-bordered bg-neutral-800 w-full" />}
-        message={<ErrorMessage name="country" />}
+        control={<FormikField name="body.country" className="input input-bordered bg-neutral-800 w-full" />}
+        message={<ErrorMessage name="body.country" />}
         validationStatus="error"
       />
 
       <Field
         label="Date of birth"
         control={
-          <FormikField
-            name="dateOfBirth"
-            placeholder="DD.MM.YYYY"
-            className="input input-bordered bg-neutral-800 w-full"
-          />
+          <FormikField type="date" name="body.dateOfBirth" className="input input-bordered bg-neutral-800 w-full" />
         }
-        message={<ErrorMessage name="dateOfBirth" />}
+        message={<ErrorMessage name="body.dateOfBirth" />}
         validationStatus="error"
       />
 
@@ -37,24 +33,24 @@ export function PassportFields() {
         control={
           <div className="flex gap-6 mt-1">
             <label className="flex items-center gap-2">
-              <FormikField type="radio" name="sex" value="M" />
+              <FormikField type="radio" name="body.sex" value="M" />
               Male
             </label>
 
             <label className="flex items-center gap-2">
-              <FormikField type="radio" name="sex" value="F" />
+              <FormikField type="radio" name="body.sex" value="F" />
               Female
             </label>
           </div>
         }
-        message={<ErrorMessage name="sex" />}
+        message={<ErrorMessage name="body.sex" />}
         validationStatus="error"
       />
 
       <Field
-        label="Region"
+        label="Issuing region"
         control={
-          <FormikField as="select" name="issuingRegion" className="select select-bordered bg-neutral-800 w-full">
+          <FormikField as="select" name="body.issuingRegion" className="select select-bordered bg-neutral-800 w-full">
             <option value="">Select region</option>
             {Object.values(Region).map((region) => (
               <option key={region} value={region}>
@@ -63,20 +59,14 @@ export function PassportFields() {
             ))}
           </FormikField>
         }
-        message={<ErrorMessage name="issuingRegion" />}
+        message={<ErrorMessage name="body.issuingRegion" />}
         validationStatus="error"
       />
 
       <Field
-        label="Expires at"
-        control={
-          <FormikField
-            name="expiresAt"
-            placeholder="DD.MM.YYYY"
-            className="input input-bordered bg-neutral-800 w-full"
-          />
-        }
-        message={<ErrorMessage name="expiresAt" />}
+        label="Passport number"
+        control={<FormikField name="body.passportNumber" className="input input-bordered bg-neutral-800 w-full" />}
+        message={<ErrorMessage name="body.passportNumber" />}
         validationStatus="error"
       />
     </div>

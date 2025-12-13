@@ -9,12 +9,13 @@ export function PassportData({ document }: Props) {
   return (
     <DetailsList
       items={[
-        { label: 'Name', value: document.fullName },
-        { label: 'Country', value: document.country },
-        { label: 'Date of birth', value: document.dateOfBirth },
-        { label: 'Sex', value: document.sex === 'M' ? 'Male' : 'Female' },
-        { label: 'Region', value: document.issuingRegion },
-        { label: 'Expires at', value: document.expiresAt }
+        { label: 'Name', value: document.body.fullName },
+        { label: 'Country', value: document.body.country },
+        { label: 'Date of birth', value: document.body.dateOfBirth },
+        { label: 'Sex', value: document.body.sex === 'M' ? 'Male' : 'Female' },
+        { label: 'Region', value: document.body.issuingRegion },
+        { label: 'Issue date', value: document.validFrom },
+        { label: 'Expires at', value: document.validUntil }
       ]}
     />
   )

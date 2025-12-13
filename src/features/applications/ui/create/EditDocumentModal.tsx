@@ -3,6 +3,7 @@ import { type AnyDocument } from '@/entities/document/types'
 import { DocumentSchema } from '@/features/documents/model'
 import { Field } from '@/shared/ui'
 import { renderDocumentFields } from '@/features/documents/lib'
+import { mapZodErrorsToFormik } from '@/shared/lib'
 
 type Props = {
   open: boolean
@@ -26,7 +27,7 @@ export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: P
           validateOnBlur
           validate={(values) => {
             const result = DocumentSchema.safeParse(values)
-            return result.success ? {} : result.error
+            return result.success ? {} : mapZodErrorsToFormik(result.error)
           }}
           onSubmit={(values, helpers) => {
             onSubmit(values)
@@ -56,7 +57,7 @@ export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: P
                       <input
                         disabled
                         className="input input-bordered bg-neutral-800"
-                        value={documentToEdit.type
+                        value={documentToEdit.documentType
                           .toLowerCase()
                           .replace('_', ' ')
                           .replace(/^\w/, (c) => c.toUpperCase())}
@@ -66,6 +67,30 @@ export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: P
 
                   {/* Document fields */}
                   {CurrentFields}
+
+                  <Field
+                    label="Valid From"
+                    control={
+                      <FormikField
+                        type="date"
+                        name="validFrom"
+                        disabled={documentToEdit.documentType === ''}
+                        className="input input-bordered bg-neutral-800"
+                      />
+                    }
+                  />
+
+                  <Field
+                    label="Valid Until"
+                    control={
+                      <FormikField
+                        type="date"
+                        name="validUntil"
+                        disabled={documentToEdit.documentType === ''}
+                        className="input input-bordered bg-neutral-800"
+                      />
+                    }
+                  />
 
                   {/* Attach to profile */}
                   <label className="flex items-center gap-2 mt-2">

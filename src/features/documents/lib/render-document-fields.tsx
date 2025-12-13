@@ -2,7 +2,7 @@ import { DocumentType, type AnyDocument } from '@/entities/document/types'
 import { PassportFields, VisaFields, CertificateFields, WorkPermitFields, PhotoFields } from '@/features/documents/ui'
 
 export function renderDocumentFields(doc: AnyDocument) {
-  switch (doc.type) {
+  switch (doc.documentType) {
     case DocumentType.PASSPORT:
       return <PassportFields />
 

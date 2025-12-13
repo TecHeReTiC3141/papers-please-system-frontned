@@ -9,11 +9,11 @@ export function CertificateData({ document }: Props) {
   return (
     <DetailsList
       items={[
-        { label: 'Certificate type', value: document.certificateType },
-        { label: 'Holder name', value: document.holderName },
-        { label: 'Issued by', value: document.issuedBy },
-        { label: 'Issue date', value: document.issueDate },
-        { label: 'Additional info', value: document.additionalInfo }
+        { label: 'Certificate type', value: document.body.certificateType },
+        { label: 'Holder name', value: document.body.holderName },
+        { label: 'Additional info', value: document.body.additionalInfo },
+        { label: 'Issue date', value: document.validFrom },
+        { label: 'Expires at', value: document.validUntil }
       ]}
     />
   )

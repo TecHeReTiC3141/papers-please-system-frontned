@@ -1,4 +1,6 @@
 import type { AnyDocument } from '@/entities/document/types'
+import { useCreateApplicationMutation } from '@/features/applications/model/use-create-application-mutation'
+import { useGetUserDocuments } from '@/features/applications/model/use-get-user-documents'
 import {
   AttachExistingModal,
   DeleteDocumentModal,
@@ -20,12 +22,20 @@ export function CreateApplicationPage() {
 
   const handleAddDocument = (doc: AnyDocument) => setAttachedDocuments((prev) => [...prev, doc])
 
+  const createApplicationMutation = useCreateApplicationMutation()
+
+  const handleAttachDocuments = (docs: AnyDocument[]) =>
+    setAttachedDocuments((prev) => [
+      ...prev,
+      ...docs.filter((d) => !prev.some((p) => p.documentType === d.documentType))
+    ])
+
   const handleEditDocument = (updatedDoc: AnyDocument) => {
-    setAttachedDocuments((prev) => prev.map((d) => (d.type === updatedDoc.type ? updatedDoc : d)))
+    setAttachedDocuments((prev) => prev.map((d) => (d.documentType === updatedDoc.documentType ? updatedDoc : d)))
   }
 
   const handleDeleteDocument = () => {
-    setAttachedDocuments((prev) => prev.filter((d) => d.type !== deletingDocument!.type))
+    setAttachedDocuments((prev) => prev.filter((d) => d.documentType !== deletingDocument!.documentType))
     setDeletingDocument(null)
   }
 
@@ -60,8 +70,16 @@ export function CreateApplicationPage() {
         <DocumentsAccordion documents={attachedDocuments} onEdit={setEditingDocument} onDelete={setDeletingDocument} />
       </div>
 
-      <button className="btn btn-primary self-end" disabled={attachedDocuments.length === 0}>
-        Create application
+      <button
+        className="btn btn-primary self-end"
+        disabled={attachedDocuments.length === 0}
+        onClick={() => createApplicationMutation.mutate(attachedDocuments)}
+      >
+        {createApplicationMutation.isPending ? (
+          <span className="loading loading-spinner loading-sm"></span>
+        ) : (
+          'Create application'
+        )}
       </button>
       {/* MODALS */}
       <FillNewDocumentModal
@@ -76,7 +94,12 @@ export function CreateApplicationPage() {
         onClose={() => setEditingDocument(null)}
         onSubmit={handleEditDocument}
       />
-      <AttachExistingModal open={isAttachOpen} onClose={() => setAttachOpen(false)} />
+      <AttachExistingModal
+        open={isAttachOpen}
+        onClose={() => setAttachOpen(false)}
+        onAttach={handleAttachDocuments}
+        attachedDocuments={attachedDocuments}
+      />
       <DeleteDocumentModal
         open={!!deletingDocument}
         document={deletingDocument}

@@ -1,6 +1,5 @@
 import { useGetApplications } from '@/features/applications/model'
 import { ApplicationsBoard, ApplicationsGallery } from '@/features/applications/ui'
-import { TicketsBoard } from '@/features/tickets/ui'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { FaPlus } from 'react-icons/fa6'

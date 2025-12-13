@@ -17,7 +17,8 @@ export function DeleteDocumentModal({ open, document, onClose, onConfirm }: Prop
         <h3 className="font-bold text-lg mb-4">Delete document</h3>
 
         <p className="text-base-content/80">
-          Are you sure you want to delete <span className="font-semibold">{documentTitleMap[document.type]}</span>?
+          Are you sure you want to delete{' '}
+          <span className="font-semibold">{documentTitleMap[document.documentType]}</span>?
         </p>
 
         <div className="modal-action">

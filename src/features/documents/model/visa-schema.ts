@@ -1,24 +1,16 @@
 import { DocumentType } from '@/entities/document/types'
-import { dateValidator } from '@/shared/validation'
 import { z } from 'zod'
+import { BaseDocumentSchema } from './base-document-schema'
 
-export const VisaSchema = z.object({
-  type: z.literal(DocumentType.VISA),
-
+export const VisaBodySchema = z.object({
   holderName: z.string().min(1, 'Required'),
   nationality: z.string().min(1, 'Required'),
-
   purpose: z.enum(['work', 'visit', 'transit']),
-
-  durationDays: z
-    .number({
-      error: 'Duration must be a number'
-    })
-    .int()
-    .positive('Must be > 0'),
-
-  issueDate: dateValidator,
-  expiresAt: dateValidator,
-
+  durationDays: z.number().int().positive('Must be > 0'),
   visaId: z.string().min(1, 'Required')
+})
+
+export const VisaDocumentSchema = BaseDocumentSchema.extend({
+  documentType: z.literal(DocumentType.VISA),
+  body: VisaBodySchema
 })

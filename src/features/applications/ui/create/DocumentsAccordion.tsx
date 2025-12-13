@@ -3,63 +3,99 @@ import { type AnyDocument } from '@/entities/document/types'
 import { documentTitleMap } from '@/features/documents/model'
 import { renderDocumentData } from '@/features/documents/lib'
 import classNames from 'classnames'
+import { id } from 'zod/v4/locales'
 
 type Props = {
   documents: AnyDocument[]
-  onEdit: (doc: AnyDocument) => void
-  onDelete: (doc: AnyDocument) => void
+  onEdit?: (doc: AnyDocument) => void
+  onDelete?: (doc: AnyDocument) => void
+
+  /** attach-existing mode */
+  selectable?: boolean
+  selected?: AnyDocument[]
+  onToggleSelect?: (doc: AnyDocument) => void
+  isDocumentDisabled?: (doc: AnyDocument) => boolean
 }
 
-export function DocumentsAccordion({ documents, onEdit, onDelete }: Props) {
+export function DocumentsAccordion({
+  documents,
+  onEdit,
+  onDelete,
+  selectable = false,
+  selected = [],
+  onToggleSelect,
+  isDocumentDisabled
+}: Props) {
   if (!documents.length) {
-    return <div className="text-center text-base-content/60 py-6">No documents attached yet</div>
+    return <div className="text-center text-base-content/60 py-6">No documents found</div>
   }
 
   return (
     <div className="join join-vertical w-full">
-      {documents.map((doc, index) => (
-        <details
-          key={doc.type}
-          className={classNames(
-            'collapse collapse-arrow join-item border-2 border-base-300',
-            index % 2 && 'bg-base-100'
-          )}
-        >
-          <summary className="collapse-title flex items-center justify-between gap-4">
-            <span className="text-lg font-medium">
-              {index + 1}. {documentTitleMap[doc.type]}
-            </span>
+      {documents.map((doc, index) => {
+        const isSelected = selected.some((d) => d.id === doc.id)
 
-            <div className="flex items-center gap-1">
-              <button
-                type="button"
-                className="btn btn-xs btn-ghost"
-                onClick={(e) => {
-                  e.preventDefault()
-                  e.stopPropagation()
-                  onEdit(doc)
-                }}
-              >
-                <FiEdit2 />
-              </button>
+        return (
+          <details
+            key={doc.documentType}
+            className={classNames(
+              'collapse collapse-arrow join-item border-2 border-base-300',
+              index % 2 && 'bg-base-100'
+            )}
+          >
+            <summary className="collapse-title flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                {selectable && (
+                  <input
+                    type="checkbox"
+                    className="checkbox checkbox-sm"
+                    checked={isSelected}
+                    disabled={isDocumentDisabled?.(doc)}
+                    onChange={() => onToggleSelect?.(doc)}
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                )}
 
-              <button
-                type="button"
-                className="btn btn-xs btn-ghost text-error"
-                onClick={(e) => {
-                  e.preventDefault()
-                  e.stopPropagation()
-                  onDelete(doc)
-                }}
-              >
-                <FiTrash2 />
-              </button>
-            </div>
-          </summary>
+                <span className="text-lg font-medium">
+                  {index + 1}. {documentTitleMap[doc.documentType]}
+                </span>
+              </div>
 
-          <div className="collapse-content">{renderDocumentData(doc)}</div>
-        </details>
-      ))}
+              {!selectable && (
+                <div className="flex items-center gap-1">
+                  {onEdit && (
+                    <button
+                      className="btn btn-xs btn-ghost"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        onEdit(doc)
+                      }}
+                    >
+                      <FiEdit2 />
+                    </button>
+                  )}
+
+                  {onDelete && (
+                    <button
+                      className="btn btn-xs btn-ghost text-error"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        onDelete(doc)
+                      }}
+                    >
+                      <FiTrash2 />
+                    </button>
+                  )}
+                </div>
+              )}
+            </summary>
+
+            <div className="collapse-content">{renderDocumentData(doc)}</div>
+          </details>
+        )
+      })}
     </div>
   )
 }

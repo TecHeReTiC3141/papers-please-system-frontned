@@ -6,55 +6,29 @@ export function WorkPermitFields() {
     <div className="flex flex-col gap-4 mt-2">
       <Field
         label="Worker name"
-        control={<FormikField name="workerName" className="input input-bordered bg-neutral-800 w-full" />}
-        message={<ErrorMessage name="workerName" />}
+        control={<FormikField name="body.workerName" className="input input-bordered bg-neutral-800 w-full" />}
+        message={<ErrorMessage name="body.workerName" />}
         validationStatus="error"
       />
 
       <Field
         label="Occupation"
-        control={<FormikField name="occupation" className="input input-bordered bg-neutral-800 w-full" />}
-        message={<ErrorMessage name="occupation" />}
+        control={<FormikField name="body.occupation" className="input input-bordered bg-neutral-800 w-full" />}
+        message={<ErrorMessage name="body.occupation" />}
         validationStatus="error"
       />
 
       <Field
         label="Employer"
-        control={<FormikField name="employer" className="input input-bordered bg-neutral-800 w-full" />}
-        message={<ErrorMessage name="employer" />}
-        validationStatus="error"
-      />
-
-      <Field
-        label="Issue date"
-        control={
-          <FormikField
-            name="issueDate"
-            placeholder="DD.MM.YYYY"
-            className="input input-bordered bg-neutral-800 w-full"
-          />
-        }
-        message={<ErrorMessage name="issueDate" />}
-        validationStatus="error"
-      />
-
-      <Field
-        label="Expires at"
-        control={
-          <FormikField
-            name="expiresAt"
-            placeholder="DD.MM.YYYY"
-            className="input input-bordered bg-neutral-800 w-full"
-          />
-        }
-        message={<ErrorMessage name="expiresAt" />}
+        control={<FormikField name="body.employer" className="input input-bordered bg-neutral-800 w-full" />}
+        message={<ErrorMessage name="body.employer" />}
         validationStatus="error"
       />
 
       <Field
         label="Permit ID"
-        control={<FormikField name="permitId" className="input input-bordered bg-neutral-800 w-full" />}
-        message={<ErrorMessage name="permitId" />}
+        control={<FormikField name="body.permitId" className="input input-bordered bg-neutral-800 w-full" />}
+        message={<ErrorMessage name="body.permitId" />}
         validationStatus="error"
       />
     </div>

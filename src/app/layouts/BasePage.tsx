@@ -22,7 +22,7 @@ export function BasePage() {
     } else {
       navigate('/login')
     }
-  }, [])
+  }, [userData])
 
   return <div>Main page</div>
 }

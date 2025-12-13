@@ -1,3 +1,12 @@
+export type Document<TBody> = {
+  id?: string
+  userId: string
+  documentType: DocumentType
+  body: TBody
+  validFrom: string // ISO
+  validUntil: string // ISO
+}
+
 export enum DocumentType {
   PASSPORT = 'PASSPORT',
   VISA = 'VISA',
@@ -9,58 +18,71 @@ export enum DocumentType {
 // ---------------------------
 // Document Type Definitions
 // ---------------------------
+// ---------------------------
+// Body definitions
+// ---------------------------
 
-export type PassportDocument = {
-  type: DocumentType.PASSPORT
+export type PassportBody = {
   fullName: string
   country: string
   dateOfBirth: string
-  sex: string
+  sex: 'M' | 'F'
   issuingRegion: string
-  expiresAt: string
   passportNumber: string
 }
 
-export type VisaDocument = {
-  type: DocumentType.VISA
+export type VisaBody = {
   holderName: string
   nationality: string
-  purpose: string // "work" | "visit" | "transit"
+  purpose: 'work' | 'visit' | 'transit'
   durationDays: number
-  issueDate: string
-  expiresAt: string
   visaId: string
 }
 
-export type CertificateDocument = {
-  type: DocumentType.CERTIFICATE
-  certificateType: string // "medical", "vaccination", etc.
+export type CertificateBody = {
+  certificateType: string
   holderName: string
-  issuedBy: string
-  issueDate: string
   additionalInfo?: string
 }
 
-export type WorkPermitDocument = {
-  type: DocumentType.WORK_PERMIT
+export type WorkPermitBody = {
   workerName: string
   occupation: string
   employer: string
-  issueDate: string
-  expiresAt: string
   permitId: string
 }
 
-export type PhotoDocument = {
-  type: DocumentType.PHOTO
+export type PhotoBody = {
   ownerName: string
-  imageUrl: string // or Blob
-  resolution: string // "600x800"
-  takenAt: string
+  imageUrl: string
+  resolution: string
+}
+
+export type PassportDocument = Document<PassportBody> & {
+  documentType: DocumentType.PASSPORT
+}
+
+export type VisaDocument = Document<VisaBody> & {
+  documentType: DocumentType.VISA
+}
+
+export type CertificateDocument = Document<CertificateBody> & {
+  documentType: DocumentType.CERTIFICATE
+}
+
+export type WorkPermitDocument = Document<WorkPermitBody> & {
+  documentType: DocumentType.WORK_PERMIT
+}
+
+export type PhotoDocument = Document<PhotoBody> & {
+  documentType: DocumentType.PHOTO
 }
 
 export type BlankDocument = {
-  type: ''
+  id: ''
+  documentType: ''
+  validFrom: ''
+  validUntil: ''
 }
 
 // Optional combined type

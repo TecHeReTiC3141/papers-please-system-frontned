@@ -15,8 +15,6 @@ export function Header() {
   const [isLogoutModalOpened, setIsLogoutModalOpened] = useState(false)
   const navigate = useNavigate()
 
-  console.log('user data', userData)
-
   return (
     <>
       <header className="navbar justify-between bg-base-200 shadow-md px-8 border-b border-neutral-content">

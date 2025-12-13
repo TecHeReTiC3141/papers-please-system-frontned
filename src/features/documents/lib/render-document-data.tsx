@@ -2,7 +2,7 @@ import { DocumentType, type AnyDocument } from '@/entities/document/types'
 import { PassportData, VisaData, CertificateData, WorkPermitData, PhotoData } from '@/features/documents/ui'
 
 export function renderDocumentData(doc: AnyDocument) {
-  switch (doc.type) {
+  switch (doc.documentType) {
     case DocumentType.PASSPORT:
       return <PassportData document={doc} />
 

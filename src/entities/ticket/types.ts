@@ -15,10 +15,10 @@ export enum TicketStatus {
 }
 
 export enum Priority {
-  LOW = 'low',
-  NORMAL = 'normal',
-  HIGH = 'high',
-  CRITICAL = 'critical'
+  LOW = 'LOW',
+  NORMAL = 'NORMAL',
+  HIGH = 'HIGH',
+  CRITICAL = 'CRITICAL'
 }
 
 export type Ticket = {
@@ -40,4 +40,18 @@ export type Ticket = {
 
   relatedTickets: { id: string }[]
   documents: { id: string }[]
+}
+
+export type TicketRequest = {
+  ticketType: TicketType
+  status: TicketStatus
+  priority: Priority
+
+  deadlineAt: string | null
+
+  description: string
+  resolution: string | null
+
+  authorId: string
+  subjectId: string
 }

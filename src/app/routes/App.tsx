@@ -10,6 +10,7 @@ import { TicketPage } from '@/pages/ticket'
 import { ApplicationsPage } from '@/pages/applications'
 import { CreateApplicationPage } from '@/pages/create-application'
 import { BasePage } from '../layouts/BasePage'
+import { ApplicationPage } from '@/pages/application'
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/tickets/:id" element={<TicketPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/applications" element={<ApplicationsPage />} />
+          <Route path="/applications/:id" element={<ApplicationPage />} />
           <Route path="/applications/create" element={<CreateApplicationPage />} />
         </Route>
 

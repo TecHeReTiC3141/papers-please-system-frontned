@@ -6,35 +6,22 @@ export function CertificateFields() {
     <div className="flex flex-col gap-4 mt-2">
       <Field
         label="Certificate type"
-        control={<FormikField name="certificateType" className="input input-bordered bg-neutral-800 w-full" />}
-        message={<ErrorMessage name="certificateType" />}
+        control={<FormikField name="body.certificateType" className="input input-bordered bg-neutral-800 w-full" />}
+        message={<ErrorMessage name="body.certificateType" />}
         validationStatus="error"
       />
 
       <Field
         label="Holder name"
-        control={<FormikField name="holderName" className="input input-bordered bg-neutral-800 w-full" />}
-        message={<ErrorMessage name="holderName" />}
+        control={<FormikField name="body.holderName" className="input input-bordered bg-neutral-800 w-full" />}
+        message={<ErrorMessage name="body.holderName" />}
         validationStatus="error"
       />
 
       <Field
         label="Issued by"
-        control={<FormikField name="issuedBy" className="input input-bordered bg-neutral-800 w-full" />}
-        message={<ErrorMessage name="issuedBy" />}
-        validationStatus="error"
-      />
-
-      <Field
-        label="Issue date"
-        control={
-          <FormikField
-            name="issueDate"
-            placeholder="DD.MM.YYYY"
-            className="input input-bordered bg-neutral-800 w-full"
-          />
-        }
-        message={<ErrorMessage name="issueDate" />}
+        control={<FormikField name="body.issuedBy" className="input input-bordered bg-neutral-800 w-full" />}
+        message={<ErrorMessage name="body.issuedBy" />}
         validationStatus="error"
       />
 
@@ -43,11 +30,11 @@ export function CertificateFields() {
         control={
           <FormikField
             as="textarea"
-            name="additionalInfo"
+            name="body.additionalInfo"
             className="textarea textarea-bordered bg-neutral-800 w-full"
           />
         }
-        message={<ErrorMessage name="additionalInfo" />}
+        message={<ErrorMessage name="body.additionalInfo" />}
         validationStatus="error"
       />
     </div>
