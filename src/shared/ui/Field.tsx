@@ -3,7 +3,7 @@ import React from 'react'
 interface FieldProps {
   label?: string
   control: React.ReactNode
-  message?: string
+  message?: React.ReactNode
   validationStatus?: 'error' | 'success' | 'default'
 }
 

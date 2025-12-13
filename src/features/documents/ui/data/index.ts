@@ -1,0 +1,5 @@
+export * from './PassportData'
+export * from './CertificateData'
+export * from './PhotoData'
+export * from './VisaData'
+export * from './WorkPermitData'

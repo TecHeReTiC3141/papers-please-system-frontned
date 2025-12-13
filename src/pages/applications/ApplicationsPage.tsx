@@ -52,7 +52,7 @@ export function ApplicationsPage() {
           </button>
         </div>
         <div className="flex-1"></div>
-        <Link to="/applications/add" className="btn btn-primary rounded-lg">
+        <Link to="/applications/create" className="btn btn-primary rounded-lg">
           <FaPlus /> Create application
         </Link>
       </div>
