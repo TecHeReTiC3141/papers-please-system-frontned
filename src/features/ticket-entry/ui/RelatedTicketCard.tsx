@@ -1,0 +1,34 @@
+import type { Ticket } from '@/entities/ticket'
+import { Link } from 'react-router'
+import { typeConfig } from '@/entities/ticket/constants'
+import classNames from 'classnames'
+import { formatTicketDeadlineAt, formatTicketId } from '@/entities/ticket/lib'
+import { TicketStatusBadge } from '@/features/tickets/ui/TicketStatus'
+
+type Props = {
+  ticket: Ticket
+}
+
+export const RelatedTicketCard = ({ ticket }: Props) => {
+  const { icon: TypeIcon, blColor, label, iconColor } = typeConfig[ticket.ticketType]
+
+  return (
+    <Link
+      to={`/tickets/${ticket.id}`}
+      className={classNames('bg-base-200 p-4 shadow cursor-pointer active:cursor-grabbing border-l-4', blColor)}
+    >
+      <div className="flex items-center gap-1">
+        <TypeIcon className={`${iconColor}`} />
+        <div className="font-semibold">{formatTicketId(ticket)}</div>
+        <span>{label}</span>
+      </div>
+      <div className="font-semibold">{ticket.description}</div>
+      {/* TODO: add ticket executor */}
+      <div className="mt-2">
+        <TicketStatusBadge status={ticket.status} />
+      </div>
+
+      <div className="mt-2 text-sm">Deadline: {formatTicketDeadlineAt(ticket)}</div>
+    </Link>
+  )
+}

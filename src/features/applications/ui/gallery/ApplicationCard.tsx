@@ -23,7 +23,7 @@ export const ApplicationCard = ({ ticket }: Props) => {
   ]
 
   return (
-    <div className={classNames('card card-border bg-base-100 w-96', borderColor)}>
+    <div className={classNames('card card-border bg-base-100 w-80', borderColor)}>
       <div className="card-body">
         <div className="card-actions justify-between">
           <h2 className="card-title">Application</h2>
@@ -44,7 +44,7 @@ export const ApplicationCard = ({ ticket }: Props) => {
           {applicationStatus !== ApplicationStatus.Approved && (
             <button className="btn btn-xs btn-error">
               <FaTrash />
-              Delete
+              Close
             </button>
           )}
         </div>

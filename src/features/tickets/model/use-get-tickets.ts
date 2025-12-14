@@ -3,13 +3,17 @@ import type { User } from '@/entities/user'
 import { useApi } from '@/shared/api/axios'
 import type { MultipleEntitiesResponse } from '@/shared/api/types'
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
+import { useNavigate } from 'react-router'
 
 export const useGetTickets = () => {
+  const navigate = useNavigate()
   const userData = useAuthUser<User>()
   const api = useApi()
 
   if (!userData) {
-    throw new Error('Not authorized')
+    navigate('/login')
+
+    return
   }
 
   return async () => {

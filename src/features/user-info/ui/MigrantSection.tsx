@@ -1,5 +1,5 @@
 import type { AnyDocument } from '@/entities/document/types'
-import { useCreateApplicationMutation } from '@/features/applications/model/use-create-application-mutation'
+import type { MigrantExtendedInfo } from '@/entities/user'
 import {
   AttachExistingModal,
   DeleteDocumentModal,
@@ -8,22 +8,21 @@ import {
   FillNewDocumentModal
 } from '@/features/applications/ui'
 import { useState } from 'react'
-import { FaArrowLeft } from 'react-icons/fa6'
 import { FiPlus } from 'react-icons/fi'
-import { MdAttachFile } from 'react-icons/md'
-import { Link } from 'react-router'
 
-export function CreateApplicationPage() {
+type Props = {
+  extendedMigrantInfo: MigrantExtendedInfo
+}
+
+export function MigrantSection({ extendedMigrantInfo }: Props) {
   const [isFillNewOpen, setFillNewOpen] = useState(false)
   const [isAttachOpen, setAttachOpen] = useState(false)
 
-  const [attachedDocuments, setAttachedDocuments] = useState<AnyDocument[]>([])
+  const [attachedDocuments, setAttachedDocuments] = useState<AnyDocument[]>(extendedMigrantInfo.documents)
   const [editingDocument, setEditingDocument] = useState<AnyDocument | null>(null)
   const [deletingDocument, setDeletingDocument] = useState<AnyDocument | null>(null)
 
   const handleAddDocument = (doc: AnyDocument) => setAttachedDocuments((prev) => [...prev, doc])
-
-  const createApplicationMutation = useCreateApplicationMutation()
 
   const handleAttachDocuments = (docs: AnyDocument[]) =>
     setAttachedDocuments((prev) => [
@@ -40,34 +39,16 @@ export function CreateApplicationPage() {
     setDeletingDocument(null)
   }
 
+  // TODO: implement correct save of personal documents
+
   return (
-    <div className="p-8 flex flex-col gap-8">
-      <Link className="link link-hover link-info flex gap-x-2 items-center" to="/applications">
-        <FaArrowLeft /> Back to applications
-      </Link>
-      <h1 className="text-3xl font-semibold text-center">New application</h1>
+    <div className="w-full flex flex-col gap-y-3">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-medium">Attached documents</h2>
 
-        <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-sm btn-primary border rounded-lg">
-            Add document ▾
-          </div>
-
-          <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box shadow p-2 w-44">
-            <li>
-              <button className="flex items-center gap-2" onClick={() => setFillNewOpen(true)}>
-                <FiPlus /> Fill new
-              </button>
-            </li>
-
-            <li>
-              <button className="flex items-center gap-2" onClick={() => setAttachOpen(true)}>
-                <MdAttachFile /> Attach existing
-              </button>
-            </li>
-          </ul>
-        </div>
+        <button className="btn btn-sm btn-primary border rounded-lg" onClick={() => setFillNewOpen(true)}>
+          <FiPlus /> Add document
+        </button>
       </div>
       <div className="bg-base-200 border border-base-300 rounded-xl p-4">
         <DocumentsAccordion documents={attachedDocuments} onEdit={setEditingDocument} onDelete={setDeletingDocument} />
@@ -76,15 +57,14 @@ export function CreateApplicationPage() {
       <button
         className="btn btn-primary self-end"
         disabled={attachedDocuments.length === 0}
-        onClick={() => createApplicationMutation.mutate(attachedDocuments)}
+        onClick={() => console.log('DOCUMENTS', attachedDocuments)}
       >
-        {createApplicationMutation.isPending ? (
-          <span className="loading loading-spinner loading-sm"></span>
-        ) : (
-          'Create application'
-        )}
+        {/* {createApplicationMutation.isPending ? ( */}
+        {/* <span className="loading loading-spinner loading-sm"></span> */}
+        {/* ) : ( */}
+        Save documents
+        {/* )} */}
       </button>
-      {/* MODALS */}
       <FillNewDocumentModal
         open={isFillNewOpen}
         onClose={() => setFillNewOpen(false)}

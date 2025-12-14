@@ -2,8 +2,9 @@ import type { AnyDocument } from '@/entities/document/types'
 import { DocumentsAccordion } from '@/features/applications/ui'
 import { useGetApplicationDocuments } from '@/features/applications/model'
 import { useQuery } from '@tanstack/react-query'
-import { useNavigate, useParams } from 'react-router'
+import { Link, useNavigate, useParams } from 'react-router'
 import { Loader } from '@/shared/ui'
+import { FaArrowLeft } from 'react-icons/fa6'
 
 export function ApplicationPage() {
   const { id } = useParams()
@@ -36,6 +37,9 @@ export function ApplicationPage() {
 
   return (
     <div className="p-8 flex flex-col gap-8">
+      <Link className="link link-hover link-info flex gap-x-2 items-center" to="/applications">
+        <FaArrowLeft /> Back to applications
+      </Link>
       <h1 className="text-3xl font-semibold text-center">Application documents</h1>
 
       <div className="bg-base-200 border border-base-300 rounded-xl p-4">

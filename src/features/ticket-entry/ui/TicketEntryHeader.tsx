@@ -1,4 +1,4 @@
-import { type Ticket } from '@/entities/ticket'
+import { TicketStatus, type Ticket } from '@/entities/ticket'
 import { statusConfig, typeConfig } from '@/entities/ticket/constants'
 import type { User } from '@/entities/user'
 import { UserPreview } from '@/shared/ui/UserPreview'
@@ -9,20 +9,57 @@ import { FaCheck, FaXmark } from 'react-icons/fa6'
 import { FaSave } from 'react-icons/fa'
 import { formatTicketId } from '@/entities/ticket/lib'
 import { DetailsList } from '@/shared/ui'
+import { ApproveModal } from './ApproveModal'
+import { RejectModal } from './RejectModal'
+import { useState } from 'react'
 import { TicketStatusBadge } from '@/features/tickets/ui/TicketStatus'
 
 type Props = {
   ticket: Ticket
+  status: TicketStatus
+  onStatusChange: (status: TicketStatus) => void
+  onSave: () => void
+  onApprove: () => void
+  onReject: () => void
+  isSaveInProgress: boolean
+  canSave: boolean
 }
 
-export function TicketEntryHeader({ ticket }: Props) {
+export function TicketEntryHeader({
+  ticket,
+  status,
+  onStatusChange,
+  onSave,
+  onApprove,
+  onReject,
+  isSaveInProgress,
+  canSave
+}: Props) {
   const userData = useAuthUser<User | null>()
+  const [approveOpen, setApproveOpen] = useState(false)
+  const [rejectOpen, setRejectOpen] = useState(false)
+
   const { icon: TypeIcon, blColor, label, iconColor } = typeConfig[ticket.ticketType]
-  const { reason } = statusConfig[ticket.status]
+  const { reason } = statusConfig[status]
 
   const statusItems = [
-    { label: 'Status', value: <TicketStatusBadge status={ticket.status} /> },
-    { label: 'Reason', value: reason }
+    {
+      label: 'Status',
+      value: (
+        <select
+          className="select select-sm select-bordered bg-neutral-800"
+          value={status}
+          onChange={(e) => onStatusChange(e.target.value as TicketStatus)}
+        >
+          {Object.values(TicketStatus).map((s) => (
+            <option key={s} value={s}>
+              <TicketStatusBadge status={s} />
+            </option>
+          ))}
+        </select>
+      )
+    },
+    { label: 'Reason', value: <p className="text-base-content/80">{reason}</p> }
   ]
 
   return (
@@ -42,22 +79,25 @@ export function TicketEntryHeader({ ticket }: Props) {
           {/* TODO: add executor preview */}
         </div>
         <div className="flex items-center gap-x-6">
-          <button className="btn rounded-xl btn-sm btn-success">
+          <button className="btn rounded-xl btn-sm btn-success opacity-90" onClick={() => setApproveOpen(true)}>
             <FaCheck />
             Approve
           </button>
-          <button className="btn rounded-xl btn-sm btn-error">
+          <button className="btn rounded-xl btn-sm btn-error opacity-90" onClick={() => setRejectOpen(true)}>
             <FaXmark />
             Reject
           </button>
-          <button className="btn rounded-xl btn-sm btn-info">
-            <FaSave /> Save
+          <button className="btn rounded-xl btn-sm btn-info opacity-90" disabled={!canSave} onClick={onSave}>
+            <FaSave /> {isSaveInProgress ? <span className="loading loading-spinner loading-sm"></span> : 'Save'}
           </button>
         </div>
       </div>
       <div className="w-full bg-base-300 p-3">
         <DetailsList items={statusItems} />
       </div>
+      <ApproveModal open={approveOpen} onClose={() => setApproveOpen(false)} onConfirm={onApprove} />
+
+      <RejectModal open={rejectOpen} onClose={() => setRejectOpen(false)} onReject={onReject} />
     </div>
   )
 }

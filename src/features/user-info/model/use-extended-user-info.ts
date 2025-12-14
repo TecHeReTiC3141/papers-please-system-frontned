@@ -1,3 +1,4 @@
+import type { AnyDocument } from '@/entities/document/types'
 import {
   type BossExtendedInfo,
   UserRole,
@@ -6,6 +7,7 @@ import {
   type UserExtendedInfo
 } from '@/entities/user'
 import { useApi } from '@/shared/api/axios'
+import type { MultipleEntitiesResponse } from '@/shared/api/types'
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
 
 export const useExtendedUserInfo = () => {
@@ -24,6 +26,17 @@ export const useExtendedUserInfo = () => {
       const { data } = await api.get<InspectorExtendedInfo>(`/users/${userData.id}/details`)
 
       return data
+    }
+
+    if (userData.role === UserRole.MIGRANT) {
+      const { data: documents } = await api.get<MultipleEntitiesResponse<AnyDocument>>(
+        `/documents?userId=${userData.id}`
+      )
+
+      return {
+        ...userData,
+        documents: documents.items
+      }
     }
 
     return userData

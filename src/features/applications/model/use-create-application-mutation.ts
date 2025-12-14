@@ -57,7 +57,7 @@ export const useCreateApplicationMutation = () => {
         createdDocuments.map((document) => api.post(`/tickets/${createdTicket.id}/documents/${document.id}`))
       )
 
-      navigate('/appilcations')
+      navigate('/applications')
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['applications'] })

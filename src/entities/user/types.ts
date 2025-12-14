@@ -1,4 +1,5 @@
 import type { BaseEntity } from '../common'
+import type { AnyDocument } from '../document/types'
 import type { ShiftBossExtendedInfo, ShiftInspectorExtendedInfo } from '../shift'
 import type { Upk } from '../upk/types'
 
@@ -37,4 +38,8 @@ export type BossExtendedInfo = User & {
   shifts: ShiftBossExtendedInfo[]
 }
 
-export type UserExtendedInfo = User | InspectorExtendedInfo | BossExtendedInfo
+export type MigrantExtendedInfo = User & {
+  documents: AnyDocument[]
+}
+
+export type UserExtendedInfo = User | InspectorExtendedInfo | BossExtendedInfo | MigrantExtendedInfo

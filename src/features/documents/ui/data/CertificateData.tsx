@@ -3,17 +3,19 @@ import { DetailsList } from '@/shared/ui'
 
 type Props = {
   document: CertificateDocument
+  inspectorMode?: boolean
 }
 
-export function CertificateData({ document }: Props) {
+export function CertificateData({ document, inspectorMode = false }: Props) {
   return (
     <DetailsList
+      inspectorMode={inspectorMode}
       items={[
-        { label: 'Certificate type', value: document.body.certificateType },
-        { label: 'Holder name', value: document.body.holderName },
-        { label: 'Additional info', value: document.body.additionalInfo },
-        { label: 'Issue date', value: document.validFrom },
-        { label: 'Expires at', value: document.validUntil }
+        { label: 'Certificate type', value: document.body.certificateType, fieldKey: 'body.certificateType' },
+        { label: 'Holder name', value: document.body.holderName, fieldKey: 'body.holderName' },
+        { label: 'Additional info', value: document.body.additionalInfo, fieldKey: 'body.additionalInfo' },
+        { label: 'Issue date', value: document.validFrom, fieldKey: 'validFrom' },
+        { label: 'Expires at', value: document.validUntil, fieldKey: 'validUntil' }
       ]}
     />
   )

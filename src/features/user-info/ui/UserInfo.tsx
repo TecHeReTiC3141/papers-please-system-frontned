@@ -1,10 +1,10 @@
 import type { UserExtendedInfo } from '@/entities/user'
-import { MdEdit } from 'react-icons/md'
 import { UserAvatar } from './UserAvatar'
 import { InfoField, Loader } from '@/shared/ui'
-import { checkIfBossInfo, checkIfInspectorInfo } from '../lib/check-roles'
+import { checkIfBossInfo, checkIfInspectorInfo, checkIfMigrantInfo } from '../lib/check-roles'
 import { InspectorSection } from './InspectorSection'
 import { BossSection } from './BossSection'
+import { MigrantSection } from './MigrantSection'
 
 type Props = {
   userData: UserExtendedInfo | null
@@ -23,6 +23,7 @@ export function UserInfo({ userData, isLoading }: Props) {
         <InfoField value={userData.email} label="Email" />
         {checkIfInspectorInfo(userData) && <InspectorSection extendedInspectorInfo={userData} />}
         {checkIfBossInfo(userData) && <BossSection extendedBossInfo={userData} />}
+        {checkIfMigrantInfo(userData) && <MigrantSection extendedMigrantInfo={userData} />}
       </div>
     </div>
   )

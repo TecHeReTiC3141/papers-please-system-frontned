@@ -3,7 +3,6 @@ import { type AnyDocument } from '@/entities/document/types'
 import { documentTitleMap } from '@/features/documents/model'
 import { renderDocumentData } from '@/features/documents/lib'
 import classNames from 'classnames'
-import { id } from 'zod/v4/locales'
 
 type Props = {
   documents: AnyDocument[]
@@ -15,6 +14,8 @@ type Props = {
   selected?: AnyDocument[]
   onToggleSelect?: (doc: AnyDocument) => void
   isDocumentDisabled?: (doc: AnyDocument) => boolean
+
+  inspectorMode?: boolean
 }
 
 export function DocumentsAccordion({
@@ -24,7 +25,8 @@ export function DocumentsAccordion({
   selectable = false,
   selected = [],
   onToggleSelect,
-  isDocumentDisabled
+  isDocumentDisabled,
+  inspectorMode = false
 }: Props) {
   if (!documents.length) {
     return <div className="text-center text-base-content/60 py-6">No documents found</div>
@@ -37,7 +39,7 @@ export function DocumentsAccordion({
 
         return (
           <details
-            key={doc.documentType}
+            key={`${doc.documentType}_${index}`}
             className={classNames(
               'collapse collapse-arrow join-item border-2 border-base-300',
               index % 2 && 'bg-base-100'
@@ -92,7 +94,7 @@ export function DocumentsAccordion({
               )}
             </summary>
 
-            <div className="collapse-content">{renderDocumentData(doc)}</div>
+            <div className="collapse-content">{renderDocumentData(doc, inspectorMode)}</div>
           </details>
         )
       })}

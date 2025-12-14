@@ -42,7 +42,16 @@ export function AttachExistingModal({ open, onClose, onAttach, attachedDocuments
   }
 
   const handleAttach = () => {
-    onAttach(selected)
+    onAttach(
+      selected.map(
+        ({ id, ...selected }) =>
+          ({
+            ...selected,
+            validFrom: selected.validFrom.split('T')[0] ?? '',
+            validUntil: selected.validUntil.split('T')[0] ?? ''
+          }) as AnyDocument
+      )
+    )
     setSelected([])
     onClose()
   }
@@ -52,15 +61,12 @@ export function AttachExistingModal({ open, onClose, onAttach, attachedDocuments
       <div className="modal-box max-w-2xl">
         <h3 className="font-bold text-lg mb-4">Attach existing documents</h3>
 
-        {/* Loading */}
         {isLoading && <div className="py-8 text-center text-base-content/60">Loading documents...</div>}
 
-        {/* Empty */}
         {!isLoading && (!data || data.length === 0) && (
           <div className="py-8 text-center text-base-content/60">You have no documents yet</div>
         )}
 
-        {/* Data */}
         {data && data.length > 0 && (
           <DocumentsAccordion
             documents={data}
