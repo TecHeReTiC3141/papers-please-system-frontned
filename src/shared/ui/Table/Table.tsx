@@ -19,6 +19,7 @@ type Props<T extends { id: string | number }> = {
   emptyMessage?: ReactNode
   rowSelection?: RowSelection<T>
   filterable?: boolean
+  showEmpty?: boolean
 }
 
 export const Table = <T extends { id: number | string }>({
@@ -33,7 +34,8 @@ export const Table = <T extends { id: number | string }>({
   rowSelection = {
     isEnabled: false
   },
-  filterable = true
+  filterable = true,
+  showEmpty = false
 }: Props<T>) => {
   const [searchParams] = useSearchParams()
   const [sortConfig, setSortConfig] = useState<SortConfig<T> | null>(null)
@@ -46,7 +48,8 @@ export const Table = <T extends { id: number | string }>({
 
   if (loading) return <Loader text={loadingText} />
 
-  if (!data || data.length === 0) return <div className="text-center py-2 text-gray-500">{emptyMessage}</div>
+  if (!data || (data.length === 0 && !showEmpty))
+    return <div className="text-center py-2 text-gray-500">{emptyMessage}</div>
 
   const filteredData =
     !filterValue.trim() || !filterable

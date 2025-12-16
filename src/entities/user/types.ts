@@ -12,11 +12,11 @@ export enum UserRole {
 }
 
 export enum Specialization {
-  PASSPORT = 'passport',
-  LOCALS = 'locals',
-  WORK = 'work',
-  TRANSIT = 'transit',
-  SPECIAL = 'special'
+  PASSPORT = 'PASSPORT',
+  LOCALS = 'LOCALS',
+  WORK = 'WORK',
+  TRANSIT = 'TRANSIT',
+  SPECIAL = 'SPECIAL'
 }
 
 export type User = BaseEntity & {
@@ -40,6 +40,12 @@ export type BossExtendedInfo = User & {
 
 export type MigrantExtendedInfo = User & {
   documents: AnyDocument[]
+}
+
+export type ShiftEmployee = {
+  id: string
+  name: string
+  specialization: Specialization
 }
 
 export type UserExtendedInfo = User | InspectorExtendedInfo | BossExtendedInfo | MigrantExtendedInfo

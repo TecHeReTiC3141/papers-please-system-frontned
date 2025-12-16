@@ -11,6 +11,7 @@ import { ApplicationsPage } from '@/pages/applications'
 import { CreateApplicationPage } from '@/pages/create-application'
 import { BasePage } from '../layouts/BasePage'
 import { ApplicationPage } from '@/pages/application'
+import { OpenShiftPage } from '@/pages/open-shift'
 
 export default function App() {
   return (
@@ -23,12 +24,16 @@ export default function App() {
         {/* App layout */}
         <Route index element={<BasePage />} />
         <Route element={<AuthOutlet fallbackPath="/login" />}>
+          <Route path="/profile" element={<ProfilePage />} />
+
           <Route path="/tickets" element={<TicketsPage />} />
           <Route path="/tickets/:id" element={<TicketPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+
           <Route path="/applications" element={<ApplicationsPage />} />
           <Route path="/applications/:id" element={<ApplicationPage />} />
           <Route path="/applications/create" element={<CreateApplicationPage />} />
+
+          <Route path="/shifts/open" element={<OpenShiftPage />} />
         </Route>
 
         {/* 404 fallback */}

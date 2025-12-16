@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { LogoutModal } from '@features/auth/ui'
 import { IoTicketSharp } from 'react-icons/io5'
 import { UserPreview } from '@/shared/ui/UserPreview'
+import { ShiftStatus } from '@/features/shifts/ui'
 
 const EMPLOYEES_ROLES = [UserRole.INSPECTOR, UserRole.BOSS, UserRole.SECURITY]
 
@@ -22,7 +23,8 @@ export function Header() {
           Papers Please
         </Link>
         <img src="/logo.png" />
-        <div className="flex-1 flex justify-end">
+        <div className="flex-1 flex justify-end items-center gap-x-3">
+          {userData?.role === UserRole.BOSS && <ShiftStatus />}
           {userData && (
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button">
