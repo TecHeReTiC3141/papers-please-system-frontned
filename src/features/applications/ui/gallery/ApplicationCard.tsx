@@ -10,9 +10,10 @@ import { Link } from 'react-router'
 
 type Props = {
   ticket: Ticket
+  onClose: (ticket: Ticket) => void
 }
 
-export const ApplicationCard = ({ ticket }: Props) => {
+export const ApplicationCard = ({ ticket, onClose }: Props) => {
   const applicationStatus = getApplicationStatus(ticket)
 
   const { borderColor } = statusConfig[applicationStatus]
@@ -42,7 +43,7 @@ export const ApplicationCard = ({ ticket }: Props) => {
             </button>
           )}
           {applicationStatus !== ApplicationStatus.Approved && (
-            <button className="btn btn-xs btn-error">
+            <button className="btn btn-xs btn-error" onClick={() => onClose(ticket)}>
               <FaTrash />
               Close
             </button>
