@@ -1,12 +1,21 @@
 import type { Event } from '@/entities/event'
-import type { ShiftEmployee, Specialization } from '@/entities/user'
+import type { Shift } from '@/entities/shift'
+import type { ShiftEmployee, Specialization, User } from '@/entities/user'
 import { useGetBossEmployees, useGetDailyAgenda } from '@/features/shifts/model'
 import { DailyAgendaTable, EmployeesTable } from '@/features/shifts/ui'
+import { useQueryClient } from '@tanstack/react-query'
 import { useMemo, useState } from 'react'
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
+import { useNavigate } from 'react-router'
 
 export function OpenShiftPage() {
+  const user = useAuthUser<User | null>()
+  const navigate = useNavigate()
+
   const { data, isLoading } = useGetDailyAgenda()
   const { data: allEmployees = [], isLoading: employeesLoading } = useGetBossEmployees()
+
+  const queryClient = useQueryClient()
 
   const [eventSpecializations, setEventSpecializations] = useState<Record<string, Specialization | null>>({})
 
@@ -28,6 +37,24 @@ export function OpenShiftPage() {
     }))
   }, [data, eventSpecializations])
 
+  const handleOpenShift = () => {
+    if (!user) return
+
+    const mockShift: Shift = {
+      id: 'id',
+      startTime: new Date().toISOString(),
+      endTime: '',
+      createdBy: user.id,
+      upkId: user.upkId ?? 'mock-upk'
+    }
+
+    localStorage.setItem('activeShift', JSON.stringify(mockShift))
+
+    queryClient.invalidateQueries({ queryKey: ['shifts', 'active', user?.id] })
+
+    navigate('/tickets')
+  }
+
   const handleAddEmployee = (employee: ShiftEmployee) => setAssignedEmployees((prev) => [...prev, employee])
 
   const handleDeleteEmployees = (ids: string[]) =>
@@ -45,6 +72,8 @@ export function OpenShiftPage() {
         onSpecializationChange={handleSetEventSpecialization}
       />
 
+      <h3 className="text-2xl font-semibold">Inspectors for today shift</h3>
+
       <EmployeesTable
         employees={assignedEmployees}
         availableEmployees={allEmployees}
@@ -52,7 +81,7 @@ export function OpenShiftPage() {
         onAdd={handleAddEmployee}
         onDelete={handleDeleteEmployees}
       />
-      <button className="btn btn-primary self-end" disabled={assignedEmployees.length < 3}>
+      <button className="btn btn-primary self-end" disabled={assignedEmployees.length < 3} onClick={handleOpenShift}>
         Open shift
       </button>
     </div>

@@ -7,7 +7,7 @@ type Props = {
 
 export function TicketTitle({ ticket }: Props) {
   return (
-    <Link to={`/tickets/${ticket.id}`} className="link link-hover hover:link-primary">
+    <Link to={`/tickets/${ticket.id}`} className="link link-hover hover:link-info">
       {ticket.description}
     </Link>
   )

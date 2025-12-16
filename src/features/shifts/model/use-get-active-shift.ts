@@ -13,6 +13,14 @@ export function useGetActiveShift() {
     enabled: !!user?.id,
 
     queryFn: async () => {
+      const stored = localStorage.getItem('activeShift')
+      if (stored) {
+        try {
+          return JSON.parse(stored) as Shift
+        } catch {
+          localStorage.removeItem('activeShift')
+        }
+      }
       const { data } = await api.get<Shift[]>('/shifts', {
         params: {
           createdBy: user!.id,

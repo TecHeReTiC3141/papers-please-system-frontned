@@ -1,8 +1,8 @@
 import type { Ticket } from '@/entities/ticket'
 import type { TableColumn } from '@/shared/ui/Table/types'
-import { TicketTitle } from './TicketTitle'
 import { TicketStatusBadge } from './TicketStatus'
 import { Table } from '@/shared/ui'
+import { Link } from 'react-router'
 
 type TicketsTableProps = {
   tickets: Ticket[] | null
@@ -14,11 +14,15 @@ export function TicketsTable({ tickets, loading }: TicketsTableProps) {
     {
       label: 'ID',
       dataIndex: 'id',
-      key: 'id'
+      key: 'id',
+      render: (ticket) => (
+        <Link to={`/tickets/${ticket.id}`} className="link link-hover link-info">
+          {ticket.id}
+        </Link>
+      )
     },
     {
       label: 'Title',
-      render: (ticket) => <TicketTitle ticket={ticket} />,
       key: 'description',
       dataIndex: 'description'
     },
