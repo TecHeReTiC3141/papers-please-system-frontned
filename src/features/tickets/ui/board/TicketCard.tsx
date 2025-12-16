@@ -24,19 +24,18 @@ export const TicketCard = ({ ticket }: Props) => {
   const { icon: TypeIcon, blColor, label, iconColor } = typeConfig[ticket.ticketType]
 
   return (
-    <Link
-      to={`/tickets/${ticket.id}`}
+    <div
       ref={setNodeRef}
       className={classNames('bg-base-200 p-4 shadow cursor-pointer active:cursor-grabbing border-l-4', blColor)}
       style={style}
       {...listeners}
       {...attributes}
     >
-      <div className="flex items-center gap-1">
+      <Link to={`/tickets/${ticket.id}`} className="flex items-center gap-1 link link-hover link-info">
         <TypeIcon className={`${iconColor}`} />
         <div className="font-semibold">{formatTicketId(ticket)}</div>
         <span>{label}</span>
-      </div>
+      </Link>
       <div className="font-semibold">{ticket.description}</div>
       {/* TODO: add ticket executor */}
       <div className="mt-2">
@@ -44,6 +43,6 @@ export const TicketCard = ({ ticket }: Props) => {
       </div>
 
       <div className="mt-2 text-sm">Deadline: {formatTicketDeadlineAt(ticket)}</div>
-    </Link>
+    </div>
   )
 }
