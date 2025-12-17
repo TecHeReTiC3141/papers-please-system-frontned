@@ -3,6 +3,7 @@ import type { User } from '@/entities/user'
 import { useApi } from '@/shared/api/axios'
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
 import type { Shift } from '@/entities/shift'
+import type { MultipleEntitiesResponse } from '@/shared/api/types'
 
 export function useGetActiveShift() {
   const api = useApi()
@@ -21,15 +22,10 @@ export function useGetActiveShift() {
           localStorage.removeItem('activeShift')
         }
       }
-      const { data } = await api.get<Shift[]>('/shifts', {
-        params: {
-          createdBy: user!.id,
-          active: true
-        }
-      })
+      const { data } = await api.get<MultipleEntitiesResponse<Shift>>(`/shifts?createdBy=${user!.id}&endTimeNotNull`)
 
       // boss can have only one active shift
-      return data[0] ?? null
+      return data.items[0] ?? null
     }
   })
 }

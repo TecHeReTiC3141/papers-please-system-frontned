@@ -42,7 +42,7 @@ export function DocumentsAccordion({
             key={`${doc.documentType}_${index}`}
             className={classNames(
               'collapse collapse-arrow join-item border-2 border-base-300',
-              index % 2 && 'bg-base-100'
+              index % 2 && 'bg-base-200'
             )}
           >
             <summary className="collapse-title flex items-center justify-between gap-4">

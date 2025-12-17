@@ -13,7 +13,7 @@ export const useGetApplications = () => {
   }
 
   return async () => {
-    const { data } = await api.get<MultipleEntitiesResponse<Ticket>>(`/tickets?authorId=${userData.id}`)
+    const { data } = await api.get<MultipleEntitiesResponse<Ticket>>(`/tickets?authorId=${userData.id}&limit=100`)
 
     return data
   }

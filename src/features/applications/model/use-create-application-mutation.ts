@@ -28,7 +28,7 @@ export const useCreateApplicationMutation = () => {
 
   return useMutation({
     mutationFn: async (attachedDocuments: AnyDocument[]) => {
-      const documents = attachedDocuments.map(({ attachToProfile, ...document }) => ({
+      const documents = attachedDocuments.map((document) => ({
         ...document,
         userId: userData?.id ?? '',
         validFrom: new Date(document.validFrom).toISOString(),
