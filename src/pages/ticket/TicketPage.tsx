@@ -2,9 +2,11 @@ import { useGetTicketById } from '@/features/ticket-entry/model'
 import { TicketEntry } from '@/features/ticket-entry/ui'
 import { Loader } from '@/shared/ui'
 import { useQuery } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router'
 
 export function TicketPage() {
+  const { t } = useTranslation()
   const { id } = useParams()
   const navigate = useNavigate()
 
@@ -21,7 +23,7 @@ export function TicketPage() {
     return
   }
 
-  if (ticketQuery.isPending) return <Loader text="Loading ticket..." />
+  if (ticketQuery.isPending) return <Loader text={t('Loading ticket...')} />
 
   if (!ticketQuery.data) {
     // TODO: implement shared handler of not-found

@@ -2,6 +2,7 @@ import { Table } from '@/shared/ui/Table'
 import type { TableColumn } from '@/shared/ui/Table/types'
 import type { Event } from '@/entities/event'
 import { Specialization } from '@/entities/user'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   data: Event[] | null
@@ -10,28 +11,29 @@ type Props = {
 }
 
 export function DailyAgendaTable({ data, loading, onSpecializationChange }: Props) {
+  const { t } = useTranslation()
   const columns: TableColumn<Event>[] = [
     {
       key: 'time',
-      label: 'Time',
+      label: t('Time'),
       dataIndex: 'time',
       isSortable: true,
       render: (e) => new Date(e.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     },
     {
       key: 'description',
-      label: 'Description',
+      label: t('Description'),
       dataIndex: 'description',
       isSortable: true
     },
     {
       key: 'priority',
-      label: 'Priority',
+      label: t('Priority'),
       dataIndex: 'priority'
     },
     {
       key: 'specialization',
-      label: 'Specialization',
+      label: t('Specialization'),
       dataIndex: 'specialization',
       render: (e) => (
         <select
@@ -39,7 +41,7 @@ export function DailyAgendaTable({ data, loading, onSpecializationChange }: Prop
           value={e.specialization ?? ''}
           onChange={(ev) => onSpecializationChange(e.id, ev.target.value ? (ev.target.value as Specialization) : null)}
         >
-          <option value="">Select specialization</option>
+          <option value="">{t('Select specialization')}</option>
           {Object.values(Specialization).map((s) => (
             <option key={s} value={s}>
               {s}
@@ -54,9 +56,9 @@ export function DailyAgendaTable({ data, loading, onSpecializationChange }: Prop
     <Table<Event>
       data={data}
       loading={loading}
-      loadingText="Loading agenda..."
+      loadingText={t('Loading agenda...')}
       columns={columns}
-      emptyMessage="No events for today"
+      emptyMessage={t('No events for today')}
     />
   )
 }

@@ -8,6 +8,7 @@ import {
   FillNewDocumentModal
 } from '@/features/applications/ui'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FiPlus } from 'react-icons/fi'
 
 type Props = {
@@ -15,6 +16,7 @@ type Props = {
 }
 
 export function MigrantSection({ extendedMigrantInfo }: Props) {
+  const { t } = useTranslation()
   const [isFillNewOpen, setFillNewOpen] = useState(false)
   const [isAttachOpen, setAttachOpen] = useState(false)
 
@@ -44,27 +46,16 @@ export function MigrantSection({ extendedMigrantInfo }: Props) {
   return (
     <div className="w-full flex flex-col gap-y-3">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-medium">Attached documents</h2>
+        <h2 className="text-xl font-medium">{t('Attached documents')}</h2>
 
         <button className="btn btn-sm btn-primary border rounded-lg" onClick={() => setFillNewOpen(true)}>
-          <FiPlus /> Add document
+          <FiPlus /> {t('Add document')}
         </button>
       </div>
       <div className="bg-base-200 border border-base-300 rounded-xl p-4">
         <DocumentsAccordion documents={attachedDocuments} onEdit={setEditingDocument} onDelete={setDeletingDocument} />
       </div>
 
-      <button
-        className="btn btn-primary self-end"
-        disabled={attachedDocuments.length === 0}
-        onClick={() => console.log('DOCUMENTS', attachedDocuments)}
-      >
-        {/* {createApplicationMutation.isPending ? ( */}
-        {/* <span className="loading loading-spinner loading-sm"></span> */}
-        {/* ) : ( */}
-        Save documents
-        {/* )} */}
-      </button>
       <FillNewDocumentModal
         open={isFillNewOpen}
         onClose={() => setFillNewOpen(false)}

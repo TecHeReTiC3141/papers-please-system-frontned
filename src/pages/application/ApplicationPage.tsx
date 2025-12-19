@@ -5,8 +5,10 @@ import { useQuery } from '@tanstack/react-query'
 import { Link, useNavigate, useParams } from 'react-router'
 import { Loader } from '@/shared/ui'
 import { FaArrowLeft } from 'react-icons/fa6'
+import { useTranslation } from 'react-i18next'
 
 export function ApplicationPage() {
+  const { t } = useTranslation()
   const { id } = useParams()
   const navigate = useNavigate()
 
@@ -28,19 +30,19 @@ export function ApplicationPage() {
   }
 
   if (isLoading) {
-    return <Loader text="Loading your application..." />
+    return <Loader text={t('Loading your application...')} />
   }
 
   if (isError) {
-    return <div className="p-8 text-center text-error">Failed to load application documents</div>
+    return <div className="p-8 text-center text-error">{t('Failed to load application documents')}</div>
   }
 
   return (
     <div className="p-8 flex flex-col gap-8">
       <Link className="link link-hover link-info flex gap-x-2 items-center" to="/applications">
-        <FaArrowLeft /> Back to applications
+        <FaArrowLeft /> {t('Back to applications')}
       </Link>
-      <h1 className="text-3xl font-semibold text-center">Application documents</h1>
+      <h1 className="text-3xl font-semibold text-center">{t('Application documents')}</h1>
 
       <div className="bg-base-200 border border-base-300 rounded-xl p-4">
         <DocumentsAccordion documents={documents ?? []} />

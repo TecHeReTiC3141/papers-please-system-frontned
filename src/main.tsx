@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Bounce, ToastContainer } from 'react-toastify'
+import '@/shared/i18n'
 
 const queryClient = new QueryClient()
 

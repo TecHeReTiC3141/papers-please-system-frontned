@@ -1,4 +1,5 @@
 import useSignOut from 'react-auth-kit/hooks/useSignOut'
+import { useTranslation } from 'react-i18next'
 import { MdLogout } from 'react-icons/md'
 
 type LogoutModalProps = {
@@ -8,6 +9,7 @@ type LogoutModalProps = {
 }
 
 export function LogoutModal({ isOpen, onClose, onConfirm }: LogoutModalProps) {
+  const { t } = useTranslation()
   const signOut = useSignOut()
 
   const handleLogout = () => {
@@ -21,25 +23,24 @@ export function LogoutModal({ isOpen, onClose, onConfirm }: LogoutModalProps) {
       <div className="modal-box">
         <h3 className="font-bold text-lg flex items-center gap-2">
           <MdLogout className="text-xl" />
-          Выход из аккаунта
+          {t('logout.title')}
         </h3>
 
-        <p className="py-4">Вы действительно хотите выйти?</p>
+        <p className="py-4">{t('logout.content')}</p>
 
         <div className="modal-action">
           <button className="btn" onClick={onClose}>
-            Отмена
+            {t('common.cancel')}
           </button>
 
           <button className="btn btn-error" onClick={handleLogout}>
-            Выйти
+            {t('logout.logoutBtn')}
           </button>
         </div>
       </div>
 
-      {/* Модальное затемнение */}
       <form method="dialog" className="modal-backdrop" onClick={onClose}>
-        <button>close</button>
+        <button>{t('close')}</button>
       </form>
     </dialog>
   )

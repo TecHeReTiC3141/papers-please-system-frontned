@@ -8,10 +8,12 @@ import { LogoutModal } from '@features/auth/ui'
 import { IoTicketSharp } from 'react-icons/io5'
 import { UserPreview } from '@/shared/ui/UserPreview'
 import { ShiftStatus } from '@/features/shifts/ui'
+import { useTranslation } from 'react-i18next'
 
 const EMPLOYEES_ROLES = [UserRole.INSPECTOR, UserRole.BOSS, UserRole.SECURITY]
 
 export function Header() {
+  const { t } = useTranslation()
   const userData = useAuthUser<User>()
   const [isLogoutModalOpened, setIsLogoutModalOpened] = useState(false)
   const navigate = useNavigate()
@@ -20,7 +22,7 @@ export function Header() {
     <>
       <header className="navbar justify-between bg-base-200 shadow-md px-8 border-b border-neutral-content">
         <Link to="/" className="text-xl font-bold flex-1">
-          Papers Please
+          {t('header.title')}
         </Link>
         <img src="/logo.png" />
         <div className="flex-1 flex justify-end items-center gap-x-3">
@@ -37,14 +39,14 @@ export function Header() {
                 <li>
                   <Link to="/profile" className="justify-end text-nowrap">
                     <FaUser />
-                    User info
+                    {t('header.userAvatar.userInfo')}
                   </Link>
                 </li>
                 {EMPLOYEES_ROLES.includes(userData.role) && (
                   <li>
                     <Link to="/tickets" className="justify-end text-nowrap">
                       <IoTicketSharp />
-                      Tickets
+                      {t('header.userAvatar.tickets')}
                     </Link>
                   </li>
                 )}
@@ -52,14 +54,14 @@ export function Header() {
                   <li>
                     <Link to="/applications" className="justify-end text-nowrap">
                       <IoTicketSharp />
-                      Applications
+                      {t('header.userAvatar.application')}
                     </Link>
                   </li>
                 )}
                 <li>
                   <button onClick={() => setIsLogoutModalOpened(true)} className="justify-end text-nowrap">
                     <MdLogout />
-                    Logout
+                    {t('header.userAvatar.logout')}
                   </button>
                 </li>
               </ul>
@@ -70,7 +72,7 @@ export function Header() {
       <LogoutModal
         isOpen={isLogoutModalOpened}
         onClose={() => setIsLogoutModalOpened(false)}
-        onConfirm={() => navigate('/login')} // if needed
+        onConfirm={() => navigate('/login')}
       />
     </>
   )

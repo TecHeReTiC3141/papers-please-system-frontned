@@ -3,6 +3,7 @@ import type { TableColumn } from '@/shared/ui/Table/types'
 import { TicketStatusBadge } from './TicketStatus'
 import { Table } from '@/shared/ui'
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
 type TicketsTableProps = {
   tickets: Ticket[] | null
@@ -10,9 +11,10 @@ type TicketsTableProps = {
 }
 
 export function TicketsTable({ tickets, loading }: TicketsTableProps) {
+  const { t } = useTranslation()
   const columns: TableColumn<Ticket>[] = [
     {
-      label: 'ID',
+      label: t('ID'),
       dataIndex: 'id',
       key: 'id',
       render: (ticket) => (
@@ -22,23 +24,23 @@ export function TicketsTable({ tickets, loading }: TicketsTableProps) {
       )
     },
     {
-      label: 'Title',
+      label: t('Title'),
       key: 'description',
       dataIndex: 'description'
     },
     {
-      label: 'Status',
+      label: t('Status'),
       render: (ticket) => <TicketStatusBadge status={ticket.status} />,
       key: 'status',
       dataIndex: 'status'
     },
     {
-      label: 'Priority',
+      label: t('Priority'),
       key: 'priority',
       dataIndex: 'priority'
     },
     {
-      label: 'Deadline',
+      label: t('Deadline'),
       key: 'deadlineAt',
       dataIndex: 'deadlineAt'
     }
@@ -50,7 +52,7 @@ export function TicketsTable({ tickets, loading }: TicketsTableProps) {
         columns={columns}
         data={tickets}
         loading={loading}
-        loadingText="Loading tickets..."
+        loadingText={t('Loading tickets...')}
         rowSelection={{
           isEnabled: false
         }}

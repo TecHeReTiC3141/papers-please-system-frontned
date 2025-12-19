@@ -8,27 +8,29 @@ import { getApplicationStatus } from '../../model'
 import { formatDate } from '@/shared/lib'
 import { DetailsList } from '@/shared/ui'
 import { MdDescription, MdPublic } from 'react-icons/md'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   ticket: Ticket
 }
 
 export const ApplicationCard = ({ ticket }: Props) => {
+  const { t } = useTranslation()
   const applicationStatus = getApplicationStatus(ticket)
 
   const { borderColor } = statusConfig[applicationStatus]
 
   const applicationDetails = [
     {
-      label: 'Status',
+      label: t('Status'),
       value: <ApplicationStatusBadge status={applicationStatus} />
     },
     {
-      label: 'Created',
+      label: t('Created'),
       value: formatDate(ticket.createdAt)
     },
     {
-      label: 'Last updated',
+      label: t('Last updated'),
       value: formatDate(ticket.updatedAt)
     }
   ]

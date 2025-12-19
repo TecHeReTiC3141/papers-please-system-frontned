@@ -8,6 +8,7 @@ import type { TableColumn } from '@/shared/ui/Table/types'
 import type { ExtendedInspectorParticipation } from '@/entities/shift'
 import { useMemo, useState } from 'react'
 import classNames from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 type EditableFields = {
   wage: number
@@ -15,6 +16,7 @@ type EditableFields = {
 }
 
 export function CloseShiftModal() {
+  const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
   const fetchShift = useGetShiftById()
 
@@ -53,30 +55,30 @@ export function CloseShiftModal() {
   const columns: TableColumn<ExtendedInspectorParticipation>[] = [
     {
       key: 'user',
-      label: 'Inspector',
+      label: t('Inspector'),
       dataIndex: 'userId',
       isSortable: true
     },
     {
       key: 'specialization',
-      label: 'Specialization',
+      label: t('Specialization'),
       dataIndex: 'specialization'
     },
     {
       key: 'resolvedTickets',
-      label: 'Resolved',
+      label: t('Resolved'),
       dataIndex: 'resolvedTickets',
       showTotal: true
     },
     {
       key: 'passedCrossChecks',
-      label: 'Cross-checks',
+      label: t('Cross-checks'),
       dataIndex: 'passedCrossChecks',
       showTotal: true
     },
     {
       key: 'wage',
-      label: 'Wage',
+      label: t('Wage'),
       dataIndex: 'wage',
       showTotal: true,
       render: (row) => (
@@ -90,7 +92,7 @@ export function CloseShiftModal() {
     },
     {
       key: 'penalty',
-      label: 'Penalty',
+      label: t('Penalty'),
       dataIndex: 'penalty',
       showTotal: true,
       render: (row) => (
@@ -128,22 +130,22 @@ export function CloseShiftModal() {
         </form>
 
         {isPending || !shiftData ? (
-          <Loader text="Loading shift..." />
+          <Loader text={t('Loading shift...')} />
         ) : (
           <div className="flex flex-col gap-y-6">
-            <h3 className="font-bold text-lg text-center">Close shift №{formatId(shiftData)}</h3>
+            <h3 className="font-bold text-lg text-center">{t('Close shift №{formatId(shiftData)}')}</h3>
 
-            <InfoField value={formatDate(shiftData.startTime)} label="Date" />
-            <InfoField value={<UpkDescription upk={shiftData.upk} />} label="Upk" />
-            <InfoField value={<UserPreview user={shiftData.boss} />} label="Boss" />
+            <InfoField value={formatDate(shiftData.startTime)} label={t('Date')} />
+            <InfoField value={<UpkDescription upk={shiftData.upk} />} label={t('Upk')} />
+            <InfoField value={<UserPreview user={shiftData.boss} />} label={t('Boss')} />
 
-            <p className="text-2xl mt-4">Inspectors</p>
+            <p className="text-2xl mt-4">{t('Inspectors')}</p>
 
             <Table<ExtendedInspectorParticipation>
               data={inspectorsWithEdits}
               filterable={false}
               columns={columns}
-              emptyMessage="No inspectors in this shift"
+              emptyMessage={t('No inspectors in this shift')}
             />
 
             <div className="flex justify-end mt-4">

@@ -7,6 +7,7 @@ import { useState, type ReactNode } from 'react'
 import { TbSortDescending, TbSortAscending } from 'react-icons/tb'
 import { get } from 'lodash'
 import { Loader } from '../Loader'
+import { useTranslation } from 'react-i18next'
 
 type Props<T extends { id: string | number }> = {
   data: T[] | null
@@ -37,6 +38,7 @@ export const Table = <T extends { id: number | string }>({
   filterable = true,
   showEmpty = false
 }: Props<T>) => {
+  const { t } = useTranslation()
   const [searchParams] = useSearchParams()
   const [sortConfig, setSortConfig] = useState<SortConfig<T> | null>(null)
   const [filterColumn, setFilterColumn] = useState<string>('all')
@@ -138,26 +140,6 @@ export const Table = <T extends { id: number | string }>({
     )
   }
 
-  // if (deleteAction) {
-  //   extendedColumns.push({
-  //     key: 'delete',
-  //     label: '',
-  //     dataIndex: 'delete',
-  //     isSortable: false,
-  //     render: (entry: T) => (
-  //       <button
-  //         className="btn btn-ghost btn-sm"
-  //         onClick={() => {
-  //           setEntryToDelete(entry.id)
-  //           openConfirmDeleteModal()
-  //         }}
-  //       >
-  //         <MdOutlineDelete className="text-lg" />
-  //       </button>
-  //     )
-  //   })
-  // }
-
   const filterableColumns = columns.filter((col) => col.isFilterable !== false)
 
   return (
@@ -175,7 +157,7 @@ export const Table = <T extends { id: number | string }>({
                       onChange={(e) => setFilterColumn(e.target.value)}
                       className="select select-bordered select-sm"
                     >
-                      <option value="all">All Columns</option>
+                      <option value="all">{t('All Columns')}</option>
                       {filterableColumns.map((column) => (
                         <option key={column.key} value={column.dataIndex}>
                           {column.label}
@@ -284,7 +266,9 @@ export const Table = <T extends { id: number | string }>({
             <div className="text-sm">
               Showing {Math.min(pageSize * (currentPage - 1) + 1, sortedData.length)}-
               {Math.min(pageSize * currentPage, sortedData.length)} of {sortedData.length} entries
-              {filterValue && filteredData && <span className="text-gray-500 ml-2">(filtered from {data.length})</span>}
+              {filterValue && filteredData && (
+                <span className="text-gray-500 ml-2">{t('(filtered from {data.length})')}</span>
+              )}
             </div>
           )}
         </div>

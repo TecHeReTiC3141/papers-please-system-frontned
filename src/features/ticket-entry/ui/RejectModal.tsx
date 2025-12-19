@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 type RejectModalProps = {
   open: boolean
@@ -9,6 +10,7 @@ type RejectModalProps = {
 const MIN_REASON_LENGTH = 100
 
 export function RejectModal({ open, onClose, onReject }: RejectModalProps) {
+  const { t } = useTranslation()
   const [reason, setReason] = useState('')
 
   if (!open) return null
@@ -21,7 +23,7 @@ export function RejectModal({ open, onClose, onReject }: RejectModalProps) {
   return (
     <dialog className="modal modal-open">
       <div className="modal-box">
-        <h3 className="font-bold text-lg">Reject ticket</h3>
+        <h3 className="font-bold text-lg">{t('Reject ticket')}</h3>
 
         <textarea
           className="textarea textarea-bordered w-full mt-4"
@@ -32,16 +34,16 @@ export function RejectModal({ open, onClose, onReject }: RejectModalProps) {
 
         <div className="modal-action">
           <button className="btn btn-ghost" onClick={onClose}>
-            Cancel
+            {t('common.actions.cancel')}
           </button>
           <button className="btn btn-error" disabled={reason.trim().length < MIN_REASON_LENGTH} onClick={handleReject}>
-            Reject
+            {t('common.actions.reject')}
           </button>
         </div>
       </div>
 
       <form method="dialog" className="modal-backdrop" onClick={onClose}>
-        <button>close</button>
+        <button>{t('close')}</button>
       </form>
     </dialog>
   )

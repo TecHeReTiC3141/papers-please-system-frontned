@@ -4,6 +4,7 @@ import { DocumentSchema } from '@/features/documents/model'
 import { Field } from '@/shared/ui'
 import { renderDocumentFields } from '@/features/documents/lib'
 import { mapZodErrorsToFormik } from '@/shared/lib'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   open: boolean
@@ -13,6 +14,8 @@ type Props = {
 }
 
 export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: Props) {
+  const { t } = useTranslation()
+
   if (!documentToEdit) return null
 
   const CurrentFields = renderDocumentFields(documentToEdit)
@@ -47,12 +50,12 @@ export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: P
                   ✕
                 </button>
 
-                <h3 className="font-bold text-lg mb-6 text-center">Edit document</h3>
+                <h3 className="font-bold text-lg mb-6 text-center">{t('Edit document')}</h3>
 
                 <Form className="flex flex-col gap-4 items-center">
                   {/* Document type (readonly) */}
                   <Field
-                    label="Document type"
+                    label={t('Document type')}
                     control={
                       <input
                         disabled
@@ -69,7 +72,7 @@ export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: P
                   {CurrentFields}
 
                   <Field
-                    label="Valid From"
+                    label={t('Valid From')}
                     control={
                       <FormikField
                         type="date"
@@ -81,7 +84,7 @@ export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: P
                   />
 
                   <Field
-                    label="Valid Until"
+                    label={t('Valid Until')}
                     control={
                       <FormikField
                         type="date"
@@ -95,7 +98,7 @@ export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: P
                   {/* Attach to profile */}
                   <label className="flex items-center gap-2 mt-2">
                     <FormikField type="checkbox" name="attachToProfile" />
-                    <span>Attach document to profile</span>
+                    <span>{t('Attach document to profile')}</span>
                   </label>
 
                   <button type="submit" className="btn btn-primary mt-2">

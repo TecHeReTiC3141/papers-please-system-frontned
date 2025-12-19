@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { CloseApplicationModal } from './CloseApplicationModal'
 import { useCloseApplicationMutation } from '../../model'
 import { toast } from 'react-toastify'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   tickets: Ticket[] | null
@@ -12,11 +13,13 @@ type Props = {
 }
 
 export function ApplicationsGallery({ tickets, loading }: Props) {
+  const { t } = useTranslation()
+
   const [applicationToDelete, setApplicationToDelete] = useState<Ticket | null>(null)
 
   const closeMutation = useCloseApplicationMutation()
 
-  if (loading || !tickets) return <Loader text="Loading your applications..." />
+  if (loading || !tickets) return <Loader text={t('Loading your applications...')} />
   const applications = tickets.filter((ticket) => ticket.ticketType === TicketType.EXTERNAL)
   const appealations = tickets.filter((ticket) => ticket.ticketType === TicketType.APPEAL)
 
@@ -36,13 +39,13 @@ export function ApplicationsGallery({ tickets, loading }: Props) {
 
   return (
     <div className="flex flex-col gap-y-4">
-      <h4 className="text-xl">Current applications ({applications.length})</h4>
+      <h4 className="text-xl">{t('Current applications ({applications.length})')}</h4>
       <div className="w-full flex items-center flex-wrap gap-x-6 gap-y-4">
         {applications.map((application) => (
           <ApplicationCard ticket={application} onClose={setApplicationToDelete} />
         ))}
       </div>
-      <h4 className="text-xl">Current appealations ({appealations.length})</h4>
+      <h4 className="text-xl">{t('Current appealations ({appealations.length})')}</h4>
       <div className="w-full flex items-center flex-wrap gap-x-6 gap-y-4">
         {appealations.map((appealations) => (
           <ApplicationCard ticket={appealations} onClose={setApplicationToDelete} />

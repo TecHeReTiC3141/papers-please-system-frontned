@@ -2,6 +2,7 @@ import { useGetApplications } from '@/features/applications/model'
 import { ApplicationsBoard, ApplicationsGallery } from '@/features/applications/ui'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FaPlus } from 'react-icons/fa6'
 import { TbTable, TbLayoutGrid } from 'react-icons/tb'
 import { Link } from 'react-router'
@@ -10,6 +11,7 @@ const APPLICATIONS_VIEW_VAR_NAME = 'applications_view'
 type ApplicationsView = 'gallery' | 'board'
 
 export function ApplicationsPage() {
+  const { t } = useTranslation()
   const fetchApplications = useGetApplications()
 
   const [view, setView] = useState<ApplicationsView>(() => {
@@ -28,7 +30,7 @@ export function ApplicationsPage() {
   return (
     <div className="flex flex-col gap-6 p-6">
       <div className="flex items-center justify-between gap-x-3">
-        <h1 className="text-3xl font-semibold">Applications</h1>
+        <h1 className="text-3xl font-semibold">{t('Applications')}</h1>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setView('gallery')}
@@ -37,7 +39,7 @@ export function ApplicationsPage() {
             }`}
           >
             <TbTable size={18} />
-            Gallery
+            {t('Gallery')}
           </button>
 
           <button
@@ -47,12 +49,12 @@ export function ApplicationsPage() {
             }`}
           >
             <TbLayoutGrid size={18} />
-            Board
+            {t('Board')}
           </button>
         </div>
         <div className="flex-1"></div>
         <Link to="/applications/create" className="btn btn-primary rounded-lg">
-          <FaPlus /> Create application
+          <FaPlus /> {t('Create application')}
         </Link>
       </div>
       {view === 'gallery' ? (

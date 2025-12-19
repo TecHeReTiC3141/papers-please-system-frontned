@@ -1,5 +1,6 @@
 import type { CertificateDocument } from '@/entities/document/types'
 import { DetailsList } from '@/shared/ui'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   document: CertificateDocument
@@ -7,6 +8,7 @@ type Props = {
 }
 
 export function CertificateData({ document, inspectorMode = false }: Props) {
+  const { t } = useTranslation()
   return (
     <DetailsList
       inspectorMode={inspectorMode}

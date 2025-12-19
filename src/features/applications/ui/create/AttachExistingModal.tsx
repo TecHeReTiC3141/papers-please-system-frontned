@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { type AnyDocument } from '@/entities/document/types'
 import { DocumentsAccordion } from './DocumentsAccordion'
 import { useGetUserDocuments } from '../../model'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   open: boolean
@@ -13,6 +14,7 @@ type Props = {
 
 export function AttachExistingModal({ open, onClose, onAttach, attachedDocuments }: Props) {
   const fetchUserDocuments = useGetUserDocuments()
+  const { t } = useTranslation()
 
   const [selected, setSelected] = useState<AnyDocument[]>([])
 
@@ -59,12 +61,12 @@ export function AttachExistingModal({ open, onClose, onAttach, attachedDocuments
   return (
     <dialog className="modal" open={open}>
       <div className="modal-box max-w-2xl">
-        <h3 className="font-bold text-lg mb-4">Attach existing documents</h3>
+        <h3 className="font-bold text-lg mb-4">{t('Attach existing documents')}</h3>
 
-        {isLoading && <div className="py-8 text-center text-base-content/60">Loading documents...</div>}
+        {isLoading && <div className="py-8 text-center text-base-content/60">{t('Loading documents...')}</div>}
 
         {!isLoading && (!data || data.length === 0) && (
-          <div className="py-8 text-center text-base-content/60">You have no documents yet</div>
+          <div className="py-8 text-center text-base-content/60">{t('You have no documents yet')}</div>
         )}
 
         {data && data.length > 0 && (
@@ -79,17 +81,17 @@ export function AttachExistingModal({ open, onClose, onAttach, attachedDocuments
 
         <div className="modal-action">
           <button className="btn btn-ghost" onClick={onClose}>
-            Cancel
+            {t('Cancel')}
           </button>
 
           <button className="btn btn-primary" disabled={!selected.length} onClick={handleAttach}>
-            Attach selected ({selected.length})
+            {t('Attach selected ({selected.length})')}
           </button>
         </div>
       </div>
 
       <form method="dialog" className="modal-backdrop" onClick={onClose}>
-        <button>close</button>
+        <button>{t('close')}</button>
       </form>
     </dialog>
   )

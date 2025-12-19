@@ -5,12 +5,14 @@ import { Link } from 'react-router'
 import { typeConfig } from '@/entities/ticket/constants'
 import classNames from 'classnames'
 import { formatTicketDeadlineAt, formatTicketId } from '@/entities/ticket/lib'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   ticket: Ticket
 }
 
 export const TicketCard = ({ ticket }: Props) => {
+  const { t } = useTranslation()
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: ticket.id
   })
@@ -42,7 +44,7 @@ export const TicketCard = ({ ticket }: Props) => {
         <TicketStatusBadge status={ticket.status} />
       </div>
 
-      <div className="mt-2 text-sm">Deadline: {formatTicketDeadlineAt(ticket)}</div>
+      <div className="mt-2 text-sm">{t('Deadline: {formatTicketDeadlineAt(ticket)}')}</div>
     </div>
   )
 }

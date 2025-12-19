@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 type ModalProps = {
   open: boolean
   onClose: () => void
@@ -5,27 +7,29 @@ type ModalProps = {
 }
 
 export function ApproveModal({ open, onClose, onConfirm }: ModalProps) {
+  const { t } = useTranslation()
+
   if (!open) return null
 
   return (
     <dialog className="modal modal-open">
       <div className="modal-box">
-        <h3 className="font-bold text-lg">Approve ticket</h3>
+        <h3 className="font-bold text-lg">{t('Approve ticket')}</h3>
 
-        <p className="py-4">Are you sure you want to approve this ticket?</p>
+        <p className="py-4">{t('Are you sure you want to approve this ticket?')}</p>
 
         <div className="modal-action">
           <button className="btn btn-ghost" onClick={onClose}>
-            Cancel
+            {t('common.actions.cancel')}
           </button>
           <button className="btn btn-success" onClick={onConfirm}>
-            Approve
+            {t('common.actions.approve')}
           </button>
         </div>
       </div>
 
       <form method="dialog" className="modal-backdrop" onClick={onClose}>
-        <button>close</button>
+        <button>{t('close')}</button>
       </form>
     </dialog>
   )

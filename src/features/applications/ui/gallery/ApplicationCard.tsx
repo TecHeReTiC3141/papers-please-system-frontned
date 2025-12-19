@@ -7,6 +7,7 @@ import { formatDate } from '@/shared/lib'
 import classNames from 'classnames'
 import { DetailsList } from '@/shared/ui'
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   ticket: Ticket
@@ -14,23 +15,22 @@ type Props = {
 }
 
 export const ApplicationCard = ({ ticket, onClose }: Props) => {
+  const { t } = useTranslation()
+
   const applicationStatus = getApplicationStatus(ticket)
 
   const { borderColor } = statusConfig[applicationStatus]
 
   const dateDetails = [
-    { label: 'Created', value: formatDate(ticket.createdAt) },
-    { label: 'Last update', value: formatDate(ticket.updatedAt) }
+    { label: t('Created'), value: formatDate(ticket.createdAt) },
+    { label: t('Last update'), value: formatDate(ticket.updatedAt) }
   ]
 
   return (
-    <div className={classNames('card card-border bg-base-100 w-80', borderColor)}>
+    <Link to={`/applications/${ticket.id}`} className={classNames('card card-border bg-base-100 w-80', borderColor)}>
       <div className="card-body">
         <div className="card-actions justify-between">
-          <h2 className="card-title">Application</h2>
-          <Link to={`/applications/${ticket.id}`} className="link link-info link-hover flex gap-x-2 items-center">
-            View details <FaArrowRight />
-          </Link>
+          <h2 className="card-title">{t('Application')}</h2>
         </div>
         <DetailsList items={dateDetails} />
         <div className="card-actions justify-between items-center gap-x-2">
@@ -39,17 +39,17 @@ export const ApplicationCard = ({ ticket, onClose }: Props) => {
           {applicationStatus === ApplicationStatus.Rejected && (
             <button className="btn btn-xs btn-primary">
               <FaPlus />
-              Appealation
+              {t('applications.applicationCard.title')}
             </button>
           )}
           {applicationStatus !== ApplicationStatus.Approved && (
             <button className="btn btn-xs btn-error" onClick={() => onClose(ticket)}>
               <FaTrash />
-              Close
+              {t('common.actions.cancel')}
             </button>
           )}
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

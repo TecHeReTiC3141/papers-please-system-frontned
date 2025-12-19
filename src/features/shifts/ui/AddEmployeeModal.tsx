@@ -10,6 +10,8 @@ type Props = {
 }
 
 export function AddEmployeeModal({ employees, assignedEmployees, open, onClose, onAdd }: Props) {
+  const { t } = useTranslation()
+
   const [employeeId, setEmployeeId] = useState('')
   const [specialization, setSpecialization] = useState<Specialization | ''>('')
 
@@ -30,11 +32,11 @@ export function AddEmployeeModal({ employees, assignedEmployees, open, onClose, 
   return (
     <div className="modal modal-open">
       <div className="modal-box">
-        <h3 className="font-semibold text-lg mb-4 text-center">Add employee</h3>
+        <h3 className="font-semibold text-lg mb-4 text-center">{t('Add employee')}</h3>
 
         <div className="flex flex-col gap-4">
           <select className="select select-bordered" value={employeeId} onChange={(e) => setEmployeeId(e.target.value)}>
-            <option value="">Select employee</option>
+            <option value="">{t('Select employee')}</option>
             {employees.map((e) => (
               <option key={e.id} value={e.id} disabled={!!assignedEmployees.find((emp) => emp.id === e.id)}>
                 {e.name}
@@ -47,7 +49,7 @@ export function AddEmployeeModal({ employees, assignedEmployees, open, onClose, 
             value={specialization}
             onChange={(e) => setSpecialization(e.target.value as Specialization)}
           >
-            <option value="">Select specialization</option>
+            <option value="">{t('Select specialization')}</option>
             {Object.values(Specialization).map((s) => (
               <option key={s} value={s}>
                 {s}
@@ -58,7 +60,7 @@ export function AddEmployeeModal({ employees, assignedEmployees, open, onClose, 
 
         <div className="modal-action">
           <button className="btn btn-ghost" onClick={handleClose}>
-            Cancel
+            {t('common.actions.cancel')}
           </button>
           <button
             className="btn btn-primary"
@@ -74,7 +76,7 @@ export function AddEmployeeModal({ employees, assignedEmployees, open, onClose, 
               }
             }}
           >
-            Add
+            {t('common.actions.add')}
           </button>
         </div>
       </div>

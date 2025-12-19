@@ -3,6 +3,7 @@ import { type AnyDocument } from '@/entities/document/types'
 import { documentTitleMap } from '@/features/documents/model'
 import { renderDocumentData } from '@/features/documents/lib'
 import classNames from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   documents: AnyDocument[]
@@ -28,8 +29,10 @@ export function DocumentsAccordion({
   isDocumentDisabled,
   inspectorMode = false
 }: Props) {
+  const { t } = useTranslation()
+
   if (!documents.length) {
-    return <div className="text-center text-base-content/60 py-6">No documents found</div>
+    return <div className="text-center text-base-content/60 py-6">{t('No documents found')}</div>
   }
 
   return (

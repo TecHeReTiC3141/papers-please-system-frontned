@@ -4,8 +4,11 @@ import { Field } from '@shared/ui/Field'
 import { useRegister } from '../model/use-register'
 import { UserRole } from '@entities/user/types'
 import { toFormikValidationSchema } from 'zod-formik-adapter'
+import { useTranslation } from 'react-i18next'
 
 export function RegisterForm() {
+  const { t } = useTranslation()
+
   const register = useRegister()
 
   const { handleSubmit, handleChange, values, errors } = useFormik({
@@ -23,7 +26,7 @@ export function RegisterForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-4 max-w-sm mx-auto">
       <Field
-        label="Имя"
+        label={t('Имя')}
         control={
           <input name="name" type="text" className="input input-bordered" value={values.name} onChange={handleChange} />
         }
@@ -32,7 +35,7 @@ export function RegisterForm() {
       />
 
       <Field
-        label="Email"
+        label={t('Email')}
         control={
           <input
             name="email"
@@ -47,7 +50,7 @@ export function RegisterForm() {
       />
 
       <Field
-        label="Пароль"
+        label={t('Пароль')}
         control={
           <input
             name="password"
@@ -62,19 +65,19 @@ export function RegisterForm() {
       />
 
       <Field
-        label="Роль"
+        label={t('Роль')}
         control={
           <select name="role" className="select select-bordered" value={values.role} onChange={handleChange}>
-            <option value="MIGRANT">MIGRANT</option>
-            <option value="INSPECTOR">INSPECTOR</option>
-            <option value="SECURITY">SECURITY</option>
-            <option value="BOSS">BOSS</option>
+            <option value="MIGRANT">{t('MIGRANT')}</option>
+            <option value="INSPECTOR">{t('INSPECTOR')}</option>
+            <option value="SECURITY">{t('SECURITY')}</option>
+            <option value="BOSS">{t('BOSS')}</option>
           </select>
         }
       />
 
       <Field
-        label="ID УПК"
+        label={t('ID УПК')}
         control={
           <input
             name="upkId"
@@ -87,7 +90,7 @@ export function RegisterForm() {
       />
 
       <button className="btn btn-primary w-full" type="submit">
-        Зарегистрироваться
+        {t('Зарегистрироваться')}
       </button>
     </form>
   )

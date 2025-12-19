@@ -5,6 +5,7 @@ import { formatTicketDeadlineAt } from '@/entities/ticket/lib'
 import { useGetTicketRelated } from '../model'
 import { useQuery } from '@tanstack/react-query'
 import { RelatedTicketCard } from './RelatedTicketCard'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   ticket: Ticket
@@ -13,6 +14,7 @@ type Props = {
 }
 
 export function TicketEntryDetails({ ticket, priority, onPriorityChange }: Props) {
+  const { t } = useTranslation()
   const fetchTicketRelated = useGetTicketRelated()
 
   const {
@@ -29,7 +31,7 @@ export function TicketEntryDetails({ ticket, priority, onPriorityChange }: Props
       <TicketSectionWrapper title="Details">
         <div className="flex gap-y-3 flex-col">
           <Field
-            label="Priority"
+            label={t('Priority')}
             control={
               <select
                 className="select select-sm select-bordered bg-neutral-800"
@@ -44,15 +46,15 @@ export function TicketEntryDetails({ ticket, priority, onPriorityChange }: Props
               </select>
             }
           />{' '}
-          <Field label="Deadline" control={formatTicketDeadlineAt(ticket)} />
+          <Field label={t('Deadline')} control={formatTicketDeadlineAt(ticket)} />
         </div>
-        <h4 className="text-2xl w-full border-b-2 border-gray-600 mt-8">Related work</h4>
-        {isLoading && <Loader text="Loading attached tickets..." />}
+        <h4 className="text-2xl w-full border-b-2 border-gray-600 mt-8">{t('Related work')}</h4>
+        {isLoading && <Loader text={t('Loading attached tickets...')} />}
 
-        {isError && <div className="py-6 text-center text-error">Failed to load related tickets</div>}
+        {isError && <div className="py-6 text-center text-error">{t('Failed to load related tickets')}</div>}
 
         {!isLoading && !isError && (!related || related.length === 0) && (
-          <div className="py-6 text-center text-base-content/60">No related tickets</div>
+          <div className="py-6 text-center text-base-content/60">{t('No related tickets')}</div>
         )}
 
         {related && related.length > 0 && (

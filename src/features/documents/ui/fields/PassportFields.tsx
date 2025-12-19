@@ -1,26 +1,29 @@
 import { Field as FormikField, ErrorMessage } from 'formik'
 import { Field } from '@/shared/ui/Field'
 import { Region } from '@/entities/upk'
+import { useTranslation } from 'react-i18next'
 
 export function PassportFields() {
+  const { t } = useTranslation()
+
   return (
     <div className="flex flex-col gap-4 mt-2 w-full">
       <Field
-        label="Full name"
+        label={t('Full name')}
         control={<FormikField name="body.fullName" className="input input-bordered bg-neutral-800 w-full" />}
         message={<ErrorMessage name="body.fullName" />}
         validationStatus="error"
       />
 
       <Field
-        label="Country"
+        label={t('Country')}
         control={<FormikField name="body.country" className="input input-bordered bg-neutral-800 w-full" />}
         message={<ErrorMessage name="body.country" />}
         validationStatus="error"
       />
 
       <Field
-        label="Date of birth"
+        label={t('Date of birth')}
         control={
           <FormikField type="date" name="body.dateOfBirth" className="input input-bordered bg-neutral-800 w-full" />
         }
@@ -29,7 +32,7 @@ export function PassportFields() {
       />
 
       <Field
-        label="Sex"
+        label={t('Sex')}
         control={
           <div className="flex gap-6 mt-1">
             <label className="flex items-center gap-2">
@@ -48,10 +51,10 @@ export function PassportFields() {
       />
 
       <Field
-        label="Issuing region"
+        label={t('Issuing region')}
         control={
           <FormikField as="select" name="body.issuingRegion" className="select select-bordered bg-neutral-800 w-full">
-            <option value="">Select region</option>
+            <option value="">{t('Select region')}</option>
             {Object.values(Region).map((region) => (
               <option key={region} value={region}>
                 {region.replace('_', ' ')}
@@ -64,7 +67,7 @@ export function PassportFields() {
       />
 
       <Field
-        label="Passport number"
+        label={t('Passport number')}
         control={<FormikField name="body.passportNumber" className="input input-bordered bg-neutral-800 w-full" />}
         message={<ErrorMessage name="body.passportNumber" />}
         validationStatus="error"

@@ -4,12 +4,14 @@ import { typeConfig } from '@/entities/ticket/constants'
 import classNames from 'classnames'
 import { formatTicketDeadlineAt, formatTicketId } from '@/entities/ticket/lib'
 import { TicketStatusBadge } from '@/features/tickets/ui/TicketStatus'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   ticket: Ticket
 }
 
 export const RelatedTicketCard = ({ ticket }: Props) => {
+  const { t } = useTranslation()
   const { icon: TypeIcon, blColor, label, iconColor } = typeConfig[ticket.ticketType]
 
   return (
@@ -28,7 +30,7 @@ export const RelatedTicketCard = ({ ticket }: Props) => {
         <TicketStatusBadge status={ticket.status} />
       </div>
 
-      <div className="mt-2 text-sm">Deadline: {formatTicketDeadlineAt(ticket)}</div>
+      <div className="mt-2 text-sm">{t('Deadline: {formatTicketDeadlineAt(ticket)}')}</div>
     </Link>
   )
 }

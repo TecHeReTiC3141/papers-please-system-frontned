@@ -3,6 +3,7 @@ import type { InspectorExtendedInfo } from '@/entities/user'
 import { InfoField, Table, UpkDescription } from '@/shared/ui'
 import type { TableColumn } from '@/shared/ui/Table/types'
 import { UserPreview } from '@/shared/ui/UserPreview'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 
 type Props = {
@@ -10,11 +11,12 @@ type Props = {
 }
 
 export function InspectorSection({ extendedInspectorInfo }: Props) {
+  const { t } = useTranslation()
   const navigate = useNavigate()
 
   const shiftColumns: TableColumn<ShiftInspectorExtendedInfo>[] = [
     {
-      label: 'Date',
+      label: t('Date'),
       dataIndex: 'startTime',
       key: 'startTime',
       render: (shift) => (
@@ -31,43 +33,43 @@ export function InspectorSection({ extendedInspectorInfo }: Props) {
       )
     },
     {
-      label: 'UPK, Region',
+      label: t('UPK, Region'),
       render: (shift) => <UpkDescription upk={shift.upk} />,
       key: 'upk',
       dataIndex: 'upk'
     },
     {
-      label: 'Boss',
+      label: t('Boss'),
       key: 'boss',
       dataIndex: 'boss.name'
     },
     {
-      label: 'Resolved tickets',
+      label: t('Resolved tickets'),
       key: 'resolvedTickets',
       dataIndex: 'participation.resolvedTickets'
     },
     {
-      label: 'Salary',
+      label: t('Salary'),
       key: 'wage',
       dataIndex: 'participation.wage'
     },
     {
-      label: 'Penalty',
+      label: t('Penalty'),
       key: 'penalty',
       dataIndex: 'participation.penalty'
     }
   ]
   return (
     <>
-      <InfoField value={<UpkDescription upk={extendedInspectorInfo.upk} />} label="Upk" />
+      <InfoField value={<UpkDescription upk={extendedInspectorInfo.upk} />} label={t('Upk')} />
 
-      <InfoField value={<UserPreview user={extendedInspectorInfo.boss} />} label="Boss" />
+      <InfoField value={<UserPreview user={extendedInspectorInfo.boss} />} label={t('Boss')} />
 
-      <h3 className="text-2xl mt-3">Shift info</h3>
+      <h3 className="text-2xl mt-3">{t('Shift info')}</h3>
       <Table
         columns={shiftColumns}
         data={extendedInspectorInfo.shifts}
-        emptyMessage="No shifts yet"
+        emptyMessage={t('No shifts yet')}
         filterable={false}
       />
     </>

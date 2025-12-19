@@ -4,13 +4,16 @@ import { canCloseShift, formatShiftDuration } from '../lib'
 import { Loader } from '@/shared/ui'
 import { FaChevronDown, FaPowerOff, FaPlay, FaInfo } from 'react-icons/fa6'
 import { CloseShiftModal } from './CloseShiftModal'
+import { useTranslation } from 'react-i18next'
 
 export function ShiftStatus() {
+  const { t } = useTranslation()
+
   const navigate = useNavigate()
   const { data: activeShift, isLoading } = useGetActiveShift()
 
   if (isLoading) {
-    return <Loader text="Loading active shift..." />
+    return <Loader text={t('Loading active shift...')} />
   }
 
   if (!activeShift) {
@@ -60,7 +63,7 @@ export function ShiftStatus() {
             </button>
           </li>
         ) : (
-          <li className="px-3 py-2 text-sm text-base-content/60">Shift can be closed after 7 hours</li>
+          <li className="px-3 py-2 text-sm text-base-content/60">{t('Shift can be closed after 7 hours')}</li>
         )}
       </ul>
       <CloseShiftModal />

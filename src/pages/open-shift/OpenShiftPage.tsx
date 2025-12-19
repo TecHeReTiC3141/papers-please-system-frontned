@@ -3,9 +3,11 @@ import type { ShiftEmployee, Specialization } from '@/entities/user'
 import { useGetBossEmployees, useGetDailyAgenda, useOpenShiftMutation } from '@/features/shifts/model'
 import { DailyAgendaTable, EmployeesTable } from '@/features/shifts/ui'
 import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 
 export function OpenShiftPage() {
+  const { t } = useTranslation()
   const { data: events, isLoading: eventsLoading } = useGetDailyAgenda()
   const { data: allEmployees = [], isLoading: employeesLoading } = useGetBossEmployees()
 
@@ -54,9 +56,9 @@ export function OpenShiftPage() {
 
   return (
     <div className="container mx-auto p-6 flex flex-col gap-6">
-      <h1 className="text-3xl font-semibold">Open shift</h1>
+      <h1 className="text-3xl font-semibold">{t('Open shift')}</h1>
 
-      <p className="text-base-content/70">Assign today’s agenda and specializations before opening the shift.</p>
+      <p className="text-base-content/70">{t('Assign today’s agenda and specializations before opening the shift.')}</p>
 
       <DailyAgendaTable
         data={eventsWithSpecializations}
@@ -64,7 +66,7 @@ export function OpenShiftPage() {
         onSpecializationChange={handleSetEventSpecialization}
       />
 
-      <h3 className="text-2xl font-semibold">Inspectors for today shift</h3>
+      <h3 className="text-2xl font-semibold">{t('Inspectors for today shift')}</h3>
 
       <EmployeesTable
         employees={assignedEmployees}
@@ -74,7 +76,7 @@ export function OpenShiftPage() {
         onDelete={handleDeleteEmployees}
       />
       <button className="btn btn-primary self-end" onClick={handleOpenShift}>
-        Open shift
+        {t('Open shift')}
       </button>
     </div>
   )

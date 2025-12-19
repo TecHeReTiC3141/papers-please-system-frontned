@@ -8,6 +8,7 @@ import {
   FillNewDocumentModal
 } from '@/features/applications/ui'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FaArrowLeft } from 'react-icons/fa6'
 import { FiPlus } from 'react-icons/fi'
 import { MdAttachFile } from 'react-icons/md'
@@ -15,6 +16,7 @@ import { Link } from 'react-router'
 import { toast } from 'react-toastify'
 
 export function CreateApplicationPage() {
+  const { t } = useTranslation()
   const [isFillNewOpen, setFillNewOpen] = useState(false)
   const [isAttachOpen, setAttachOpen] = useState(false)
 
@@ -46,25 +48,25 @@ export function CreateApplicationPage() {
       <Link className="link link-hover link-info flex gap-x-2 items-center" to="/applications">
         <FaArrowLeft /> Back to applications
       </Link>
-      <h1 className="text-3xl font-semibold text-center">New application</h1>
+      <h1 className="text-3xl font-semibold text-center">{t('New application')}</h1>
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-medium">Attached documents</h2>
+        <h2 className="text-xl font-medium">{t('Attached documents')}</h2>
 
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-sm btn-primary border rounded-lg">
-            Add document ▾
+            {t('Add document ▾')}
           </div>
 
           <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box shadow p-2 w-44">
             <li>
               <button className="flex items-center gap-2" onClick={() => setFillNewOpen(true)}>
-                <FiPlus /> Fill new
+                <FiPlus /> {t('Fill new')}
               </button>
             </li>
 
             <li>
               <button className="flex items-center gap-2" onClick={() => setAttachOpen(true)}>
-                <MdAttachFile /> Attach existing
+                <MdAttachFile /> {t('Attach existing')}
               </button>
             </li>
           </ul>
@@ -88,10 +90,10 @@ export function CreateApplicationPage() {
         {createApplicationMutation.isPending ? (
           <span className="loading loading-spinner loading-sm"></span>
         ) : (
-          'Create application'
+          t('Create application')
         )}
       </button>
-      {/* MODALS */}
+
       <FillNewDocumentModal
         open={isFillNewOpen}
         onClose={() => setFillNewOpen(false)}

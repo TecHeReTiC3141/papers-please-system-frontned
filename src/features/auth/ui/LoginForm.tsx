@@ -3,6 +3,7 @@ import { loginSchema } from '../lib/validation'
 import { toFormikValidationSchema } from 'zod-formik-adapter'
 import { Field } from '@shared/ui'
 import type { LoginRequest } from '../model'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   onSubmit: (params: LoginRequest) => Promise<void>
@@ -10,6 +11,7 @@ type Props = {
 }
 
 export function LoginForm({ onSubmit, loading }: Props) {
+  const { t } = useTranslation()
   const { handleSubmit, values, errors, handleChange } = useFormik({
     initialValues: { email: '', password: '' },
     validationSchema: toFormikValidationSchema(loginSchema),
@@ -19,7 +21,7 @@ export function LoginForm({ onSubmit, loading }: Props) {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-4 max-w-sm mx-auto">
       <Field
-        label="Email"
+        label={t('login.email')}
         control={
           <input
             name="email"
@@ -34,7 +36,7 @@ export function LoginForm({ onSubmit, loading }: Props) {
       />
 
       <Field
-        label="Пароль"
+        label={t('login.passport')}
         control={
           <input
             name="password"
@@ -49,7 +51,7 @@ export function LoginForm({ onSubmit, loading }: Props) {
       />
 
       <button className="btn btn-primary w-full" type="submit">
-        {loading ? <span className="loading loading-spinner loading-lg" /> : 'Войти'}
+        {loading ? <span className="loading loading-spinner loading-lg" /> : t('login.login')}
       </button>
     </form>
   )

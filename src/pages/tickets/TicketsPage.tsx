@@ -2,9 +2,11 @@ import { useGetTickets } from '@/features/tickets/model'
 import { TicketsBoard, TicketsFilters, TicketsTable } from '@/features/tickets/ui'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { TbTable, TbLayoutGrid } from 'react-icons/tb'
 
 export function TicketsPage() {
+  const { t } = useTranslation()
   const fetchTickets = useGetTickets()
 
   const [view, setView] = useState<'table' | 'board'>(() => {
@@ -23,7 +25,7 @@ export function TicketsPage() {
   return (
     <div className="flex flex-col gap-6 p-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Tickets</h1>
+        <h1 className="text-2xl font-semibold">{t('Tickets')}</h1>
 
         <div className="flex items-center gap-2">
           <button
@@ -33,7 +35,7 @@ export function TicketsPage() {
             }`}
           >
             <TbTable size={18} />
-            Table
+            {t('Table')}
           </button>
 
           <button
@@ -43,7 +45,7 @@ export function TicketsPage() {
             }`}
           >
             <TbLayoutGrid size={18} />
-            Board
+            {t('Board')}
           </button>
         </div>
       </div>

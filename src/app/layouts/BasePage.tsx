@@ -1,6 +1,7 @@
 import { UserRole, type User } from '@/entities/user'
 import { useEffect } from 'react'
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 
 const loginNavigation = {
@@ -13,6 +14,7 @@ const loginNavigation = {
 
 export function BasePage() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const userData = useAuthUser<User>()
 
@@ -24,5 +26,5 @@ export function BasePage() {
     }
   }, [userData])
 
-  return <div>Main page</div>
+  return <div>{t('Main page')}</div>
 }

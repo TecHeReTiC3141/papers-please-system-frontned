@@ -3,6 +3,7 @@ import { ApplicationsBoardColumn } from './ApplicationsBoardColumn'
 import { getApplicationStatus } from '../../model'
 import { ApplicationStatus } from '@/entities/ticket/applications'
 import { Loader } from '@/shared/ui'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   tickets: Ticket[]
@@ -25,7 +26,9 @@ const columnsConfig = [
 ]
 
 export const ApplicationsBoard = ({ tickets, loading }: Props) => {
-  if (loading || !tickets) return <Loader text="Loading your applications..." />
+  const { t } = useTranslation()
+
+  if (loading || !tickets) return <Loader text={t('Loading your applications...')} />
 
   return (
     <div className="flex items-stretch w-full gap-4">

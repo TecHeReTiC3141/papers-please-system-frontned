@@ -3,7 +3,8 @@ import { Table } from '@/shared/ui/Table'
 import type { TableColumn } from '@/shared/ui/Table/types'
 import { FaDeleteLeft, FaPlus } from 'react-icons/fa6'
 import { AddEmployeeModal } from './AddEmployeeModal'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   employees: ShiftEmployee[]
@@ -14,25 +15,23 @@ type Props = {
 }
 
 export function EmployeesTable({ employees, availableEmployees, loading = false, onAdd, onDelete }: Props) {
+  const { t } = useTranslation()
   const [showAddEmployee, setShowAddEmployee] = useState(false)
   const [selectedRows, setSelectedRows] = useState<string[]>([])
 
-  const columns: TableColumn<ShiftEmployee>[] = useMemo(
-    () => [
-      {
-        key: 'name',
-        label: 'Inspector',
-        dataIndex: 'name',
-        isSortable: true
-      },
-      {
-        key: 'specialization',
-        label: 'Specialization',
-        dataIndex: 'specialization'
-      }
-    ],
-    []
-  )
+  const columns: TableColumn<ShiftEmployee>[] = [
+    {
+      key: 'name',
+      label: t('Inspector'),
+      dataIndex: 'name',
+      isSortable: true
+    },
+    {
+      key: 'specialization',
+      label: t('Specialization'),
+      dataIndex: 'specialization'
+    }
+  ]
 
   const handleDelete = () => {
     if (selectedRows.length === 0) return
@@ -46,7 +45,7 @@ export function EmployeesTable({ employees, availableEmployees, loading = false,
         data={employees}
         loading={loading}
         columns={columns}
-        emptyMessage="No employees assigned"
+        emptyMessage={t('No employees assigned')}
         showEmpty
         rowSelection={{
           isEnabled: true,

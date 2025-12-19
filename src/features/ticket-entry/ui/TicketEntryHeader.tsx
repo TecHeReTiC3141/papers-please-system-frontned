@@ -13,6 +13,7 @@ import { ApproveModal } from './ApproveModal'
 import { RejectModal } from './RejectModal'
 import { useState } from 'react'
 import { TicketStatusBadge } from '@/features/tickets/ui/TicketStatus'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   ticket: Ticket
@@ -35,6 +36,7 @@ export function TicketEntryHeader({
   isSaveInProgress,
   canSave
 }: Props) {
+  const { t } = useTranslation()
   const userData = useAuthUser<User | null>()
   const [approveOpen, setApproveOpen] = useState(false)
   const [rejectOpen, setRejectOpen] = useState(false)
@@ -44,7 +46,7 @@ export function TicketEntryHeader({
 
   const statusItems = [
     {
-      label: 'Status',
+      label: t('Status'),
       value: (
         <select
           className="select select-sm select-bordered bg-neutral-800"
@@ -59,7 +61,7 @@ export function TicketEntryHeader({
         </select>
       )
     },
-    { label: 'Reason', value: <p className="text-base-content/80">{reason}</p> }
+    { label: t('Reason'), value: <p className="text-base-content/80">{reason}</p> }
   ]
 
   return (
@@ -81,14 +83,15 @@ export function TicketEntryHeader({
         <div className="flex items-center gap-x-6">
           <button className="btn rounded-xl btn-sm btn-success opacity-90" onClick={() => setApproveOpen(true)}>
             <FaCheck />
-            Approve
+            {t('common.actions.approve')}
           </button>
           <button className="btn rounded-xl btn-sm btn-error opacity-90" onClick={() => setRejectOpen(true)}>
             <FaXmark />
-            Reject
+            {t('common.actions.reject')}
           </button>
           <button className="btn rounded-xl btn-sm btn-info opacity-90" disabled={!canSave} onClick={onSave}>
-            <FaSave /> {isSaveInProgress ? <span className="loading loading-spinner loading-sm"></span> : 'Save'}
+            <FaSave />{' '}
+            {isSaveInProgress ? <span className="loading loading-spinner loading-sm"></span> : t('common.actions.save')}
           </button>
         </div>
       </div>
