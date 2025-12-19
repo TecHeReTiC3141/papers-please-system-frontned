@@ -12,6 +12,7 @@ import { FaArrowLeft } from 'react-icons/fa6'
 import { FiPlus } from 'react-icons/fi'
 import { MdAttachFile } from 'react-icons/md'
 import { Link } from 'react-router'
+import { toast } from 'react-toastify'
 
 export function CreateApplicationPage() {
   const [isFillNewOpen, setFillNewOpen] = useState(false)
@@ -76,7 +77,13 @@ export function CreateApplicationPage() {
       <button
         className="btn btn-primary self-end"
         disabled={attachedDocuments.length === 0}
-        onClick={() => createApplicationMutation.mutate(attachedDocuments)}
+        onClick={() =>
+          toast.promise(createApplicationMutation.mutateAsync(attachedDocuments), {
+            success: 'Application successfully created',
+            pending: 'Creating new application...',
+            error: 'Creating of new application failed'
+          })
+        }
       >
         {createApplicationMutation.isPending ? (
           <span className="loading loading-spinner loading-sm"></span>

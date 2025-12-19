@@ -100,6 +100,18 @@ export const Table = <T extends { id: number | string }>({
   const totalPages = Math.ceil(sortedData.length / pageSize)
   const dataToShow = sortedData.slice(pageSize * (currentPage - 1), pageSize * currentPage)
 
+  const columnTotals = columns.reduce<Record<string, number>>((acc, column) => {
+    if (!column.showTotal) return acc
+
+    const total = sortedData.reduce((sum, entry) => {
+      const value = get(entry, column.dataIndex, null)
+      return typeof value === 'number' ? sum + value : sum
+    }, 0)
+
+    acc[column.key] = total
+    return acc
+  }, {})
+
   const renderCellContent = (entry: T, column: TableColumn<T>) => {
     if (column.render) {
       return column.render(entry)
@@ -125,8 +137,6 @@ export const Table = <T extends { id: number | string }>({
       <TbSortDescending className="text-lg" />
     )
   }
-
-  const extendedColumns = [...columns]
 
   // if (deleteAction) {
   //   extendedColumns.push({
@@ -210,7 +220,7 @@ export const Table = <T extends { id: number | string }>({
                     />
                   </th>
                 )}
-                {extendedColumns.map((column) => (
+                {columns.map((column) => (
                   <th
                     key={column.key}
                     className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider"
@@ -245,13 +255,24 @@ export const Table = <T extends { id: number | string }>({
                       />
                     </td>
                   )}
-                  {extendedColumns.map((column) => (
+                  {columns.map((column) => (
                     <td key={column.key} className="px-4 py-4 whitespace-nowrap text-sm">
                       {renderCellContent(entry, column)}
                     </td>
                   ))}
                 </tr>
               ))}
+              {columns.some((c) => c.showTotal) && (
+                <tr className="font-semibold bg-base-200">
+                  {selectable && <td className="px-4 py-3" />}
+
+                  {columns.map((column) => (
+                    <td key={column.key} className="px-4 py-3 text-sm">
+                      {column.showTotal ? (columnTotals[column.key] ?? 0) : ''}
+                    </td>
+                  ))}
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

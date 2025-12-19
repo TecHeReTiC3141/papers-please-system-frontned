@@ -3,16 +3,20 @@ import type { User } from '@/entities/user'
 import { useApi } from '@/shared/api/axios'
 import type { MultipleEntitiesResponse } from '@/shared/api/types'
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
+import { useNavigate } from 'react-router'
+import { toast } from 'react-toastify'
 
 export const useGetUserDocuments = () => {
   const userData = useAuthUser<User>()
   const api = useApi()
-
-  if (!userData) {
-    throw new Error('Not authorized')
-  }
+  const navigate = useNavigate()
 
   return async () => {
+    if (!userData) {
+      toast.info('You are logged out')
+      navigate('/login')
+      return Promise.reject(new Error('User is not authenticated'))
+    }
     const { data } = await api.get<MultipleEntitiesResponse<AnyDocument>>(`/documents?userId=${userData.id}`)
 
     return data?.items ?? []

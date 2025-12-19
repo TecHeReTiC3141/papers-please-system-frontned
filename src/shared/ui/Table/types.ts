@@ -14,6 +14,7 @@ export type TableColumn<T extends { id: string | number }> = {
   isSortable?: boolean
   isFilterable?: boolean
   key: string
+  showTotal?: boolean
 }
 
 export type RowSelection<T extends { id: string | number }> =

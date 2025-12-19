@@ -12,13 +12,14 @@ export type Shift = BaseEntity & {
 export type Participation = BaseEntity & {
   userId: string
   shiftId: string
-  coeffBonus: number
-  coeffPenalty: number
+  wage: number
+  penalty: number
   specialization: Specialization
 }
 
 export type ExtendedInspectorParticipation = Participation & {
   resolvedTickets: number
+  passedCrossChecks: number
 }
 
 export type ShiftInspectorExtendedInfo = Shift & {
@@ -37,13 +38,5 @@ export type ShiftBossExtendedInfo = Shift & {
 export type ShiftExtendedInfo = Shift & {
   upk: Upk
   boss: User
-  inspectors: {
-    userId: string
-    shiftId: string
-    coeffBonus: number // мб переименовать в wage
-    coeffPenalty: number // и penalty соответственно
-    specialization: Specialization
-    resolvedTickets: number
-    passedCrossCheckes: number
-  }[]
+  inspectors: ExtendedInspectorParticipation[]
 }
