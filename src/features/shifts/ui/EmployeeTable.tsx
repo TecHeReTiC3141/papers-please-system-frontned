@@ -22,13 +22,13 @@ export function EmployeesTable({ employees, availableEmployees, loading = false,
   const columns: TableColumn<ShiftEmployee>[] = [
     {
       key: 'name',
-      label: t('Inspector'),
+      label: t('employeesTable.inspector'),
       dataIndex: 'name',
       isSortable: true
     },
     {
       key: 'specialization',
-      label: t('Specialization'),
+      label: t('employeesTable.specialization'),
       dataIndex: 'specialization'
     }
   ]
@@ -45,7 +45,7 @@ export function EmployeesTable({ employees, availableEmployees, loading = false,
         data={employees}
         loading={loading}
         columns={columns}
-        emptyMessage={t('No employees assigned')}
+        emptyMessage={t('employessTable.empty')}
         showEmpty
         rowSelection={{
           isEnabled: true,
@@ -54,12 +54,12 @@ export function EmployeesTable({ employees, availableEmployees, loading = false,
         }}
         toolbarButtons={[
           {
-            text: 'Add employee',
+            text: 'employessTable.actions.add',
             onClick: () => setShowAddEmployee(true),
             icon: <FaPlus />
           },
           {
-            text: 'Delete',
+            text: 'employessTable.actions.delete',
             onClick: handleDelete,
             icon: <FaDeleteLeft />,
             disabled: selectedRows.length === 0

@@ -157,7 +157,7 @@ export const Table = <T extends { id: number | string }>({
                       onChange={(e) => setFilterColumn(e.target.value)}
                       className="select select-bordered select-sm"
                     >
-                      <option value="all">{t('All Columns')}</option>
+                      <option value="all">{t('common.table.filter.all')}</option>
                       {filterableColumns.map((column) => (
                         <option key={column.key} value={column.dataIndex}>
                           {column.label}
@@ -267,7 +267,7 @@ export const Table = <T extends { id: number | string }>({
               Showing {Math.min(pageSize * (currentPage - 1) + 1, sortedData.length)}-
               {Math.min(pageSize * currentPage, sortedData.length)} of {sortedData.length} entries
               {filterValue && filteredData && (
-                <span className="text-gray-500 ml-2">{t('(filtered from {data.length})')}</span>
+                <span className="text-gray-500 ml-2">{t('common.table.filterTotatl', { common: data.length })}</span>
               )}
             </div>
           )}

@@ -23,11 +23,11 @@ export function RejectModal({ open, onClose, onReject }: RejectModalProps) {
   return (
     <dialog className="modal modal-open">
       <div className="modal-box">
-        <h3 className="font-bold text-lg">{t('Reject ticket')}</h3>
+        <h3 className="font-bold text-lg">{t('ticket.reject.title')}</h3>
 
         <textarea
           className="textarea textarea-bordered w-full mt-4"
-          placeholder={`Enter reject reason (min ${MIN_REASON_LENGTH} chars)...`}
+          placeholder={t('ticket.reject.reason.placeholder', { min: MIN_REASON_LENGTH })}
           value={reason}
           onChange={(e) => setReason(e.target.value)}
         />

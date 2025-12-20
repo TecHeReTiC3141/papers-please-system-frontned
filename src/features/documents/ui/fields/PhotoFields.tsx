@@ -8,21 +8,14 @@ export function PhotoFields() {
   return (
     <div className="flex flex-col gap-4 mt-2">
       <Field
-        label={t('Owner name')}
+        label={t('documents.photo.ownerName')}
         control={<FormikField name="body.ownerName" className="input input-bordered bg-neutral-800 w-full" />}
         message={<ErrorMessage name="body.ownerName" />}
         validationStatus="error"
       />
 
       <Field
-        label={t('Image URL')}
-        control={<FormikField name="body.imageUrl" className="input input-bordered bg-neutral-800 w-full" />}
-        message={<ErrorMessage name="body.imageUrl" />}
-        validationStatus="error"
-      />
-
-      <Field
-        label={t('Resolution')}
+        label={t('documents.photo.resolution')}
         control={
           <FormikField
             name="body.resolution"
@@ -31,6 +24,13 @@ export function PhotoFields() {
           />
         }
         message={<ErrorMessage name="body.resolution" />}
+        validationStatus="error"
+      />
+
+      <Field
+        label={t('documents.photo.imageUrl')}
+        control={<FormikField name="body.imageUrl" className="input input-bordered bg-neutral-800 w-full" />}
+        message={<ErrorMessage name="body.imageUrl" />}
         validationStatus="error"
       />
     </div>

@@ -28,10 +28,10 @@ export function TicketEntryDetails({ ticket, priority, onPriorityChange }: Props
 
   return (
     <div className="flex-1">
-      <TicketSectionWrapper title="Details">
+      <TicketSectionWrapper title={t('ticket.details.title')}>
         <div className="flex gap-y-3 flex-col">
           <Field
-            label={t('Priority')}
+            label={t('ticket.details.priority')}
             control={
               <select
                 className="select select-sm select-bordered bg-neutral-800"
@@ -46,15 +46,15 @@ export function TicketEntryDetails({ ticket, priority, onPriorityChange }: Props
               </select>
             }
           />{' '}
-          <Field label={t('Deadline')} control={formatTicketDeadlineAt(ticket)} />
+          <Field label={t('ticket.details.deadline')} control={formatTicketDeadlineAt(ticket)} />
         </div>
         <h4 className="text-2xl w-full border-b-2 border-gray-600 mt-8">{t('Related work')}</h4>
-        {isLoading && <Loader text={t('Loading attached tickets...')} />}
+        {isLoading && <Loader text={t('ticket.related.loading')} />}
 
-        {isError && <div className="py-6 text-center text-error">{t('Failed to load related tickets')}</div>}
+        {isError && <div className="py-6 text-center text-error">{t('ticket.related.error')}</div>}
 
         {!isLoading && !isError && (!related || related.length === 0) && (
-          <div className="py-6 text-center text-base-content/60">{t('No related tickets')}</div>
+          <div className="py-6 text-center text-base-content/60">{t('ticket.related.empty')}</div>
         )}
 
         {related && related.length > 0 && (

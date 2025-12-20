@@ -14,13 +14,26 @@ export function PassportData({ document, inspectorMode = false }: Props) {
     <DetailsList
       inspectorMode={inspectorMode}
       items={[
-        { label: t('Name'), value: document.body.fullName, fieldKey: 'body.fullName' },
-        { label: t('Country'), value: document.body.country, fieldKey: 'body.country' },
-        { label: t('Date of birth'), value: document.body.dateOfBirth, fieldKey: 'body.dateOfBirth' },
-        { label: t('Sex'), value: document.body.sex === 'M' ? 'Male' : 'Female', fieldKey: 'body.sex' },
-        { label: t('Region'), value: document.body.issuingRegion, fieldKey: 'body.issuingRegion' },
-        { label: t('Issue date'), value: document.validFrom, fieldKey: 'validFrom' },
-        { label: t('Expires at'), value: document.validUntil, fieldKey: 'validUntil' }
+        { label: t('documents.passport.name'), value: document.body.fullName, fieldKey: 'body.fullName' },
+        { label: t('documents.passport.country'), value: document.body.country, fieldKey: 'body.country' },
+        { label: t('documents.passport.dateOfBirth'), value: document.body.dateOfBirth, fieldKey: 'body.dateOfBirth' },
+        {
+          label: t('documents.passport.sex'),
+          value: t(document.body.sex === 'M' ? 'common.sex.male' : 'common.sex.female'),
+          fieldKey: 'body.sex'
+        },
+        {
+          label: t('documents.passport.issuingRegion'),
+          value: document.body.issuingRegion,
+          fieldKey: 'body.issuingRegion'
+        },
+        {
+          label: t('documents.passport.passportNumber'),
+          value: document.body.passportNumber,
+          fieldKey: 'body.passportNumber'
+        },
+        { label: t('documents.validFrom'), value: document.validFrom, fieldKey: 'validFrom' },
+        { label: t('documents.validUntil'), value: document.validUntil, fieldKey: 'validUntil' }
       ]}
     />
   )

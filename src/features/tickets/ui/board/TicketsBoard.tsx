@@ -28,7 +28,6 @@ const columnsConfig = [
 export const TicketsBoard = ({ tickets, loading }: Props) => {
   const sensors = useSensors(useSensor(PointerSensor))
 
-  // локальное состояние для визуального перемещения
   const [localTickets, setLocalTickets] = useState(tickets)
 
   useEffect(() => {

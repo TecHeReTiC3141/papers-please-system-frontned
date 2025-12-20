@@ -78,12 +78,11 @@ export function FillNewDocumentModal({ open, onClose, attachedDocuments, onSubmi
                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={handleClose}>
                   ✕
                 </button>
-                <h3 className="font-bold text-lg mb-6 text-center">{t('Add new document')}</h3>
+                <h3 className="font-bold text-lg mb-6 text-center">{t('createApplication.fillNewModal.title')}</h3>
 
                 <Form className="flex flex-col gap-4 items-center">
-                  {/* Document Type Select */}
                   <Field
-                    label={t('Document type')}
+                    label={t('createApplication.typeSelect.label')}
                     control={
                       <FormikField
                         as="select"
@@ -92,7 +91,7 @@ export function FillNewDocumentModal({ open, onClose, attachedDocuments, onSubmi
                         onChange={handleSelectType}
                       >
                         <option value="" disabled>
-                          Select document type
+                          {t('createApplication.typeSelect.placeholder')}
                         </option>
                         {availableDocumentTypes.map((t) => (
                           <option key={t} value={t}>
@@ -103,12 +102,10 @@ export function FillNewDocumentModal({ open, onClose, attachedDocuments, onSubmi
                     }
                   />
 
-                  {/* Conditional fields */}
                   {CurrentFields}
 
-                  {/* Valid From / Valid Until */}
                   <Field
-                    label={t('Valid From')}
+                    label={t('documents.validFrom')}
                     control={
                       <FormikField
                         type="date"
@@ -120,7 +117,7 @@ export function FillNewDocumentModal({ open, onClose, attachedDocuments, onSubmi
                   />
 
                   <Field
-                    label={t('Valid Until')}
+                    label={t('documents.validUntil')}
                     control={
                       <FormikField
                         type="date"
@@ -131,15 +128,13 @@ export function FillNewDocumentModal({ open, onClose, attachedDocuments, onSubmi
                     }
                   />
 
-                  {/* Attach to profile */}
                   <label className="flex items-center gap-2 mt-2">
                     <FormikField type="checkbox" name="attachToProfile" disabled={values.documentType === ''} />
-                    <span>{t('Attach document to profile')}</span>
+                    <span>{t('createApplication.attachToProfile')}</span>
                   </label>
 
-                  {/* Submit */}
                   <button type="submit" className="btn btn-primary mt-2">
-                    Add document
+                    {t('createApplication.fillNewModal.addButton')}
                   </button>
                 </Form>
               </>

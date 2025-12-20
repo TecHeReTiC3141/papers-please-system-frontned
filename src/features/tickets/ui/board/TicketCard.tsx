@@ -36,7 +36,7 @@ export const TicketCard = ({ ticket }: Props) => {
       <Link to={`/tickets/${ticket.id}`} className="flex items-center gap-1 link link-hover link-info">
         <TypeIcon className={`${iconColor}`} />
         <div className="font-semibold">{formatTicketId(ticket)}</div>
-        <span>{label}</span>
+        <span>{t(label)}</span>
       </Link>
       <div className="font-semibold">{ticket.description}</div>
       {/* TODO: add ticket executor */}
@@ -44,7 +44,7 @@ export const TicketCard = ({ ticket }: Props) => {
         <TicketStatusBadge status={ticket.status} />
       </div>
 
-      <div className="mt-2 text-sm">{t('Deadline: {formatTicketDeadlineAt(ticket)}')}</div>
+      <div className="mt-2 text-sm">{t('ticket.ticketCard.deadline', { date: formatTicketDeadlineAt(ticket) })}</div>
     </div>
   )
 }

@@ -1,7 +1,10 @@
 import { Priority, TicketStatus, TicketType } from '@/entities/ticket'
+import { useTranslation } from 'react-i18next'
 import { FiFilter } from 'react-icons/fi'
 
 export function TicketsFilters() {
+  const { t } = useTranslation()
+
   return (
     <div className="flex p-3 rounded bg-gray-800 justify-between items-center">
       <div className="flex gap-x-3 items-center">
@@ -11,7 +14,7 @@ export function TicketsFilters() {
       <div className="flex gap-x-3 items-center">
         <select defaultValue="" className="select select-ghost">
           <option value="" disabled>
-            Types
+            {t('tickets.filters.types')}
           </option>
           {Object.values(TicketType).map((type) => (
             <option key={type} value={type}>
@@ -21,7 +24,7 @@ export function TicketsFilters() {
         </select>
         <select defaultValue="" className="select select-ghost">
           <option value="" disabled>
-            Status
+            {t('tickets.filters.status')}
           </option>
           {Object.values(TicketStatus).map((status) => (
             <option key={status} value={status}>
@@ -31,7 +34,7 @@ export function TicketsFilters() {
         </select>
         <select defaultValue="" className="select select-ghost">
           <option value="" disabled>
-            Priority
+            {t('tickets.filters.priority')}
           </option>
           {Object.values(Priority).map((priority) => (
             <option key={priority} value={priority}>

@@ -1,5 +1,6 @@
 import { Specialization, type ShiftEmployee, type User } from '@/entities/user'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   open: boolean
@@ -32,11 +33,11 @@ export function AddEmployeeModal({ employees, assignedEmployees, open, onClose, 
   return (
     <div className="modal modal-open">
       <div className="modal-box">
-        <h3 className="font-semibold text-lg mb-4 text-center">{t('Add employee')}</h3>
+        <h3 className="font-semibold text-lg mb-4 text-center">{t('employessTable.addModal.title')}</h3>
 
         <div className="flex flex-col gap-4">
           <select className="select select-bordered" value={employeeId} onChange={(e) => setEmployeeId(e.target.value)}>
-            <option value="">{t('Select employee')}</option>
+            <option value="">{t('employessTable.addModal.employeeId.placeholder')}</option>
             {employees.map((e) => (
               <option key={e.id} value={e.id} disabled={!!assignedEmployees.find((emp) => emp.id === e.id)}>
                 {e.name}
@@ -49,7 +50,7 @@ export function AddEmployeeModal({ employees, assignedEmployees, open, onClose, 
             value={specialization}
             onChange={(e) => setSpecialization(e.target.value as Specialization)}
           >
-            <option value="">{t('Select specialization')}</option>
+            <option value="">{t('employessTable.addModal.specialization.placeholder')}</option>
             {Object.values(Specialization).map((s) => (
               <option key={s} value={s}>
                 {s}

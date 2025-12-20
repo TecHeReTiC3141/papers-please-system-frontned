@@ -30,19 +30,19 @@ export function ApplicationPage() {
   }
 
   if (isLoading) {
-    return <Loader text={t('Loading your application...')} />
+    return <Loader text={t('application.loading')} />
   }
 
   if (isError) {
-    return <div className="p-8 text-center text-error">{t('Failed to load application documents')}</div>
+    return <div className="p-8 text-center text-error">{t('application.error')}</div>
   }
 
   return (
     <div className="p-8 flex flex-col gap-8">
       <Link className="link link-hover link-info flex gap-x-2 items-center" to="/applications">
-        <FaArrowLeft /> {t('Back to applications')}
+        <FaArrowLeft /> {t('application.backToApplication')}
       </Link>
-      <h1 className="text-3xl font-semibold text-center">{t('Application documents')}</h1>
+      <h1 className="text-3xl font-semibold text-center">{t('application.documents.title')}</h1>
 
       <div className="bg-base-200 border border-base-300 rounded-xl p-4">
         <DocumentsAccordion documents={documents ?? []} />

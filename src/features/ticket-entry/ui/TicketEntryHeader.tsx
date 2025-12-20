@@ -46,7 +46,7 @@ export function TicketEntryHeader({
 
   const statusItems = [
     {
-      label: t('Status'),
+      label: t('ticket.headersStatus'),
       value: (
         <select
           className="select select-sm select-bordered bg-neutral-800"
@@ -61,7 +61,7 @@ export function TicketEntryHeader({
         </select>
       )
     },
-    { label: t('Reason'), value: <p className="text-base-content/80">{reason}</p> }
+    { label: t('ticket.header.reason'), value: <p className="text-base-content/80">{t(reason)}</p> }
   ]
 
   return (
@@ -69,12 +69,12 @@ export function TicketEntryHeader({
       <div className={classNames('border-l-4 px-2 flex justify-between items-end pb-2', blColor)}>
         <div className="flex flex-col gap-y-1 items-start ">
           <Link to={`/tickets/${ticket.id}`} className="link link-info link-hover">
-            Ticket {formatTicketId(ticket)}
+            {t('ticket.header.id', { id: formatTicketId(ticket) })}
           </Link>
           <div className="flex gap-x-1 items-center">
             <TypeIcon className={`${iconColor}`} />
             <div className="font-semibold text-xl">
-              {formatTicketId(ticket)} {label}
+              {formatTicketId(ticket)} {t(label)}
             </div>
           </div>
           <UserPreview user={userData} />
@@ -90,7 +90,7 @@ export function TicketEntryHeader({
             {t('common.actions.reject')}
           </button>
           <button className="btn rounded-xl btn-sm btn-info opacity-90" disabled={!canSave} onClick={onSave}>
-            <FaSave />{' '}
+            <FaSave />
             {isSaveInProgress ? <span className="loading loading-spinner loading-sm"></span> : t('common.actions.save')}
           </button>
         </div>

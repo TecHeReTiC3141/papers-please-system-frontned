@@ -22,15 +22,15 @@ export const ApplicationCard = ({ ticket }: Props) => {
 
   const applicationDetails = [
     {
-      label: t('Status'),
+      label: t('applications.card.status'),
       value: <ApplicationStatusBadge status={applicationStatus} />
     },
     {
-      label: t('Created'),
+      label: t('applications.card.createdAt'),
       value: formatDate(ticket.createdAt)
     },
     {
-      label: t('Last updated'),
+      label: t('applications.card.updatedAt'),
       value: formatDate(ticket.updatedAt)
     }
   ]
@@ -48,7 +48,7 @@ export const ApplicationCard = ({ ticket }: Props) => {
         )}
 
         <div className="font-semibold">{formatTicketId(ticket)}</div>
-        <span>{ticket.ticketType === TicketType.EXTERNAL ? 'Application' : 'Appealation'}</span>
+        <span>{t(ticket.ticketType === TicketType.EXTERNAL ? 'ticket.type.external' : 'ticket.type.appeal')}</span>
       </div>
       <DetailsList items={applicationDetails} />
     </Link>

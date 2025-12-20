@@ -36,7 +36,7 @@ export function LoginForm({ onSubmit, loading }: Props) {
       />
 
       <Field
-        label={t('login.passport')}
+        label={t('login.password')}
         control={
           <input
             name="password"

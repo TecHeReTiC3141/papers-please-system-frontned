@@ -5,6 +5,7 @@ import type { Ticket } from '@/entities/ticket'
 import { TicketCard } from './TicketCard'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import classNames from 'classnames'
+import { t } from 'i18next'
 
 type Props = {
   status: TicketStatus
@@ -18,11 +19,11 @@ export const TicketsBoardColumn = ({ status, tickets, loading }: Props) => {
   })
 
   const title = {
-    [TicketStatus.OPEN]: 'Open',
-    [TicketStatus.IN_PROGRESS]: 'In Progress',
-    [TicketStatus.NEED_INFO]: 'Need info',
-    [TicketStatus.REJECTED]: 'Rejected',
-    [TicketStatus.CLOSED]: 'Closed'
+    [TicketStatus.OPEN]: t('ticket.status.open'),
+    [TicketStatus.IN_PROGRESS]: t('ticket.status.inProgress'),
+    [TicketStatus.NEED_INFO]: t('ticket.status.needInfo'),
+    [TicketStatus.REJECTED]: t('ticket.status.rejected'),
+    [TicketStatus.CLOSED]: t('ticket.status.closed')
   }[status]
 
   return (

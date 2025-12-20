@@ -41,6 +41,7 @@ export type VisaBody = {
 
 export type CertificateBody = {
   certificateType: string
+  issuedBy: string
   holderName: string
   additionalInfo?: string
 }

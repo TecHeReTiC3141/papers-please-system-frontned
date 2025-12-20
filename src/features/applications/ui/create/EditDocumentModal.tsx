@@ -50,12 +50,11 @@ export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: P
                   ✕
                 </button>
 
-                <h3 className="font-bold text-lg mb-6 text-center">{t('Edit document')}</h3>
+                <h3 className="font-bold text-lg mb-6 text-center">{t('createApplication.editModal.title')}</h3>
 
                 <Form className="flex flex-col gap-4 items-center">
-                  {/* Document type (readonly) */}
                   <Field
-                    label={t('Document type')}
+                    label={t('createApplication.typeSelect.label')}
                     control={
                       <input
                         disabled
@@ -68,11 +67,10 @@ export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: P
                     }
                   />
 
-                  {/* Document fields */}
                   {CurrentFields}
 
                   <Field
-                    label={t('Valid From')}
+                    label={t('documents.validFrom')}
                     control={
                       <FormikField
                         type="date"
@@ -84,7 +82,7 @@ export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: P
                   />
 
                   <Field
-                    label={t('Valid Until')}
+                    label={t('documents.validUntil')}
                     control={
                       <FormikField
                         type="date"
@@ -95,14 +93,13 @@ export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: P
                     }
                   />
 
-                  {/* Attach to profile */}
                   <label className="flex items-center gap-2 mt-2">
                     <FormikField type="checkbox" name="attachToProfile" />
-                    <span>{t('Attach document to profile')}</span>
+                    <span>{t('createApplication.attachToProfile')}</span>
                   </label>
 
                   <button type="submit" className="btn btn-primary mt-2">
-                    Save changes
+                    {t('createApplication.editModal.saveButton')}
                   </button>
                 </Form>
               </>

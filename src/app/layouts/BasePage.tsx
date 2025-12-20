@@ -26,5 +26,5 @@ export function BasePage() {
     }
   }, [userData])
 
-  return <div>{t('Main page')}</div>
+  return <div>{t('mainPage')}</div>
 }

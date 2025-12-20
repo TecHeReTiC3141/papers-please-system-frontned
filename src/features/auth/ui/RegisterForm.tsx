@@ -26,7 +26,7 @@ export function RegisterForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-4 max-w-sm mx-auto">
       <Field
-        label={t('Имя')}
+        label={t('register.name')}
         control={
           <input name="name" type="text" className="input input-bordered" value={values.name} onChange={handleChange} />
         }
@@ -35,7 +35,7 @@ export function RegisterForm() {
       />
 
       <Field
-        label={t('Email')}
+        label={t('register.email')}
         control={
           <input
             name="email"
@@ -50,7 +50,7 @@ export function RegisterForm() {
       />
 
       <Field
-        label={t('Пароль')}
+        label={t('register.password')}
         control={
           <input
             name="password"
@@ -65,19 +65,19 @@ export function RegisterForm() {
       />
 
       <Field
-        label={t('Роль')}
+        label={t('register.role')}
         control={
           <select name="role" className="select select-bordered" value={values.role} onChange={handleChange}>
-            <option value="MIGRANT">{t('MIGRANT')}</option>
-            <option value="INSPECTOR">{t('INSPECTOR')}</option>
-            <option value="SECURITY">{t('SECURITY')}</option>
-            <option value="BOSS">{t('BOSS')}</option>
+            <option value="MIGRANT">{t('common.specialization.migrant')}</option>
+            <option value="INSPECTOR">{t('common.specialization.inspector')}</option>
+            <option value="SECURITY">{t('common.specialization.security')}</option>
+            <option value="BOSS">{t('common.specialization.boss')}</option>
           </select>
         }
       />
 
       <Field
-        label={t('ID УПК')}
+        label={t('register.upkId')}
         control={
           <input
             name="upkId"
@@ -90,7 +90,7 @@ export function RegisterForm() {
       />
 
       <button className="btn btn-primary w-full" type="submit">
-        {t('Зарегистрироваться')}
+        {t('register.register')}
       </button>
     </form>
   )

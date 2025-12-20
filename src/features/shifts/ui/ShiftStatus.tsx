@@ -13,14 +13,14 @@ export function ShiftStatus() {
   const { data: activeShift, isLoading } = useGetActiveShift()
 
   if (isLoading) {
-    return <Loader text={t('Loading active shift...')} />
+    return <Loader text={t('header.shiftStatus.loading')} />
   }
 
   if (!activeShift) {
     return (
       <button className="btn btn-sm btn-success flex gap-2" onClick={() => navigate('/shifts/open')}>
         <FaPlay />
-        Open new shift
+        {t('header.shiftStatus.openNew')}
       </button>
     )
   }
@@ -30,7 +30,7 @@ export function ShiftStatus() {
   return (
     <div className="dropdown dropdown-end">
       <button tabIndex={0} className="btn btn-sm btn-warning flex gap-2 items-center">
-        Shift active · {formatShiftDuration(activeShift.startTime)}
+        {t('header.shiftStatus.shiftDuration', { duration: formatShiftDuration(activeShift.startTime) })}
         <FaChevronDown />
       </button>
 
@@ -45,7 +45,7 @@ export function ShiftStatus() {
             }
           >
             <FaInfo />
-            Shift info
+            {t('header.shiftStatus.shiftInfo')}
           </button>
         </li>
         {closable ? (
@@ -59,11 +59,11 @@ export function ShiftStatus() {
               }
             >
               <FaPowerOff />
-              Close shift
+              {t('header.shiftStatus.close')}
             </button>
           </li>
         ) : (
-          <li className="px-3 py-2 text-sm text-base-content/60">{t('Shift can be closed after 7 hours')}</li>
+          <li className="px-3 py-2 text-sm text-base-content/60">{t('header.shiftStatus.cantClose')}</li>
         )}
       </ul>
       <CloseShiftModal />

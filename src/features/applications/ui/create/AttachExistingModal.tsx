@@ -28,10 +28,8 @@ export function AttachExistingModal({ open, onClose, onAttach, attachedDocuments
   })
 
   const isDisabled = (doc: AnyDocument) => {
-    // уже есть в приложении
     if (attachedTypes.has(doc.documentType)) return true
 
-    // уже выбран другой документ этого типа
     if (selectedTypes.has(doc.documentType)) {
       return !selected.some((d) => d.id === doc.id)
     }
@@ -61,12 +59,18 @@ export function AttachExistingModal({ open, onClose, onAttach, attachedDocuments
   return (
     <dialog className="modal" open={open}>
       <div className="modal-box max-w-2xl">
-        <h3 className="font-bold text-lg mb-4">{t('Attach existing documents')}</h3>
+        <h3 className="font-bold text-lg mb-4">{t('createApplication.attachExistingModal.title')}</h3>
 
-        {isLoading && <div className="py-8 text-center text-base-content/60">{t('Loading documents...')}</div>}
+        {isLoading && (
+          <div className="py-8 text-center text-base-content/60">
+            {t('createApplication.attachExistingModal.loading')}
+          </div>
+        )}
 
         {!isLoading && (!data || data.length === 0) && (
-          <div className="py-8 text-center text-base-content/60">{t('You have no documents yet')}</div>
+          <div className="py-8 text-center text-base-content/60">
+            {t('createApplication.attachExistingModal.error')}
+          </div>
         )}
 
         {data && data.length > 0 && (
@@ -81,11 +85,11 @@ export function AttachExistingModal({ open, onClose, onAttach, attachedDocuments
 
         <div className="modal-action">
           <button className="btn btn-ghost" onClick={onClose}>
-            {t('Cancel')}
+            {t('common.actions.cancle')}
           </button>
 
           <button className="btn btn-primary" disabled={!selected.length} onClick={handleAttach}>
-            {t('Attach selected ({selected.length})')}
+            {t('createApplication.attachExistingModal.attachButton', { count: selected.length })}
           </button>
         </div>
       </div>

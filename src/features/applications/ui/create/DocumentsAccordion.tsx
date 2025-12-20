@@ -62,7 +62,7 @@ export function DocumentsAccordion({
                 )}
 
                 <span className="text-lg font-medium">
-                  {index + 1}. {documentTitleMap[doc.documentType]}
+                  {index + 1}. {t(documentTitleMap[doc.documentType])}
                 </span>
               </div>
 

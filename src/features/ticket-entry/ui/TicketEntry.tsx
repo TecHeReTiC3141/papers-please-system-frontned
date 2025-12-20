@@ -6,12 +6,14 @@ import { TicketEntryDetails } from './TicketEntryDetails'
 import { FaArrowLeft } from 'react-icons/fa6'
 import { useState } from 'react'
 import { useUpdateTicketMutation } from '../model/use-update-ticket-mutation'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   ticket: Ticket
 }
 
 export function TicketEntry({ ticket }: Props) {
+  const { t } = useTranslation()
   const [draft, setDraft] = useState<Pick<Ticket, 'status' | 'priority'>>({
     status: ticket?.status,
     priority: ticket?.priority
@@ -34,8 +36,6 @@ export function TicketEntry({ ticket }: Props) {
       ticketId: ticket.id,
       body
     })
-
-    console.log('Saving ticket changes:', body)
   }
 
   const handleApprove = () => {
@@ -51,7 +51,7 @@ export function TicketEntry({ ticket }: Props) {
   return (
     <div className="w-full container mx-auto">
       <Link className="link link-hover link-info flex gap-x-2 items-center" to="/tickets">
-        <FaArrowLeft /> Back to tickets
+        <FaArrowLeft /> {t('ticket.backToTickets')}
       </Link>
       <TicketEntryHeader
         ticket={ticket}

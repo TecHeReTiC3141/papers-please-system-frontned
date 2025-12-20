@@ -10,10 +10,14 @@ i18n
   .init({
     fallbackLng: 'en',
     supportedLngs: ['en', 'ru'],
-    ns: ['common', 'tickets', 'shifts'],
-    defaultNS: 'common',
+    ns: ['translation'],
+    defaultNS: 'translation',
     interpolation: {
       escapeValue: false
+    },
+    detection: {
+      order: ['localStorage', 'navigator'],
+      caches: ['localStorage']
     }
   })
 

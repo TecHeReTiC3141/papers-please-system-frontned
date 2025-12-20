@@ -15,25 +15,25 @@ export function DailyAgendaTable({ data, loading, onSpecializationChange }: Prop
   const columns: TableColumn<Event>[] = [
     {
       key: 'time',
-      label: t('Time'),
+      label: t('agenda.data.time'),
       dataIndex: 'time',
       isSortable: true,
       render: (e) => new Date(e.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     },
     {
       key: 'description',
-      label: t('Description'),
+      label: t('agenda.data.description'),
       dataIndex: 'description',
       isSortable: true
     },
     {
       key: 'priority',
-      label: t('Priority'),
+      label: t('agenda.data.priority'),
       dataIndex: 'priority'
     },
     {
       key: 'specialization',
-      label: t('Specialization'),
+      label: t('agenda.data.specialization.label'),
       dataIndex: 'specialization',
       render: (e) => (
         <select
@@ -41,7 +41,7 @@ export function DailyAgendaTable({ data, loading, onSpecializationChange }: Prop
           value={e.specialization ?? ''}
           onChange={(ev) => onSpecializationChange(e.id, ev.target.value ? (ev.target.value as Specialization) : null)}
         >
-          <option value="">{t('Select specialization')}</option>
+          <option value="">{t('agenda.data.specialization.placeholder')}</option>
           {Object.values(Specialization).map((s) => (
             <option key={s} value={s}>
               {s}
@@ -56,9 +56,9 @@ export function DailyAgendaTable({ data, loading, onSpecializationChange }: Prop
     <Table<Event>
       data={data}
       loading={loading}
-      loadingText={t('Loading agenda...')}
+      loadingText={t('agenda.loading')}
       columns={columns}
-      emptyMessage={t('No events for today')}
+      emptyMessage={t('agenda.empty')}
     />
   )
 }

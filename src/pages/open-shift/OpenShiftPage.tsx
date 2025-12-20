@@ -56,9 +56,9 @@ export function OpenShiftPage() {
 
   return (
     <div className="container mx-auto p-6 flex flex-col gap-6">
-      <h1 className="text-3xl font-semibold">{t('Open shift')}</h1>
+      <h1 className="text-3xl font-semibold">{t('openShift.title')}</h1>
 
-      <p className="text-base-content/70">{t('Assign today’s agenda and specializations before opening the shift.')}</p>
+      <p className="text-base-content/70">{t('openShift.agenda.description')}</p>
 
       <DailyAgendaTable
         data={eventsWithSpecializations}
@@ -66,7 +66,7 @@ export function OpenShiftPage() {
         onSpecializationChange={handleSetEventSpecialization}
       />
 
-      <h3 className="text-2xl font-semibold">{t('Inspectors for today shift')}</h3>
+      <h3 className="text-2xl font-semibold">{t('openShift.inspectors.title')}</h3>
 
       <EmployeesTable
         employees={assignedEmployees}
@@ -76,7 +76,7 @@ export function OpenShiftPage() {
         onDelete={handleDeleteEmployees}
       />
       <button className="btn btn-primary self-end" onClick={handleOpenShift}>
-        {t('Open shift')}
+        {t('openShift.openBtn')}
       </button>
     </div>
   )

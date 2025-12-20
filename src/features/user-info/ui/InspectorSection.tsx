@@ -16,7 +16,7 @@ export function InspectorSection({ extendedInspectorInfo }: Props) {
 
   const shiftColumns: TableColumn<ShiftInspectorExtendedInfo>[] = [
     {
-      label: t('Date'),
+      label: t('userInfo.shiftData.startTime'),
       dataIndex: 'startTime',
       key: 'startTime',
       render: (shift) => (
@@ -33,43 +33,43 @@ export function InspectorSection({ extendedInspectorInfo }: Props) {
       )
     },
     {
-      label: t('UPK, Region'),
+      label: t('userInfo.shiftData.upk'),
       render: (shift) => <UpkDescription upk={shift.upk} />,
       key: 'upk',
       dataIndex: 'upk'
     },
     {
-      label: t('Boss'),
+      label: t('userInfo.shiftData.boss'),
       key: 'boss',
       dataIndex: 'boss.name'
     },
     {
-      label: t('Resolved tickets'),
+      label: t('userInfo.shiftData.resolvedTickets'),
       key: 'resolvedTickets',
       dataIndex: 'participation.resolvedTickets'
     },
     {
-      label: t('Salary'),
+      label: t('userInfo.shiftData.salary'),
       key: 'wage',
       dataIndex: 'participation.wage'
     },
     {
-      label: t('Penalty'),
+      label: t('userInfo.shiftData.penalty'),
       key: 'penalty',
       dataIndex: 'participation.penalty'
     }
   ]
   return (
     <>
-      <InfoField value={<UpkDescription upk={extendedInspectorInfo.upk} />} label={t('Upk')} />
+      <InfoField value={<UpkDescription upk={extendedInspectorInfo.upk} />} label={t('userInfo.upk')} />
 
-      <InfoField value={<UserPreview user={extendedInspectorInfo.boss} />} label={t('Boss')} />
+      <InfoField value={<UserPreview user={extendedInspectorInfo.boss} />} label={t('userInfo.boss')} />
 
-      <h3 className="text-2xl mt-3">{t('Shift info')}</h3>
+      <h3 className="text-2xl mt-3">{t('userInfo.shiftInfo')}</h3>
       <Table
         columns={shiftColumns}
         data={extendedInspectorInfo.shifts}
-        emptyMessage={t('No shifts yet')}
+        emptyMessage={t('userInfo.shiftData.noShifts')}
         filterable={false}
       />
     </>

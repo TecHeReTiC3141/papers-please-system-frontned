@@ -1,189 +1,361 @@
 {
-  "404": "404",
-  "(filtered from {data.length})": "(filtered from {data.length})",
-  "Зарегистрироваться": "Зарегистрироваться",
-  "Имя": "Имя",
-  "Логин": "Логин",
-  "На главную": "На главную",
-  "Пароль": "Пароль",
-  "Регистрация": "Регистрация",
-  "Роль": "Роль",
-  "Страница не найдена": "Страница не найдена",
-  "Add document": "Add document",
-  "Add document ▾": "Add document ▾",
-  "Add employee": "Add employee",
-  "Add new document": "Add new document",
-  "Additional info": "Additional info",
-  "All Columns": "All Columns",
-  "Application": "Application",
-  "Application documents": "Application documents",
+  "agenda": {
+    "data": {
+      "description": "Description",
+      "priority": "Priority",
+      "specialization": {
+        "label": "Specialization",
+        "placeholder": "Select specialization"
+      },
+      "time": "Time"
+    },
+    "empty": "No agenda items",
+    "loading": "Loading agenda…"
+  },
+  "application": {
+    "backToApplication": "Back to application",
+    "documents": {
+      "title": "Documents"
+    },
+    "error": "Failed to load application",
+    "loading": "Loading application…"
+  },
   "applications": {
-    "applicationCard": {
-      "title": "applications.applicationCard.title"
+    "appelations": {
+      "title_one": "Appeal",
+      "title_other": "Appeals"
+    },
+    "application": {
+      "title_one": "Application",
+      "title_other": "Applications"
+    },
+    "card": {
+      "createAppelation": "Create appeal",
+      "createdAt": "Created at",
+      "status": "Status",
+      "title": "Title",
+      "updatedAt": "Updated at"
+    },
+    "close": {
+      "error": "Failed to close application",
+      "pending": "Closing application…",
+      "success": "Application closed successfully"
+    },
+    "closeModal": {
+      "content": "Are you sure you want to close this application?",
+      "title": "Close application"
+    },
+    "create": "Create application",
+    "loading": "Loading applications…",
+    "title": "Applications",
+    "view": {
+      "board": "Board view",
+      "gallery": "Gallery view"
     }
   },
-  "Applications": "Applications",
-  "Approve ticket": "Approve ticket",
-  "Are you sure you want to approve this ticket?": "Are you sure you want to approve this ticket?",
-  "Are you sure you want to close this modal?": "Are you sure you want to close this modal?",
-  "Assign today’s agenda and specializations before opening the shift.": "Assign today’s agenda and specializations before opening the shift.",
-  "Attach document to profile": "Attach document to profile",
-  "Attach existing": "Attach existing",
-  "Attach existing documents": "Attach existing documents",
-  "Attach selected ({selected.length})": "Attach selected ({selected.length})",
-  "Attached documents": "Attached documents",
-  "Back to applications": "Back to applications",
-  "Board": "Board",
-  "Boss": "Boss",
-  "BOSS": "BOSS",
-  "Cancel": "Cancel",
-  "Certificate type": "Certificate type",
-  "close": "close",
-  "Close application": "Close application",
-  "Close shift №{formatId(shiftData)}": "Close shift №{formatId(shiftData)}",
+  "close": "Close",
+  "closeShift": {
+    "closeButton": "Close shift",
+    "title": "Close shift"
+  },
   "common": {
     "actions": {
-      "add": "common.actions.add",
-      "approve": "common.actions.approve",
-      "cancel": "common.actions.cancel",
-      "close": "common.actions.close",
-      "delete": "common.actions.delete",
-      "reject": "common.actions.reject",
-      "save": "common.actions.save"
+      "add": "Add",
+      "approve": "Approve",
+      "cancel": "Cancel",
+      "cancle": "Cancel",
+      "close": "Close",
+      "delete": "Delete",
+      "reject": "Reject",
+      "save": "Save"
     },
-    "cancel": "common.cancel"
+    "cancel": "Cancel",
+    "sex": {
+      "female": "Female",
+      "male": "Male"
+    },
+    "specialization": {
+      "boss": "Boss",
+      "inspector": "Inspector",
+      "migrant": "Migrant",
+      "security": "Security"
+    },
+    "table": {
+      "filter": {
+        "all": "All"
+      },
+      "filterTotatl": "Total filters"
+    }
   },
-  "Country": "Country",
-  "Create application": "Create application",
-  "Created": "Created",
-  "Cross-checks": "Cross-checks",
-  "Current appealations ({appealations.length})": "Current appealations ({appealations.length})",
-  "Current applications ({applications.length})": "Current applications ({applications.length})",
-  "Date": "Date",
-  "Date of birth": "Date of birth",
-  "Deadline": "Deadline",
-  "Delete document": "Delete document",
-  "Description": "Description",
-  "Document type": "Document type",
+  "createApplication": {
+    "attachExistingModal": {
+      "attachButton_one": "Attach document",
+      "attachButton_other": "Attach documents",
+      "error": "Failed to attach document",
+      "loading": "Attaching document…",
+      "title": "Attach existing document"
+    },
+    "attachToProfile": "Attach to profile",
+    "backToApplications": "Back to applications",
+    "create": {
+      "btn": "Create",
+      "error": "Failed to create application",
+      "pending": "Creating application…",
+      "success": "Application created successfully"
+    },
+    "deleteModal": {
+      "title": "Delete application"
+    },
+    "documents": {
+      "add": "Add document",
+      "attachExisting": "Attach existing",
+      "fillNew": "Create new document",
+      "title": "Documents"
+    },
+    "editModal": {
+      "saveButton": "Save changes",
+      "title": "Edit application"
+    },
+    "fillNewModal": {
+      "addButton": "Add",
+      "title": "Create document"
+    },
+    "typeSelect": {
+      "label": "Application type",
+      "placeholder": "Select type"
+    }
+  },
   "documents": {
+    "certificate": {
+      "additionalInfo": "Additional information",
+      "certificateType": "Certificate type",
+      "holderName": "Holder name",
+      "issuedBy": "Issued by"
+    },
     "deleteDocumentModel": {
-      "content": "documents.deleteDocumentModel.content"
+      "content": "Are you sure you want to delete this document?"
+    },
+    "passport": {
+      "country": "Country",
+      "dateOfBirth": "Date of birth",
+      "issuingRegion": "Issuing region",
+      "name": "Full name",
+      "passportNumber": "Passport number",
+      "selectRegion": "Select region",
+      "sex": "Sex"
+    },
+    "photo": {
+      "imageUrl": "Image URL",
+      "ownerName": "Owner name",
+      "resolution": "Resolution"
+    },
+    "validFrom": "Valid from",
+    "validUntil": "Valid until",
+    "visa": {
+      "durationDays": "Duration (days)",
+      "holderName": "Holder name",
+      "nationality": "Nationality",
+      "purpose": {
+        "label": "Purpose",
+        "placeholder": "Select purpose",
+        "transit": "Transit",
+        "visit": "Visit",
+        "work": "Work"
+      },
+      "visaId": "Visa ID"
+    },
+    "workPermit": {
+      "employer": "Employer",
+      "occupation": "Occupation",
+      "permitId": "Permit ID",
+      "workerName": "Worker name"
     }
   },
-  "Duration (days)": "Duration (days)",
-  "Edit document": "Edit document",
-  "Email": "Email",
-  "Employer": "Employer",
-  "Expires at": "Expires at",
-  "Failed to load application documents": "Failed to load application documents",
-  "Failed to load attached documents": "Failed to load attached documents",
-  "Failed to load related tickets": "Failed to load related tickets",
-  "Fill new": "Fill new",
+  "employeesTable": {
+    "inspector": "Inspector",
+    "specialization": "Specialization"
+  },
+  "employessTable": {
+    "addModal": {
+      "employeeId": {
+        "placeholder": "Enter employee ID"
+      },
+      "specialization": {
+        "placeholder": "Select specialization"
+      },
+      "title": "Add employee"
+    },
+    "empty": "No employees found"
+  },
   "footer": {
-    "text": "footer.text"
+    "text": "Papers, Please © All rights reserved"
   },
-  "Full name": "Full name",
-  "Gallery": "Gallery",
   "header": {
-    "title": "header.title",
+    "shiftStatus": {
+      "cantClose": "Shift can be closed after 7 hours",
+      "close": "Close shift",
+      "loading": "Loading shift…",
+      "openNew": "Open new shift",
+      "shiftDuration": "Shift duration",
+      "shiftInfo": "Shift info"
+    },
+    "title": "Papers, Please",
     "userAvatar": {
-      "application": "header.userAvatar.application",
-      "logout": "header.userAvatar.logout",
-      "tickets": "header.userAvatar.tickets",
-      "userInfo": "header.userAvatar.userInfo"
+      "application": "Applications",
+      "logout": "Log out",
+      "tickets": "Tickets",
+      "userInfo": "User info"
     }
   },
-  "Holder name": "Holder name",
-  "ID": "ID",
-  "ID УПК": "ID УПК",
-  "Image URL": "Image URL",
-  "Inspector": "Inspector",
-  "INSPECTOR": "INSPECTOR",
-  "Inspectors": "Inspectors",
-  "Inspectors for today shift": "Inspectors for today shift",
-  "Issue date": "Issue date",
-  "Issued by": "Issued by",
-  "Issuing region": "Issuing region",
-  "Last update": "Last update",
-  "Last updated": "Last updated",
-  "Loading active shift...": "Loading active shift...",
-  "Loading agenda...": "Loading agenda...",
-  "Loading attached documents...": "Loading attached documents...",
-  "Loading attached tickets...": "Loading attached tickets...",
-  "Loading documents...": "Loading documents...",
-  "Loading shift info...": "Loading shift info...",
-  "Loading shift inspectors...": "Loading shift inspectors...",
-  "Loading shift...": "Loading shift...",
-  "Loading ticket...": "Loading ticket...",
-  "Loading tickets...": "Loading tickets...",
-  "Loading user info...": "Loading user info...",
-  "Loading your application...": "Loading your application...",
-  "Loading your applications...": "Loading your applications...",
   "login": {
-    "email": "login.email",
-    "login": "login.login",
-    "passport": "login.passport"
+    "email": "Email",
+    "login": "Log in",
+    "password": "Password",
+    "title": "Sign in"
   },
   "logout": {
-    "content": "logout.content",
-    "logoutBtn": "logout.logoutBtn",
-    "title": "logout.title"
+    "content": "Are you sure you want to log out?",
+    "logoutBtn": "Log out",
+    "title": "Log out"
   },
-  "Main page": "Main page",
-  "MIGRANT": "MIGRANT",
-  "Name": "Name",
-  "Nationality": "Nationality",
+  "mainPage": "Main page",
   "New application": "New application",
-  "No documents attached to this ticket": "No documents attached to this ticket",
   "No documents found": "No documents found",
-  "No employees assigned": "No employees assigned",
-  "No events for today": "No events for today",
-  "No inspectors in this shift": "No inspectors in this shift",
-  "No related tickets": "No related tickets",
-  "No shifts yet": "No shifts yet",
-  "Occupation": "Occupation",
-  "Open shift": "Open shift",
-  "Owner": "Owner",
-  "Owner name": "Owner name",
-  "Passport number": "Passport number",
-  "Penalty": "Penalty",
-  "Permit ID": "Permit ID",
-  "Photo": "Photo",
-  "Priority": "Priority",
-  "Purpose": "Purpose",
-  "Reason": "Reason",
-  "Region": "Region",
-  "Reject ticket": "Reject ticket",
+  "notFound": {
+    "backToMain": "Back to main page",
+    "content": "The page you are looking for does not exist.",
+    "title": "Page not found"
+  },
+  "openShift": {
+    "agenda": {
+      "description": "Agenda description"
+    },
+    "inspectors": {
+      "title": "Inspectors"
+    },
+    "openBtn": "Open shift",
+    "title": "Open shift"
+  },
+  "register": {
+    "email": "Email",
+    "name": "Name",
+    "password": "Password",
+    "register": "Register",
+    "role": "Role",
+    "title": "Register",
+    "upkId": "UPK ID"
+  },
   "Related work": "Related work",
-  "Resolution": "Resolution",
-  "Resolved": "Resolved",
-  "Resolved tickets": "Resolved tickets",
-  "Salary": "Salary",
-  "SECURITY": "SECURITY",
-  "Select employee": "Select employee",
-  "Select purpose": "Select purpose",
-  "Select region": "Select region",
-  "Select specialization": "Select specialization",
-  "Sex": "Sex",
-  "Shift can be closed after 7 hours": "Shift can be closed after 7 hours",
-  "Shift info": "Shift info",
-  "Shift №{formatId(shiftData)}": "Shift №{formatId(shiftData)}",
-  "Specialization": "Specialization",
-  "Status": "Status",
-  "Subordinates": "Subordinates",
-  "Table": "Table",
-  "Tickets": "Tickets",
-  "Time": "Time",
-  "Title": "Title",
-  "Transit": "Transit",
-  "Upk": "Upk",
-  "UPK, Region": "UPK, Region",
-  "Valid From": "Valid From",
-  "Valid Until": "Valid Until",
-  "Visa ID": "Visa ID",
-  "Visit": "Visit",
-  "Wage": "Wage",
-  "Work": "Work",
-  "Worker name": "Worker name",
-  "You have no documents yet": "You have no documents yet"
+  "shiftData": {
+    "passedCrossChecks": "Passed cross-checks",
+    "penalty": "Penalty",
+    "resolvedTickets": "Resolved tickets",
+    "specialization": "Specialization",
+    "userId": "User ID",
+    "wage": "Wage"
+  },
+  "shiftInfo": {
+    "boss": "Boss",
+    "date": "Date",
+    "id": "Shift ID",
+    "inspectors": {
+      "empty": "No inspectors assigned",
+      "loading": "Loading inspectors…",
+      "title": "Inspectors"
+    },
+    "loading": "Loading shift info…",
+    "upk": "UPK"
+  },
+  "ticket": {
+    "approve": {
+      "content": "Do you want to approve this ticket?",
+      "title": "Approve ticket"
+    },
+    "backToTickets": "Back to tickets",
+    "details": {
+      "deadline": "Deadline",
+      "priority": "Priority",
+      "title": "Details"
+    },
+    "documents": {
+      "empty": "No documents attached",
+      "error": "Failed to load documents",
+      "loading": "Loading documents…",
+      "title": "Documents"
+    },
+    "header": {
+      "id": "Ticket ID",
+      "reason": "Reason"
+    },
+    "headersStatus": "Status",
+    "loading": "Loading ticket…",
+    "reject": {
+      "reason": {
+        "placeholder": "Enter rejection reason"
+      },
+      "title": "Reject ticket"
+    },
+    "related": {
+      "empty": "No related tickets",
+      "error": "Failed to load related tickets",
+      "loading": "Loading related tickets…"
+    },
+    "status": {
+      "closed": "Closed",
+      "inProgress": "In progress",
+      "needInfo": "Needs information",
+      "open": "Open",
+      "rejected": "Rejected"
+    },
+    "ticketCard": {
+      "deadline": "Deadline"
+    },
+    "type": {
+      "appeal": "Appeal",
+      "external": "External"
+    }
+  },
+  "tickets": {
+    "filters": {
+      "priority": "Priority",
+      "status": "Status",
+      "types": "Type"
+    },
+    "loading": "Loading tickets…",
+    "table": {
+      "deadline": "Deadline",
+      "id": "ID",
+      "priority": "Priority",
+      "status": "Status",
+      "title": "Title"
+    },
+    "title": "Tickets",
+    "view": {
+      "board": "Board view",
+      "table": "Table view"
+    }
+  },
+  "userInfo": {
+    "boss": "Boss",
+    "documents": {
+      "add": "Add document",
+      "title": "Documents"
+    },
+    "email": "Email",
+    "loading": "Loading user info…",
+    "shiftData": {
+      "boss": "Boss",
+      "noShifts": "No shifts found",
+      "penalty": "Penalty",
+      "resolvedTickets": "Resolved tickets",
+      "salary": "Salary",
+      "startTime": "Start time",
+      "title": "Shift data",
+      "upk": "UPK",
+      "upkId": "UPK ID"
+    },
+    "shiftInfo": "Shift information",
+    "subordinates": "Subordinates",
+    "upk": "UPK"
+  }
 }

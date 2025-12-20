@@ -17,11 +17,9 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />} path="/">
-        {/* Auth */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
-        {/* App layout */}
         <Route index element={<BasePage />} />
         <Route element={<AuthOutlet fallbackPath="/login" />}>
           <Route path="/profile" element={<ProfilePage />} />
@@ -36,7 +34,6 @@ export default function App() {
           <Route path="/shifts/open" element={<OpenShiftPage />} />
         </Route>
 
-        {/* 404 fallback */}
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

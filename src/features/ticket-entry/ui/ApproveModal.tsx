@@ -14,9 +14,9 @@ export function ApproveModal({ open, onClose, onConfirm }: ModalProps) {
   return (
     <dialog className="modal modal-open">
       <div className="modal-box">
-        <h3 className="font-bold text-lg">{t('Approve ticket')}</h3>
+        <h3 className="font-bold text-lg">{t('ticket.approve.title')}</h3>
 
-        <p className="py-4">{t('Are you sure you want to approve this ticket?')}</p>
+        <p className="py-4">{t('ticket.approve.content')}</p>
 
         <div className="modal-action">
           <button className="btn btn-ghost" onClick={onClose}>

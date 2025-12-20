@@ -46,10 +46,10 @@ export function MigrantSection({ extendedMigrantInfo }: Props) {
   return (
     <div className="w-full flex flex-col gap-y-3">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-medium">{t('Attached documents')}</h2>
+        <h2 className="text-xl font-medium">{t('userInfo.documents.title')}</h2>
 
         <button className="btn btn-sm btn-primary border rounded-lg" onClick={() => setFillNewOpen(true)}>
-          <FiPlus /> {t('Add document')}
+          <FiPlus /> {t('userInfo.documents.add')}
         </button>
       </div>
       <div className="bg-base-200 border border-base-300 rounded-xl p-4">

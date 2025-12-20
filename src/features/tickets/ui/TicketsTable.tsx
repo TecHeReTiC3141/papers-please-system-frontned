@@ -14,7 +14,7 @@ export function TicketsTable({ tickets, loading }: TicketsTableProps) {
   const { t } = useTranslation()
   const columns: TableColumn<Ticket>[] = [
     {
-      label: t('ID'),
+      label: t('tickets.table.id'),
       dataIndex: 'id',
       key: 'id',
       render: (ticket) => (
@@ -24,23 +24,23 @@ export function TicketsTable({ tickets, loading }: TicketsTableProps) {
       )
     },
     {
-      label: t('Title'),
+      label: t('tickets.table.title'),
       key: 'description',
       dataIndex: 'description'
     },
     {
-      label: t('Status'),
+      label: t('tickets.table.status'),
       render: (ticket) => <TicketStatusBadge status={ticket.status} />,
       key: 'status',
       dataIndex: 'status'
     },
     {
-      label: t('Priority'),
+      label: t('tickets.table.priority'),
       key: 'priority',
       dataIndex: 'priority'
     },
     {
-      label: t('Deadline'),
+      label: t('tickets.table.deadline'),
       key: 'deadlineAt',
       dataIndex: 'deadlineAt'
     }
@@ -52,7 +52,7 @@ export function TicketsTable({ tickets, loading }: TicketsTableProps) {
         columns={columns}
         data={tickets}
         loading={loading}
-        loadingText={t('Loading tickets...')}
+        loadingText={t('tickets.loading')}
         rowSelection={{
           isEnabled: false
         }}

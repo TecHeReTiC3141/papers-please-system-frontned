@@ -9,21 +9,21 @@ export function PassportFields() {
   return (
     <div className="flex flex-col gap-4 mt-2 w-full">
       <Field
-        label={t('Full name')}
+        label={t('documents.passport.name')}
         control={<FormikField name="body.fullName" className="input input-bordered bg-neutral-800 w-full" />}
         message={<ErrorMessage name="body.fullName" />}
         validationStatus="error"
       />
 
       <Field
-        label={t('Country')}
+        label={t('documents.passport.country')}
         control={<FormikField name="body.country" className="input input-bordered bg-neutral-800 w-full" />}
         message={<ErrorMessage name="body.country" />}
         validationStatus="error"
       />
 
       <Field
-        label={t('Date of birth')}
+        label={t('documents.passport.dateOfBirth')}
         control={
           <FormikField type="date" name="body.dateOfBirth" className="input input-bordered bg-neutral-800 w-full" />
         }
@@ -32,17 +32,17 @@ export function PassportFields() {
       />
 
       <Field
-        label={t('Sex')}
+        label={t('documents.passport.sex')}
         control={
           <div className="flex gap-6 mt-1">
             <label className="flex items-center gap-2">
               <FormikField type="radio" name="body.sex" value="M" />
-              Male
+              {t('common.sex.male')}
             </label>
 
             <label className="flex items-center gap-2">
               <FormikField type="radio" name="body.sex" value="F" />
-              Female
+              {t('common.sex.female')}
             </label>
           </div>
         }
@@ -51,10 +51,10 @@ export function PassportFields() {
       />
 
       <Field
-        label={t('Issuing region')}
+        label={t('documents.passport.issuingRegion')}
         control={
           <FormikField as="select" name="body.issuingRegion" className="select select-bordered bg-neutral-800 w-full">
-            <option value="">{t('Select region')}</option>
+            <option value="">{t('documents.passport.selectRegion')}</option>
             {Object.values(Region).map((region) => (
               <option key={region} value={region}>
                 {region.replace('_', ' ')}
@@ -67,7 +67,7 @@ export function PassportFields() {
       />
 
       <Field
-        label={t('Passport number')}
+        label={t('documents.passport.passportNumber')}
         control={<FormikField name="body.passportNumber" className="input input-bordered bg-neutral-800 w-full" />}
         message={<ErrorMessage name="body.passportNumber" />}
         validationStatus="error"

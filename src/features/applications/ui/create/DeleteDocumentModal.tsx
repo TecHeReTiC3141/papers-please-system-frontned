@@ -17,11 +17,11 @@ export function DeleteDocumentModal({ open, document, onClose, onConfirm }: Prop
   return (
     <dialog className="modal" open={open}>
       <div className="modal-box">
-        <h3 className="font-bold text-lg mb-4">{t('Delete document')}</h3>
+        <h3 className="font-bold text-lg mb-4">{t('createApplication.deleteModal.title')}</h3>
 
         <p className="text-base-content/80">
           {t('documents.deleteDocumentModel.content')}
-          <span className="font-semibold">{documentTitleMap[document.documentType]}</span>?
+          <span className="font-semibold">{t(documentTitleMap[document.documentType])}</span>?
         </p>
 
         <div className="modal-action">

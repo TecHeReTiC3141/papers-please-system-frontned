@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'react-router'
 import { useGetShiftById } from '../model'
 import { InfoField, Loader, Table, UpkDescription } from '@/shared/ui'
-import { formatDate } from '@/shared/lib'
+import { formatDate, formatId } from '@/shared/lib'
 import { UserPreview } from '@/shared/ui/UserPreview'
 import type { TableColumn } from '@/shared/ui/Table/types'
 import type { ExtendedInspectorParticipation } from '@/entities/shift'
@@ -26,37 +26,37 @@ export function ShiftInfoModal() {
   const columns: TableColumn<ExtendedInspectorParticipation>[] = [
     {
       key: 'userId',
-      label: t('Name'),
+      label: t('shiftData.userId'),
       dataIndex: 'userId',
       isSortable: true
     },
     {
       key: 'specialization',
-      label: t('Specialization'),
+      label: t('shiftData.specialization'),
       dataIndex: 'specialization',
       isSortable: true
     },
     {
       key: 'resolvedTickets',
-      label: t('Resolved tickets'),
+      label: t('shiftData.resolvedTickets'),
       dataIndex: 'resolvedTickets',
       showTotal: true
     },
     {
       key: 'passedCrossChecks',
-      label: t('Cross-checks'),
+      label: t('shiftData.passedCrossChecks'),
       dataIndex: 'passedCrossChecks',
       showTotal: true
     },
     {
       key: 'wage',
-      label: t('Wage'),
+      label: t('shiftData.wage'),
       dataIndex: 'wage',
       showTotal: true
     },
     {
       key: 'penalty',
-      label: t('Penalty'),
+      label: t('shiftData.penalty'),
       dataIndex: 'penalty',
       showTotal: true
     }
@@ -74,21 +74,21 @@ export function ShiftInfoModal() {
           </button>
         </form>
         {isPending || !shiftData ? (
-          <Loader text={t('Loading shift info...')} />
+          <Loader text={t('shiftInfo.loading')} />
         ) : (
           <div className="flex flex-col gap-y-6">
-            <h3 className="font-bold text-lg text-center">{t('Shift №{formatId(shiftData)}')}</h3>
-            <InfoField value={formatDate(shiftData.startTime)} label={t('Date')} />
-            <InfoField value={<UpkDescription upk={shiftData.upk} />} label={t('Upk')} />
-            <InfoField value={<UserPreview user={shiftData.boss} />} label={t('Boss')} />
-            <p className="text-2xl mt-2">{t('Inspectors')}</p>
+            <h3 className="font-bold text-lg text-center">{t('shiftInfo.id', { id: formatId(shiftData) })}</h3>
+            <InfoField value={formatDate(shiftData.startTime)} label={t('shiftInfo.date')} />
+            <InfoField value={<UpkDescription upk={shiftData.upk} />} label={t('shiftInfo.upk')} />
+            <InfoField value={<UserPreview user={shiftData.boss} />} label={t('shiftInfo.boss')} />
+            <p className="text-2xl mt-2">{t('shiftInfo.inspectors.title')}</p>
             <Table<ExtendedInspectorParticipation>
               data={shiftData.inspectors}
               loading={isPending}
               filterable={false}
-              loadingText={t('Loading shift inspectors...')}
+              loadingText={t('shiftInfo.inspectors.loading')}
               columns={columns}
-              emptyMessage={t('No inspectors in this shift')}
+              emptyMessage={t('shiftInfo.inspectors.empty')}
             />
           </div>
         )}

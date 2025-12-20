@@ -17,7 +17,7 @@ export function BossSection({ extendedBossInfo }: Props) {
 
   const shiftColumns: TableColumn<ShiftBossExtendedInfo>[] = [
     {
-      label: t('Date'),
+      label: t('userInfo.shiftData.startTime'),
       dataIndex: 'startTime',
       key: 'startTime',
       render: (shift) => (
@@ -34,24 +34,24 @@ export function BossSection({ extendedBossInfo }: Props) {
       )
     },
     {
-      label: t('UPK, Region'),
+      label: t('userInfo.shiftData.upkId'),
       key: 'upkId',
       dataIndex: 'upkId'
     }
   ]
   return (
     <>
-      <InfoField value={<UpkDescription upk={extendedBossInfo.upk} />} label={t('Upk')} />
+      <InfoField value={<UpkDescription upk={extendedBossInfo.upk} />} label={t('userInfo.upk')} />
 
-      <h3 className="text-2xl mt-3">{t('Shift info')}</h3>
+      <h3 className="text-2xl mt-3">{t('userInfo.shiftData.title')}</h3>
       <Table
         columns={shiftColumns}
         data={extendedBossInfo.shifts}
-        emptyMessage={t('No shifts yet')}
+        emptyMessage={t('userInfo.shiftData.noShifts')}
         filterable={false}
       />
 
-      <h3 className="text-2xl mt-3">{t('Subordinates')}</h3>
+      <h3 className="text-2xl mt-3">{t('userInfo.subordinates')}</h3>
       <div className="w-full grid grid-cols-4 gap-x-4 gap-y-3 auto-cols-fr">
         {extendedBossInfo.subordinates.map((sub) => (
           <UserPreview user={sub} />

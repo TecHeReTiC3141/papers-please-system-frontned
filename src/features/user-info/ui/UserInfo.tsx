@@ -15,14 +15,14 @@ type Props = {
 export function UserInfo({ userData, isLoading }: Props) {
   const { t } = useTranslation()
   if (!userData || isLoading) {
-    return <Loader text={t('Loading user info...')} />
+    return <Loader text={t('userInfo.loading')} />
   }
 
   return (
     <div className="relative p-24 top-48 pt-64 rounded-xl w-[900px] mx-auto bg-base-300">
       <UserAvatar userData={userData} />
       <div className="flex flex-col gap-y-3 items-start">
-        <InfoField value={userData.email} label={t('Email')} />
+        <InfoField value={userData.email} label={t('userInfo.email')} />
         {checkIfInspectorInfo(userData) && <InspectorSection extendedInspectorInfo={userData} />}
         {checkIfBossInfo(userData) && <BossSection extendedBossInfo={userData} />}
         {checkIfMigrantInfo(userData) && <MigrantSection extendedMigrantInfo={userData} />}

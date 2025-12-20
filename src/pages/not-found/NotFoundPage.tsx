@@ -4,10 +4,10 @@ export function NotFoundPage() {
   const { t } = useTranslation()
   return (
     <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-      <h1 className="text-5xl font-bold">{t('404')}</h1>
-      <p className="text-xl">{t('Страница не найдена')}</p>
+      <h1 className="text-5xl font-bold">{t('notFound.title')}</h1>
+      <p className="text-xl">{t('notFound.content')}</p>
       <a href="/" className="btn btn-primary">
-        {t('На главную')}
+        {t('notFound.backToMain')}
       </a>
     </div>
   )

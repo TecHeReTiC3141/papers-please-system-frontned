@@ -8,17 +8,17 @@ type ApplicationStatusConfig = { label: string; className: string; borderColor: 
 
 export const statusConfig: Record<ApplicationStatus, ApplicationStatusConfig> = {
   [ApplicationStatus.Active]: {
-    label: 'Active',
+    label: 'applications.status.active',
     className: 'status-primary',
     borderColor: 'border-primary'
   },
   [ApplicationStatus.Approved]: {
-    label: 'Active',
+    label: 'applications.status.approved',
     className: 'status-accent',
     borderColor: 'border-accent'
   },
   [ApplicationStatus.Rejected]: {
-    label: 'Active',
+    label: 'applications.status.rejected',
     className: 'status-error',
     borderColor: 'border-error'
   }

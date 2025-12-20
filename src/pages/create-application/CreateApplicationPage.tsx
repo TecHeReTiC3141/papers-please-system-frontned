@@ -46,27 +46,27 @@ export function CreateApplicationPage() {
   return (
     <div className="p-8 flex flex-col gap-8">
       <Link className="link link-hover link-info flex gap-x-2 items-center" to="/applications">
-        <FaArrowLeft /> Back to applications
+        <FaArrowLeft /> {t('createApplication.backToApplications')}
       </Link>
       <h1 className="text-3xl font-semibold text-center">{t('New application')}</h1>
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-medium">{t('Attached documents')}</h2>
+        <h2 className="text-xl font-medium">{t('createApplication.documents.title')}</h2>
 
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-sm btn-primary border rounded-lg">
-            {t('Add document ▾')}
+            {t('createApplication.documents.add')}
           </div>
 
           <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box shadow p-2 w-44">
             <li>
               <button className="flex items-center gap-2" onClick={() => setFillNewOpen(true)}>
-                <FiPlus /> {t('Fill new')}
+                <FiPlus /> {t('createApplication.documents.fillNew')}
               </button>
             </li>
 
             <li>
               <button className="flex items-center gap-2" onClick={() => setAttachOpen(true)}>
-                <MdAttachFile /> {t('Attach existing')}
+                <MdAttachFile /> {t('createApplication.documents.attachExisting')}
               </button>
             </li>
           </ul>
@@ -81,16 +81,16 @@ export function CreateApplicationPage() {
         disabled={attachedDocuments.length === 0}
         onClick={() =>
           toast.promise(createApplicationMutation.mutateAsync(attachedDocuments), {
-            success: 'Application successfully created',
-            pending: 'Creating new application...',
-            error: 'Creating of new application failed'
+            success: t('createApplication.create.success'),
+            pending: t('createApplication.create.pending'),
+            error: t('createApplication.create.error')
           })
         }
       >
         {createApplicationMutation.isPending ? (
           <span className="loading loading-spinner loading-sm"></span>
         ) : (
-          t('Create application')
+          t('createApplication.create.btn')
         )}
       </button>
 

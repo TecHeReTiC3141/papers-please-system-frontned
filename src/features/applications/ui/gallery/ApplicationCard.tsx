@@ -22,15 +22,15 @@ export const ApplicationCard = ({ ticket, onClose }: Props) => {
   const { borderColor } = statusConfig[applicationStatus]
 
   const dateDetails = [
-    { label: t('Created'), value: formatDate(ticket.createdAt) },
-    { label: t('Last update'), value: formatDate(ticket.updatedAt) }
+    { label: t('applications.card.createdAt'), value: formatDate(ticket.createdAt) },
+    { label: t('applications.card.updatedAt'), value: formatDate(ticket.updatedAt) }
   ]
 
   return (
     <Link to={`/applications/${ticket.id}`} className={classNames('card card-border bg-base-100 w-80', borderColor)}>
       <div className="card-body">
         <div className="card-actions justify-between">
-          <h2 className="card-title">{t('Application')}</h2>
+          <h2 className="card-title">{t('applications.card.title')}</h2>
         </div>
         <DetailsList items={dateDetails} />
         <div className="card-actions justify-between items-center gap-x-2">
@@ -39,13 +39,13 @@ export const ApplicationCard = ({ ticket, onClose }: Props) => {
           {applicationStatus === ApplicationStatus.Rejected && (
             <button className="btn btn-xs btn-primary">
               <FaPlus />
-              {t('applications.applicationCard.title')}
+              {t('applications.card.createAppelation')}
             </button>
           )}
           {applicationStatus !== ApplicationStatus.Approved && (
             <button className="btn btn-xs btn-error" onClick={() => onClose(ticket)}>
               <FaTrash />
-              {t('common.actions.cancel')}
+              {t('common.actions.close')}
             </button>
           )}
         </div>

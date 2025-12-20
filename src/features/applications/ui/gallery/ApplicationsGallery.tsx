@@ -19,7 +19,7 @@ export function ApplicationsGallery({ tickets, loading }: Props) {
 
   const closeMutation = useCloseApplicationMutation()
 
-  if (loading || !tickets) return <Loader text={t('Loading your applications...')} />
+  if (loading || !tickets) return <Loader text={t('applications.loading')} />
   const applications = tickets.filter((ticket) => ticket.ticketType === TicketType.EXTERNAL)
   const appealations = tickets.filter((ticket) => ticket.ticketType === TicketType.APPEAL)
 
@@ -29,9 +29,9 @@ export function ApplicationsGallery({ tickets, loading }: Props) {
     if (!applicationToDelete) return
 
     await toast.promise(closeMutation.mutateAsync(applicationToDelete.id), {
-      pending: 'Closing application...',
-      success: 'Application closed',
-      error: 'Failed to close application'
+      pending: t('applications.close.pending'),
+      success: t('applications.close.success'),
+      error: t('applications.close.error')
     })
 
     setApplicationToDelete(null)
@@ -39,13 +39,13 @@ export function ApplicationsGallery({ tickets, loading }: Props) {
 
   return (
     <div className="flex flex-col gap-y-4">
-      <h4 className="text-xl">{t('Current applications ({applications.length})')}</h4>
+      <h4 className="text-xl">{t('applications.application.title', { count: applications.length })}</h4>
       <div className="w-full flex items-center flex-wrap gap-x-6 gap-y-4">
         {applications.map((application) => (
           <ApplicationCard ticket={application} onClose={setApplicationToDelete} />
         ))}
       </div>
-      <h4 className="text-xl">{t('Current appealations ({appealations.length})')}</h4>
+      <h4 className="text-xl">{t('applications.appelations.title', { count: applications.length })}</h4>
       <div className="w-full flex items-center flex-wrap gap-x-6 gap-y-4">
         {appealations.map((appealations) => (
           <ApplicationCard ticket={appealations} onClose={setApplicationToDelete} />

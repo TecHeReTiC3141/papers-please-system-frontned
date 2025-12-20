@@ -14,9 +14,9 @@ export function CloseApplicationModal({ open, onClose, onCancel }: ModalProps) {
   return (
     <dialog className="modal modal-open">
       <div className="modal-box">
-        <h3 className="font-bold text-lg">{t('Close application')}</h3>
+        <h3 className="font-bold text-lg">{t('applications.closeModal.title')}</h3>
 
-        <p className="py-4">{t('Are you sure you want to close this modal?')}</p>
+        <p className="py-4">{t('applications.closeModal.content')}</p>
 
         <div className="modal-action">
           <button className="btn btn-error" onClick={onClose}>

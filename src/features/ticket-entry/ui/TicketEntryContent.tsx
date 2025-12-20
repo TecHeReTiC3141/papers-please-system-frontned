@@ -25,18 +25,18 @@ export function TicketEntryContent({ ticket }: Props) {
 
   return (
     <div className="flex-2">
-      <TicketSectionWrapper title="Content">
-        {isLoading && <Loader text={t('Loading attached documents...')} />}
+      <TicketSectionWrapper title={t('ticket.documents.title')}>
+        {isLoading && <Loader text={t('ticket.documents.loading')} />}
 
-        {isError && <div className="py-6 text-center text-error">{t('Failed to load attached documents')}</div>}
+        {isError && <div className="py-6 text-center text-error">{t('ticket.documents.error')}</div>}
 
         {!isLoading && !isError && (!documents || documents.length === 0) && (
-          <div className="py-6 text-center text-base-content/60">{t('No documents attached to this ticket')}</div>
+          <div className="py-6 text-center text-base-content/60">{t('ticket.documents.empty')}</div>
         )}
 
         {documents && documents.length > 0 && (
           <div>
-            <p className="text-lg mb-1">{t('Attached documents: ')}</p>
+            <p className="text-lg mb-1">{t('ticket.documents.title')}</p>
             <DocumentsAccordion documents={documents} inspectorMode />
           </div>
         )}

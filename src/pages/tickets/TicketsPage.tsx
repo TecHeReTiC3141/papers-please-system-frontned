@@ -25,7 +25,7 @@ export function TicketsPage() {
   return (
     <div className="flex flex-col gap-6 p-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">{t('Tickets')}</h1>
+        <h1 className="text-2xl font-semibold">{t('tickets.title')}</h1>
 
         <div className="flex items-center gap-2">
           <button
@@ -35,7 +35,7 @@ export function TicketsPage() {
             }`}
           >
             <TbTable size={18} />
-            {t('Table')}
+            {t('tickets.view.table')}
           </button>
 
           <button
@@ -45,7 +45,7 @@ export function TicketsPage() {
             }`}
           >
             <TbLayoutGrid size={18} />
-            {t('Board')}
+            {t('tickets.view.board')}
           </button>
         </div>
       </div>

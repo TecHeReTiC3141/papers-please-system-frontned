@@ -28,7 +28,7 @@ const columnsConfig = [
 export const ApplicationsBoard = ({ tickets, loading }: Props) => {
   const { t } = useTranslation()
 
-  if (loading || !tickets) return <Loader text={t('Loading your applications...')} />
+  if (loading || !tickets) return <Loader text={t('applications.loading')} />
 
   return (
     <div className="flex items-stretch w-full gap-4">

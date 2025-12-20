@@ -9,6 +9,7 @@ import { IoTicketSharp } from 'react-icons/io5'
 import { UserPreview } from '@/shared/ui/UserPreview'
 import { ShiftStatus } from '@/features/shifts/ui'
 import { useTranslation } from 'react-i18next'
+import { LocaleToggle } from './LocaleToggle'
 
 const EMPLOYEES_ROLES = [UserRole.INSPECTOR, UserRole.BOSS, UserRole.SECURITY]
 
@@ -26,6 +27,7 @@ export function Header() {
         </Link>
         <img src="/logo.png" />
         <div className="flex-1 flex justify-end items-center gap-x-3">
+          <LocaleToggle />
           {userData?.role === UserRole.BOSS && <ShiftStatus />}
           {userData && (
             <div className="dropdown dropdown-end">

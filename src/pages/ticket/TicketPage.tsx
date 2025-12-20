@@ -23,7 +23,7 @@ export function TicketPage() {
     return
   }
 
-  if (ticketQuery.isPending) return <Loader text={t('Loading ticket...')} />
+  if (ticketQuery.isPending) return <Loader text={t('ticket.loading')} />
 
   if (!ticketQuery.data) {
     // TODO: implement shared handler of not-found

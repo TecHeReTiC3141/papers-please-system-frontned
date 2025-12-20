@@ -22,7 +22,7 @@ export const RelatedTicketCard = ({ ticket }: Props) => {
       <div className="flex items-center gap-1">
         <TypeIcon className={`${iconColor}`} />
         <div className="font-semibold">{formatTicketId(ticket)}</div>
-        <span>{label}</span>
+        <span>{t(label)}</span>
       </div>
       <div className="font-semibold">{ticket.description}</div>
       {/* TODO: add ticket executor */}
@@ -30,7 +30,7 @@ export const RelatedTicketCard = ({ ticket }: Props) => {
         <TicketStatusBadge status={ticket.status} />
       </div>
 
-      <div className="mt-2 text-sm">{t('Deadline: {formatTicketDeadlineAt(ticket)}')}</div>
+      <div className="mt-2 text-sm">{t('ticket.ticketCard.deadline', { date: formatTicketDeadlineAt(ticket) })}</div>
     </Link>
   )
 }

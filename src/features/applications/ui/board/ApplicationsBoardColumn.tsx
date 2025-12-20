@@ -11,9 +11,9 @@ type Props = {
 
 export const ApplicationsBoardColumn = ({ status, tickets }: Props) => {
   const title = {
-    [ApplicationStatus.Active]: 'Active',
-    [ApplicationStatus.Rejected]: 'Rejected',
-    [ApplicationStatus.Approved]: 'Approved'
+    [ApplicationStatus.Active]: 'applications.status.active',
+    [ApplicationStatus.Rejected]: 'applications.status.rejeact',
+    [ApplicationStatus.Approved]: 'applications.status.approved'
   }[status]
 
   return (

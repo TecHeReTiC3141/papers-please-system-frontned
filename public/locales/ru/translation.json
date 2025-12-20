@@ -1,189 +1,367 @@
 {
-  "404": "",
-  "(filtered from {data.length})": "",
-  "Зарегистрироваться": "",
-  "Имя": "",
-  "Логин": "",
-  "На главную": "",
-  "Пароль": "",
-  "Регистрация": "",
-  "Роль": "",
-  "Страница не найдена": "",
-  "Add document": "",
-  "Add document ▾": "",
-  "Add employee": "",
-  "Add new document": "",
-  "Additional info": "",
-  "All Columns": "",
-  "Application": "",
-  "Application documents": "",
+  "agenda": {
+    "data": {
+      "description": "Описание",
+      "priority": "Приоритет",
+      "specialization": {
+        "label": "Специализация",
+        "placeholder": "Выберите специализацию"
+      },
+      "time": "Время"
+    },
+    "empty": "Повестка пуста",
+    "loading": "Загрузка повестки…"
+  },
+  "application": {
+    "backToApplication": "Вернуться к заявлению",
+    "documents": {
+      "title": "Документы"
+    },
+    "error": "Не удалось загрузить заявление",
+    "loading": "Загрузка заявления…"
+  },
   "applications": {
-    "applicationCard": {
-      "title": ""
+    "appelations": {
+      "title_one": "Апелляция",
+      "title_few": "",
+      "title_many": "",
+      "title_other": "Апелляции"
+    },
+    "application": {
+      "title_one": "Заявление",
+      "title_few": "",
+      "title_many": "",
+      "title_other": "Заявления"
+    },
+    "card": {
+      "createAppelation": "Создать апелляцию",
+      "createdAt": "Дата создания",
+      "status": "Статус",
+      "title": "Заголовок",
+      "updatedAt": "Дата обновления"
+    },
+    "close": {
+      "error": "Не удалось закрыть заявление",
+      "pending": "Закрытие заявления…",
+      "success": "Заявление успешно закрыто"
+    },
+    "closeModal": {
+      "content": "Вы уверены, что хотите закрыть это заявление?",
+      "title": "Закрыть заявление"
+    },
+    "create": "Создать заявление",
+    "loading": "Загрузка заявлений…",
+    "title": "Заявления",
+    "view": {
+      "board": "Доска",
+      "gallery": "Галерея"
     }
   },
-  "Applications": "",
-  "Approve ticket": "",
-  "Are you sure you want to approve this ticket?": "",
-  "Are you sure you want to close this modal?": "",
-  "Assign today’s agenda and specializations before opening the shift.": "",
-  "Attach document to profile": "",
-  "Attach existing": "",
-  "Attach existing documents": "",
-  "Attach selected ({selected.length})": "",
-  "Attached documents": "",
-  "Back to applications": "",
-  "Board": "",
-  "Boss": "",
-  "BOSS": "",
-  "Cancel": "",
-  "Certificate type": "",
-  "close": "",
-  "Close application": "",
-  "Close shift №{formatId(shiftData)}": "",
+  "close": "Закрыть",
+  "closeShift": {
+    "closeButton": "Закрыть смену",
+    "title": "Закрытие смены"
+  },
   "common": {
     "actions": {
-      "add": "",
-      "approve": "",
-      "cancel": "",
-      "close": "",
-      "delete": "",
-      "reject": "",
-      "save": ""
+      "add": "Добавить",
+      "approve": "Одобрить",
+      "cancel": "Отмена",
+      "cancle": "Отмена",
+      "close": "Закрыть",
+      "delete": "Удалить",
+      "reject": "Отклонить",
+      "save": "Сохранить"
     },
-    "cancel": ""
+    "cancel": "Отмена",
+    "sex": {
+      "female": "Женский",
+      "male": "Мужской"
+    },
+    "specialization": {
+      "boss": "Начальник",
+      "inspector": "Инспектор",
+      "migrant": "Мигрант",
+      "security": "Охрана"
+    },
+    "table": {
+      "filter": {
+        "all": "Все"
+      },
+      "filterTotatl": "Всего фильтров"
+    }
   },
-  "Country": "",
-  "Create application": "",
-  "Created": "",
-  "Cross-checks": "",
-  "Current appealations ({appealations.length})": "",
-  "Current applications ({applications.length})": "",
-  "Date": "",
-  "Date of birth": "",
-  "Deadline": "",
-  "Delete document": "",
-  "Description": "",
-  "Document type": "",
+  "createApplication": {
+    "attachExistingModal": {
+      "attachButton_one": "Прикрепить документ",
+      "attachButton_few": "",
+      "attachButton_many": "",
+      "attachButton_other": "Прикрепить документы",
+      "error": "Не удалось прикрепить документ",
+      "loading": "Прикрепление документа…",
+      "title": "Прикрепить существующий документ"
+    },
+    "attachToProfile": "Прикрепить к профилю",
+    "backToApplications": "Вернуться к заявлениям",
+    "create": {
+      "btn": "Создать",
+      "error": "Не удалось создать заявление",
+      "pending": "Создание заявления…",
+      "success": "Заявление успешно создано"
+    },
+    "deleteModal": {
+      "title": "Удалить заявление"
+    },
+    "documents": {
+      "add": "Добавить документ",
+      "attachExisting": "Прикрепить существующий",
+      "fillNew": "Создать новый документ",
+      "title": "Документы"
+    },
+    "editModal": {
+      "saveButton": "Сохранить изменения",
+      "title": "Редактировать заявление"
+    },
+    "fillNewModal": {
+      "addButton": "Добавить",
+      "title": "Создание документа"
+    },
+    "typeSelect": {
+      "label": "Тип заявления",
+      "placeholder": "Выберите тип"
+    }
+  },
   "documents": {
+    "certificate": {
+      "additionalInfo": "Дополнительная информация",
+      "certificateType": "Тип сертификата",
+      "holderName": "Имя владельца",
+      "issuedBy": "Кем выдан"
+    },
     "deleteDocumentModel": {
-      "content": ""
+      "content": "Вы уверены, что хотите удалить этот документ?"
+    },
+    "passport": {
+      "country": "Страна",
+      "dateOfBirth": "Дата рождения",
+      "issuingRegion": "Регион выдачи",
+      "name": "Полное имя",
+      "passportNumber": "Номер паспорта",
+      "selectRegion": "Выберите регион",
+      "sex": "Пол"
+    },
+    "photo": {
+      "imageUrl": "URL изображения",
+      "ownerName": "Имя владельца",
+      "resolution": "Разрешение"
+    },
+    "validFrom": "Действителен с",
+    "validUntil": "Действителен до",
+    "visa": {
+      "durationDays": "Срок (дней)",
+      "holderName": "Имя владельца",
+      "nationality": "Гражданство",
+      "purpose": {
+        "label": "Цель",
+        "placeholder": "Выберите цель",
+        "transit": "Транзит",
+        "visit": "Визит",
+        "work": "Работа"
+      },
+      "visaId": "ID визы"
+    },
+    "workPermit": {
+      "employer": "Работодатель",
+      "occupation": "Должность",
+      "permitId": "ID разрешения",
+      "workerName": "Имя работника"
     }
   },
-  "Duration (days)": "",
-  "Edit document": "",
-  "Email": "",
-  "Employer": "",
-  "Expires at": "",
-  "Failed to load application documents": "",
-  "Failed to load attached documents": "",
-  "Failed to load related tickets": "",
-  "Fill new": "",
+  "employeesTable": {
+    "inspector": "Инспектор",
+    "specialization": "Специализация"
+  },
+  "employessTable": {
+    "addModal": {
+      "employeeId": {
+        "placeholder": "Введите ID сотрудника"
+      },
+      "specialization": {
+        "placeholder": "Выберите специализацию"
+      },
+      "title": "Добавить сотрудника"
+    },
+    "empty": "Сотрудники не найдены"
+  },
   "footer": {
-    "text": ""
+    "text": "Papers, Please © Все права защищены"
   },
-  "Full name": "",
-  "Gallery": "",
   "header": {
-    "title": "",
+    "shiftStatus": {
+      "cantClose": "Смену можно закрыть через 7 часов",
+      "close": "Закрыть смену",
+      "loading": "Загрузка смены…",
+      "openNew": "Открыть новую смену",
+      "shiftDuration": "Длительность смены",
+      "shiftInfo": "Информация о смене"
+    },
+    "title": "Papers, Please",
     "userAvatar": {
-      "application": "",
-      "logout": "",
-      "tickets": "",
-      "userInfo": ""
+      "application": "Заявления",
+      "logout": "Выйти",
+      "tickets": "Тикеты",
+      "userInfo": "Профиль"
     }
   },
-  "Holder name": "",
-  "ID": "",
-  "ID УПК": "",
-  "Image URL": "",
-  "Inspector": "",
-  "INSPECTOR": "",
-  "Inspectors": "",
-  "Inspectors for today shift": "",
-  "Issue date": "",
-  "Issued by": "",
-  "Issuing region": "",
-  "Last update": "",
-  "Last updated": "",
-  "Loading active shift...": "",
-  "Loading agenda...": "",
-  "Loading attached documents...": "",
-  "Loading attached tickets...": "",
-  "Loading documents...": "",
-  "Loading shift info...": "",
-  "Loading shift inspectors...": "",
-  "Loading shift...": "",
-  "Loading ticket...": "",
-  "Loading tickets...": "",
-  "Loading user info...": "",
-  "Loading your application...": "",
-  "Loading your applications...": "",
   "login": {
-    "email": "",
-    "login": "",
-    "passport": ""
+    "email": "Электронная почта",
+    "login": "Войти",
+    "password": "Пароль",
+    "title": "Вход"
   },
   "logout": {
-    "content": "",
-    "logoutBtn": "",
-    "title": ""
+    "content": "Вы уверены, что хотите выйти?",
+    "logoutBtn": "Выйти",
+    "title": "Выход"
   },
-  "Main page": "",
-  "MIGRANT": "",
-  "Name": "",
-  "Nationality": "",
-  "New application": "",
-  "No documents attached to this ticket": "",
-  "No documents found": "",
-  "No employees assigned": "",
-  "No events for today": "",
-  "No inspectors in this shift": "",
-  "No related tickets": "",
-  "No shifts yet": "",
-  "Occupation": "",
-  "Open shift": "",
-  "Owner": "",
-  "Owner name": "",
-  "Passport number": "",
-  "Penalty": "",
-  "Permit ID": "",
-  "Photo": "",
-  "Priority": "",
-  "Purpose": "",
-  "Reason": "",
-  "Region": "",
-  "Reject ticket": "",
-  "Related work": "",
-  "Resolution": "",
-  "Resolved": "",
-  "Resolved tickets": "",
-  "Salary": "",
-  "SECURITY": "",
-  "Select employee": "",
-  "Select purpose": "",
-  "Select region": "",
-  "Select specialization": "",
-  "Sex": "",
-  "Shift can be closed after 7 hours": "",
-  "Shift info": "",
-  "Shift №{formatId(shiftData)}": "",
-  "Specialization": "",
-  "Status": "",
-  "Subordinates": "",
-  "Table": "",
-  "Tickets": "",
-  "Time": "",
-  "Title": "",
-  "Transit": "",
-  "Upk": "",
-  "UPK, Region": "",
-  "Valid From": "",
-  "Valid Until": "",
-  "Visa ID": "",
-  "Visit": "",
-  "Wage": "",
-  "Work": "",
-  "Worker name": "",
-  "You have no documents yet": ""
+  "mainPage": "Главная страница",
+  "New application": "Новое заявление",
+  "No documents found": "Документы не найдены",
+  "notFound": {
+    "backToMain": "Вернуться на главную",
+    "content": "Страница не найдена.",
+    "title": "Ошибка 404"
+  },
+  "openShift": {
+    "agenda": {
+      "description": "Описание повестки"
+    },
+    "inspectors": {
+      "title": "Инспекторы"
+    },
+    "openBtn": "Открыть смену",
+    "title": "Открытие смены"
+  },
+  "register": {
+    "email": "Электронная почта",
+    "name": "Имя",
+    "password": "Пароль",
+    "register": "Зарегистрироваться",
+    "role": "Роль",
+    "title": "Регистрация",
+    "upkId": "ID УПК"
+  },
+  "Related work": "Связанная работа",
+  "shiftData": {
+    "passedCrossChecks": "Пройдено перекрёстных проверок",
+    "penalty": "Штраф",
+    "resolvedTickets": "Решённые тикеты",
+    "specialization": "Специализация",
+    "userId": "ID пользователя",
+    "wage": "Зарплата"
+  },
+  "shiftInfo": {
+    "boss": "Начальник",
+    "date": "Дата",
+    "id": "ID смены",
+    "inspectors": {
+      "empty": "Инспекторы отсутствуют",
+      "loading": "Загрузка инспекторов…",
+      "title": "Инспекторы"
+    },
+    "loading": "Загрузка информации о смене…",
+    "upk": "УПК"
+  },
+  "ticket": {
+    "approve": {
+      "content": "Вы хотите одобрить этот тикет?",
+      "title": "Одобрить тикет"
+    },
+    "backToTickets": "Вернуться к тикетам",
+    "details": {
+      "deadline": "Срок",
+      "priority": "Приоритет",
+      "title": "Детали"
+    },
+    "documents": {
+      "empty": "Документы отсутствуют",
+      "error": "Ошибка загрузки документов",
+      "loading": "Загрузка документов…",
+      "title": "Документы"
+    },
+    "header": {
+      "id": "ID тикета",
+      "reason": "Причина"
+    },
+    "headersStatus": "Статус",
+    "loading": "Загрузка тикета…",
+    "reject": {
+      "reason": {
+        "placeholder": "Введите причину отказа"
+      },
+      "title": "Отклонить тикет"
+    },
+    "related": {
+      "empty": "Связанные тикеты отсутствуют",
+      "error": "Ошибка загрузки связанных тикетов",
+      "loading": "Загрузка связанных тикетов…"
+    },
+    "status": {
+      "closed": "Закрыт",
+      "inProgress": "В процессе",
+      "needInfo": "Требуется информация",
+      "open": "Открыт",
+      "rejected": "Отклонён"
+    },
+    "ticketCard": {
+      "deadline": "Срок"
+    },
+    "type": {
+      "appeal": "Апелляция",
+      "external": "Внешний"
+    }
+  },
+  "tickets": {
+    "filters": {
+      "priority": "Приоритет",
+      "status": "Статус",
+      "types": "Тип"
+    },
+    "loading": "Загрузка тикетов…",
+    "table": {
+      "deadline": "Срок",
+      "id": "ID",
+      "priority": "Приоритет",
+      "status": "Статус",
+      "title": "Заголовок"
+    },
+    "title": "Тикеты",
+    "view": {
+      "board": "Доска",
+      "table": "Таблица"
+    }
+  },
+  "userInfo": {
+    "boss": "Начальник",
+    "documents": {
+      "add": "Добавить документ",
+      "title": "Документы"
+    },
+    "email": "Электронная почта",
+    "loading": "Загрузка данных пользователя…",
+    "shiftData": {
+      "boss": "Начальник",
+      "noShifts": "Смены отсутствуют",
+      "penalty": "Штраф",
+      "resolvedTickets": "Решённые тикеты",
+      "salary": "Зарплата",
+      "startTime": "Время начала",
+      "title": "Данные смен",
+      "upk": "УПК",
+      "upkId": "ID УПК"
+    },
+    "shiftInfo": "Информация о смене",
+    "subordinates": "Подчинённые",
+    "upk": "УПК"
+  }
 }

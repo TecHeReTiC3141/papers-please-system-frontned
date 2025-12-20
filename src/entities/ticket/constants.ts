@@ -3,31 +3,31 @@ import { MdPublic, MdApartment, MdGavel, MdSyncProblem, MdDescription } from 're
 
 export const typeConfig = {
   [TicketType.EXTERNAL]: {
-    label: 'Application',
+    label: 'ticket.type.external',
     iconColor: 'text-blue-500',
     blColor: 'border-blue-500',
     icon: MdPublic
   },
   [TicketType.INTERNAL]: {
-    label: 'Internal',
+    label: 'ticket.type.internal',
     iconColor: 'text-green-500',
     blColor: 'border-green-500',
     icon: MdApartment
   },
   [TicketType.ARREST]: {
-    label: 'Arrest',
+    label: 'ticket.type.arrest',
     iconColor: 'text-red-500',
     blColor: 'border-red-500',
     icon: MdGavel
   },
   [TicketType.CROSSCHECK]: {
-    label: 'Cross-Check',
+    label: 'ticket.type.crosscheck',
     iconColor: 'text-purple-500',
     blColor: 'border-purple-500',
     icon: MdSyncProblem
   },
   [TicketType.APPEAL]: {
-    label: 'Appealation',
+    label: 'ticket.type.appeal',
     iconColor: 'text-yellow-500',
     blColor: 'border-yellow-500',
     icon: MdDescription
@@ -38,28 +38,28 @@ type TicketStatusConfig = { label: string; className: string; reason: string }
 
 export const statusConfig: Record<TicketStatus, TicketStatusConfig> = {
   [TicketStatus.OPEN]: {
-    label: 'Open',
+    label: 'ticket.status.open',
     className: '',
-    reason: 'Ticket created and waiting to be processed'
+    reason: 'ticket.reason.open'
   },
   [TicketStatus.IN_PROGRESS]: {
-    label: 'In Progress',
+    label: 'ticket.status.inProgress',
     className: 'status-primary',
-    reason: 'Work started'
+    reason: 'ticket.reason.inProgress'
   },
   [TicketStatus.NEED_INFO]: {
-    label: 'Need Info',
+    label: 'ticket.status.needInfo',
     className: 'status-warning',
-    reason: 'Additional information required from requester'
+    reason: 'ticket.reason.needInfo'
   },
   [TicketStatus.CLOSED]: {
-    label: 'Closed',
+    label: 'ticket.status.rejected',
     className: 'status-success',
-    reason: 'Issue resolved and ticket completed'
+    reason: 'ticket.reason.rejected'
   },
   [TicketStatus.REJECTED]: {
-    label: 'Rejected',
+    label: 'ticket.status.closed',
     className: 'status-error',
-    reason: 'Ticket was declined or does not meet requirements'
+    reason: 'ticket.reason.closed'
   }
 }
