@@ -22,8 +22,8 @@ export function OpenShiftPage() {
 
   const [assignedEmployees, setAssignedEmployees] = useState<ShiftEmployee[]>([])
 
-  const eventsWithSpecializations = useMemo<Event[] | null>(() => {
-    if (!events) return null
+  const eventsWithSpecializations = useMemo<Event[]>(() => {
+    if (!events) return []
 
     return events.map((e) => ({
       ...e,
@@ -35,17 +35,17 @@ export function OpenShiftPage() {
 
   const handleOpenShift = () => {
     if (eventsWithSpecializations && eventsWithSpecializations.some(({ specialization }) => specialization === null)) {
-      toast.error('You have to assign select specialization for each event')
+      toast.error(t('openShift.agenda.assignSpecializationError'))
       return
     }
     if (assignedEmployees.length < 3) {
-      toast.error('You have to assign at least 3 employees to the shift')
+      toast.error(t('openShift.inspectors.minInspectorAssignError'))
       return
     }
-    toast.promise(openShiftMutation.mutateAsync(assignedEmployees), {
-      error: 'Could not open shift, try again later',
-      success: 'Shift successfully opened',
-      pending: 'Opening shift in progress...'
+    toast.promise(openShiftMutation.mutateAsync({ events: eventsWithSpecializations, employees: assignedEmployees }), {
+      error: t('openShift.open.error'),
+      success: t('openShift.open.success'),
+      pending: t('openShift.open.pending')
     })
   }
 

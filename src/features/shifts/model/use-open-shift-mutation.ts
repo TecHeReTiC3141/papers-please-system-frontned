@@ -5,6 +5,12 @@ import type { User } from '@/entities/user'
 import type { Shift } from '@/entities/shift'
 import type { ShiftEmployee } from '@/entities/user'
 import { useNavigate } from 'react-router'
+import type { Event } from '@/entities/event'
+
+type OpenShiftParams = {
+  events: Event[]
+  employees: ShiftEmployee[]
+}
 
 export function useOpenShiftMutation() {
   const navigate = useNavigate()
@@ -13,7 +19,7 @@ export function useOpenShiftMutation() {
   const user = useAuthUser<User | null>()
 
   return useMutation({
-    mutationFn: async (employees: ShiftEmployee[]) => {
+    mutationFn: async ({ events, employees }: OpenShiftParams) => {
       if (!user) throw new Error('User not authenticated')
 
       const shiftBody = {
@@ -31,6 +37,14 @@ export function useOpenShiftMutation() {
             wage: 0,
             penalty: 0,
             specialization: employee.specialization
+          })
+        )
+      )
+
+      await Promise.all(
+        events.map((event) =>
+          api.patch(`/events/${event.id}`, {
+            specialization: event.specialization
           })
         )
       )

@@ -23,9 +23,9 @@ export function useGetActiveShift() {
         }
       }
       const { data } = await api.get<MultipleEntitiesResponse<Shift>>(`/shifts?createdBy=${user!.id}&endTimeNotNull`)
+      const activeShift = data.items.find((shift) => !shift.endTime)
 
-      // boss can have only one active shift
-      return data.items[0] ?? null
+      return activeShift ?? null
     }
   })
 }

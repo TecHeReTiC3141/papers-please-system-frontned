@@ -1,4 +1,4 @@
-import type { Ticket } from '@/entities/ticket'
+import { TicketStatus, type Ticket } from '@/entities/ticket'
 import { Link } from 'react-router'
 import { TicketEntryHeader } from './TicketEntryHeader'
 import { TicketEntryContent } from './TicketEntryContent'
@@ -7,6 +7,7 @@ import { FaArrowLeft } from 'react-icons/fa6'
 import { useState } from 'react'
 import { useUpdateTicketMutation } from '../model/use-update-ticket-mutation'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify'
 
 type Props = {
   ticket: Ticket
@@ -32,20 +33,49 @@ export function TicketEntry({ ticket }: Props) {
       ...(draft.priority !== ticket.priority && { priority: draft.priority })
     }
 
-    updateTicketMutation.mutate({
-      ticketId: ticket.id,
-      body
-    })
+    toast.promise(
+      updateTicketMutation.mutateAsync({
+        ticketId: ticket.id,
+        body
+      }),
+      {
+        pending: t('ticket.save.pending'),
+        success: t('ticket.save.success'),
+        error: t('ticket.save.error')
+      }
+    )
   }
 
   const handleApprove = () => {
-    // call mutation
-    console.log('TICKET APPROVED')
+    toast.promise(
+      updateTicketMutation.mutateAsync({
+        ticketId: ticket.id,
+        body: {
+          status: TicketStatus.CLOSED
+        }
+      }),
+      {
+        pending: t('ticket.approve.pending'),
+        success: t('ticket.approve.success'),
+        error: t('ticket.approve.error')
+      }
+    )
   }
 
   const handleReject = () => {
-    // call mutation
-    console.log('TICKET REJECTED')
+    toast.promise(
+      updateTicketMutation.mutateAsync({
+        ticketId: ticket.id,
+        body: {
+          status: TicketStatus.REJECTED
+        }
+      }),
+      {
+        pending: t('ticket.reject.pending'),
+        success: t('ticket.reject.success'),
+        error: t('ticket.reject.error')
+      }
+    )
   }
 
   return (

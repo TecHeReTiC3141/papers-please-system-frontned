@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'react-router'
-import { useGetShiftById } from '../model'
+import { useCloseShiftMutation, useGetShiftById } from '../model'
 import { InfoField, Loader, Table, UpkDescription } from '@/shared/ui'
 import { formatDate, formatId } from '@/shared/lib'
 import { UserPreview } from '@/shared/ui/UserPreview'
@@ -9,6 +9,7 @@ import type { ExtendedInspectorParticipation } from '@/entities/shift'
 import { useMemo, useState } from 'react'
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify'
 
 type EditableFields = {
   wage: number
@@ -19,13 +20,14 @@ export function CloseShiftModal() {
   const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
   const fetchShift = useGetShiftById()
+  const closeShift = useCloseShiftMutation()
 
-  const shiftId = searchParams.get('closeShift')
+  const shiftToCloseId = searchParams.get('closeShift')
 
   const { data: shiftData, isPending } = useQuery({
-    queryKey: ['shift', 'close', shiftId],
-    queryFn: () => fetchShift(shiftId ?? ''),
-    enabled: !!shiftId
+    queryKey: ['shift', 'close', shiftToCloseId],
+    queryFn: () => fetchShift(shiftToCloseId ?? ''),
+    enabled: !!shiftToCloseId
   })
 
   const [edited, setEdited] = useState<Record<string, EditableFields>>({})
@@ -106,8 +108,21 @@ export function CloseShiftModal() {
   ]
 
   const handleApproveAndClose = () => {
+    if (!shiftToCloseId) return
+
+    toast.promise(closeShift.mutateAsync(shiftToCloseId), {
+      pending: t('closeShift.toast.pending'),
+      success: {
+        render() {
+          setSearchParams('')
+          return t('closeShift.toast.success')
+        }
+      },
+      error: t('closeShift.toast.error')
+    })
+
     console.log('Edited shift data:', {
-      shiftId,
+      shiftId: shiftToCloseId,
       inspectors: inspectorsWithEdits.map(({ id, wage, penalty }) => ({
         participationId: id,
         wage,
@@ -117,7 +132,7 @@ export function CloseShiftModal() {
   }
 
   return (
-    <dialog id="close-shift-modal" className={classNames('modal', !!shiftId && 'modal-open')}>
+    <dialog id="close-shift-modal" className={classNames('modal', !!shiftToCloseId && 'modal-open')}>
       <div className="modal-box w-2/3 max-w-5xl">
         <form method="dialog">
           <button

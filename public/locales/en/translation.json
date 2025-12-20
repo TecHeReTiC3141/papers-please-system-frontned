@@ -55,8 +55,13 @@
   },
   "close": "Close",
   "closeShift": {
-    "closeButton": "Close shift",
-    "title": "Close shift"
+    "closeButton": "Approve and close shift",
+    "title": "Close shift №{{id}}",
+    "toast": {
+      "pending": "Closing shift…",
+      "success": "Shift closed successfully",
+      "error": "Failed to close shift"
+    }
   },
   "common": {
     "actions": {
@@ -188,7 +193,7 @@
     "empty": "No employees found"
   },
   "footer": {
-    "text": "Papers, Please © All rights reserved"
+    "text": "Papers, Please {{date}} © All rights reserved"
   },
   "header": {
     "shiftStatus": {
@@ -196,8 +201,8 @@
       "close": "Close shift",
       "loading": "Loading shift…",
       "openNew": "Open new shift",
-      "shiftDuration": "Shift duration",
-      "shiftInfo": "Shift info"
+      "shiftDuration": "Shift duration — {{duration}}",
+      "shiftInfo": "Shift information"
     },
     "title": "Papers, Please",
     "userAvatar": {
@@ -228,10 +233,17 @@
   },
   "openShift": {
     "agenda": {
+      "assignSpecializationError": "Each agenda item must have a specialization assigned",
       "description": "Agenda description"
     },
     "inspectors": {
+      "minInspectorAssignError": "At least one inspector must be assigned",
       "title": "Inspectors"
+    },
+    "open": {
+      "pending": "Opening shift…",
+      "success": "Shift opened successfully",
+      "error": "Failed to open shift"
     },
     "openBtn": "Open shift",
     "title": "Open shift"
@@ -269,6 +281,9 @@
   "ticket": {
     "approve": {
       "content": "Do you want to approve this ticket?",
+      "pending": "Approving ticket…",
+      "success": "Ticket approved successfully",
+      "error": "Failed to approve ticket",
       "title": "Approve ticket"
     },
     "backToTickets": "Back to tickets",
@@ -290,6 +305,9 @@
     "headersStatus": "Status",
     "loading": "Loading ticket…",
     "reject": {
+      "pending": "Rejecting ticket…",
+      "success": "Ticket rejected",
+      "error": "Failed to reject ticket",
       "reason": {
         "placeholder": "Enter rejection reason"
       },
@@ -299,6 +317,11 @@
       "empty": "No related tickets",
       "error": "Failed to load related tickets",
       "loading": "Loading related tickets…"
+    },
+    "save": {
+      "pending": "Saving ticket…",
+      "success": "Ticket saved",
+      "error": "Failed to save ticket"
     },
     "status": {
       "closed": "Closed",
