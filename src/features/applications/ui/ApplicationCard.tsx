@@ -1,7 +1,6 @@
 import type { Ticket } from '@/entities/ticket'
-import { ApplicationStatusBadge } from '../ApplicationStatus'
-import { getApplicationStatus } from '../../model/get-application-status'
-import { ApplicationStatus } from '@/entities/ticket/applications'
+import { ApplicationStatusBadge } from './ApplicationStatus'
+import { getApplicationStatus } from '../model/get-application-status'
 import { FaPlus, FaTrash } from 'react-icons/fa6'
 import { formatDate } from '@/shared/lib'
 import classNames from 'classnames'
@@ -9,6 +8,7 @@ import { DetailsList } from '@/shared/ui'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { useApplicationStatusConfig } from '@/entities/ticket/hooks'
+import { ApplicationStatus } from '@/entities/ticket/types'
 
 type Props = {
   ticket: Ticket
@@ -21,7 +21,7 @@ export const ApplicationCard = ({ ticket, onClose }: Props) => {
   const statusConfig = useApplicationStatusConfig()
   const applicationStatus = getApplicationStatus(ticket)
 
-  const { borderColor } = statusConfig[applicationStatus]
+  const { borderColor, ringColor } = statusConfig[applicationStatus]
 
   const dateDetails = [
     { label: t('applications.card.createdAt'), value: formatDate(ticket.createdAt) },
@@ -29,8 +29,15 @@ export const ApplicationCard = ({ ticket, onClose }: Props) => {
   ]
 
   return (
-    <Link to={`/applications/${ticket.id}`} className={classNames('card card-border bg-base-100 w-80', borderColor)}>
-      <div className="card-body">
+    <Link
+      to={`/applications/${ticket.id}`}
+      className={classNames(
+        'card card-border bg-base-100 w-[1fr] hover:shadow-xl hover:ring-2',
+        borderColor,
+        ringColor
+      )}
+    >
+      <div className="card-body ">
         <div className="card-actions justify-between">
           <h2 className="card-title">{t('applications.card.title')}</h2>
         </div>
@@ -44,8 +51,15 @@ export const ApplicationCard = ({ ticket, onClose }: Props) => {
               {t('applications.card.createAppelation')}
             </button>
           )}
-          {applicationStatus !== ApplicationStatus.Approved && (
-            <button className="btn btn-xs btn-error" onClick={() => onClose(ticket)}>
+          {applicationStatus === ApplicationStatus.Active && (
+            <button
+              className="btn btn-xs btn-error"
+              onClick={(event) => {
+                event.preventDefault()
+                event.stopPropagation()
+                onClose(ticket)
+              }}
+            >
               <FaTrash />
               {t('common.actions.close')}
             </button>

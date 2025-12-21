@@ -8,6 +8,8 @@ import { useState } from 'react'
 import { useUpdateTicketMutation } from '../model/use-update-ticket-mutation'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
+import { FaSave } from 'react-icons/fa'
+import type { AnyDocument } from '@/entities/document/types'
 
 type Props = {
   ticket: Ticket
@@ -79,8 +81,32 @@ export function TicketEntry({ ticket }: Props) {
     )
   }
 
+  const handleArrest = (reason: string) => {
+    toast.promise(Promise.resolve(true), {
+      pending: t('ticket.arrest.pending'),
+      success: t('ticket.arrest.success'),
+      error: t('ticket.arrest.error')
+    })
+  }
+
+  const handleCreateRelatedTicket = (document: AnyDocument) => {
+    toast.promise(
+      new Promise((resolve) =>
+        setTimeout(() => {
+          console.log('document', document)
+          resolve(0)
+        }, 2000)
+      ),
+      {
+        pending: t('ticket.create.pending'),
+        success: t('ticket.create.success'),
+        error: t('ticket.create.error')
+      }
+    )
+  }
+
   return (
-    <div className="w-full container mx-auto">
+    <div className="w-full container mx-auto flex flex-col gap-y-2">
       <Link className="link link-hover link-info flex gap-x-2 items-center" to="/tickets">
         <FaArrowLeft /> {t('ticket.backToTickets')}
       </Link>
@@ -88,20 +114,30 @@ export function TicketEntry({ ticket }: Props) {
         ticket={ticket}
         status={draft.status}
         onStatusChange={(v) => updateDraft('status', v)}
-        onSave={handleSave}
         onApprove={handleApprove}
         onReject={handleReject}
-        isSaveInProgress={updateTicketMutation.isPending}
-        canSave={hasChanges}
+        onArrest={handleArrest}
       />
-      <div className="w-full flex justify-between gap-x-4">
-        <TicketEntryContent ticket={ticket} />
+      <div className="w-full flex justify-between gap-x-4 ">
+        <TicketEntryContent ticket={ticket} onCreateRelatedTicket={handleCreateRelatedTicket} />
         <TicketEntryDetails
           ticket={ticket}
           priority={draft.priority}
           onPriorityChange={(v) => updateDraft('priority', v)}
         />
       </div>
+      <button
+        className="btn rounded-xl btn-sm btn-info opacity-90 self-end"
+        disabled={!hasChanges}
+        onClick={handleSave}
+      >
+        <FaSave />
+        {updateTicketMutation.isPending ? (
+          <span className="loading loading-spinner loading-sm"></span>
+        ) : (
+          t('common.actions.save')
+        )}
+      </button>
     </div>
   )
 }

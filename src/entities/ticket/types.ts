@@ -11,6 +11,7 @@ export enum TicketStatus {
   IN_PROGRESS = 'IN_PROGRESS',
   NEED_INFO = 'NEED_INFO',
   CLOSED = 'CLOSED',
+  APPROVED = 'APPROVED',
   REJECTED = 'REJECTED'
 }
 
@@ -54,4 +55,11 @@ export type TicketRequest = {
 
   authorId: string
   subjectId: string
+}
+
+export enum ApplicationStatus {
+  Active = 'active',
+  Rejected = 'rejected',
+  Approved = 'approved',
+  Closed = 'closed'
 }

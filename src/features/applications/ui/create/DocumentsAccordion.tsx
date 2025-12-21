@@ -4,11 +4,13 @@ import { useDocumentTypeTitles } from '@/features/documents/model'
 import { renderDocumentData } from '@/features/documents/lib'
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
+import { FaPlus } from 'react-icons/fa6'
 
 type Props = {
   documents: AnyDocument[]
   onEdit?: (doc: AnyDocument) => void
   onDelete?: (doc: AnyDocument) => void
+  onCreateRelatedTicket?: (doc: AnyDocument) => void
 
   /** attach-existing mode */
   selectable?: boolean
@@ -23,6 +25,7 @@ export function DocumentsAccordion({
   documents,
   onEdit,
   onDelete,
+  onCreateRelatedTicket,
   selectable = false,
   selected = [],
   onToggleSelect,
@@ -33,7 +36,7 @@ export function DocumentsAccordion({
   const documentTitleMap = useDocumentTypeTitles()
 
   if (!documents.length) {
-    return <div className="text-center text-base-content/60 py-6">{t('No documents found')}</div>
+    return <div className="text-center text-base-content/60 py-6">{t('ticket.documents.empty')}</div>
   }
 
   return (
@@ -92,6 +95,20 @@ export function DocumentsAccordion({
                       }}
                     >
                       <FiTrash2 />
+                    </button>
+                  )}
+
+                  {onCreateRelatedTicket && (
+                    <button
+                      className="btn btn-xs btn-ghost btn-primary"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        onCreateRelatedTicket(doc)
+                      }}
+                    >
+                      <FaPlus />
+                      {t('ticket.documents.createRelated')}
                     </button>
                   )}
                 </div>

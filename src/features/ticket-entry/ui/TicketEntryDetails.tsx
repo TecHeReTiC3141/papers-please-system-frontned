@@ -27,7 +27,7 @@ export function TicketEntryDetails({ ticket, priority, onPriorityChange }: Props
   })
 
   return (
-    <div className="flex-1">
+    <div className="flex-1 h-full">
       <TicketSectionWrapper title={t('ticket.details.title')}>
         <div className="flex gap-y-3 flex-col">
           <Field
@@ -45,7 +45,7 @@ export function TicketEntryDetails({ ticket, priority, onPriorityChange }: Props
                 ))}
               </select>
             }
-          />{' '}
+          />
           <Field label={t('ticket.details.deadline')} control={formatTicketDeadlineAt(ticket)} />
         </div>
         <h4 className="text-2xl w-full border-b-2 border-gray-600 mt-8">{t('Related work')}</h4>

@@ -1,5 +1,5 @@
-import { type ApplicationStatus } from '@/entities/ticket/applications'
 import { useApplicationStatusConfig } from '@/entities/ticket/hooks'
+import type { ApplicationStatus } from '@/entities/ticket/types'
 import classNames from 'classnames'
 
 type ApplicationStatusProps = {

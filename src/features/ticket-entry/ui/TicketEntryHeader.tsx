@@ -14,32 +14,23 @@ import { useState } from 'react'
 import { TicketStatusBadge } from '@/features/tickets/ui/TicketStatus'
 import { useTranslation } from 'react-i18next'
 import { useStatusConfig, useTypeConfig } from '@/entities/ticket/hooks'
+import { ArrestModal } from './ArrestModal'
 
 type Props = {
   ticket: Ticket
   status: TicketStatus
   onStatusChange: (status: TicketStatus) => void
-  onSave: () => void
   onApprove: () => void
   onReject: (reason: string) => void
-  isSaveInProgress: boolean
-  canSave: boolean
+  onArrest: (reason: string) => void
 }
 
-export function TicketEntryHeader({
-  ticket,
-  status,
-  onStatusChange,
-  onSave,
-  onApprove,
-  onReject,
-  isSaveInProgress,
-  canSave
-}: Props) {
+export function TicketEntryHeader({ ticket, status, onStatusChange, onApprove, onReject, onArrest }: Props) {
   const { t } = useTranslation()
   const userData = useAuthUser<User | null>()
   const [approveOpen, setApproveOpen] = useState(false)
   const [rejectOpen, setRejectOpen] = useState(false)
+  const [arrestOpen, setArrestOpen] = useState(false)
 
   const typeConfig = useTypeConfig()
   const statusConfig = useStatusConfig()
@@ -92,9 +83,10 @@ export function TicketEntryHeader({
             <FaXmark />
             {t('common.actions.reject')}
           </button>
-          <button className="btn rounded-xl btn-sm btn-info opacity-90" disabled={!canSave} onClick={onSave}>
+
+          <button className="btn rounded-xl btn-sm btn-warning opacity-90" onClick={() => setArrestOpen(true)}>
             <FaSave />
-            {isSaveInProgress ? <span className="loading loading-spinner loading-sm"></span> : t('common.actions.save')}
+            {t('ticket.arrest.action')}
           </button>
         </div>
       </div>
@@ -104,6 +96,8 @@ export function TicketEntryHeader({
       <ApproveModal open={approveOpen} onClose={() => setApproveOpen(false)} onConfirm={onApprove} />
 
       <RejectModal open={rejectOpen} onClose={() => setRejectOpen(false)} onReject={onReject} />
+
+      <ArrestModal open={arrestOpen} onClose={() => setArrestOpen(false)} onArrest={onArrest} />
     </div>
   )
 }

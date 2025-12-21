@@ -22,12 +22,12 @@
   },
   "applications": {
     "appelations": {
-      "title_one": "Appeal",
-      "title_other": "Appeals"
+      "title_one": "Appeal ({{count}})",
+      "title_other": "Appeals ({{count}})"
     },
-    "application": {
-      "title_one": "Application",
-      "title_other": "Applications"
+    "applications": {
+      "title_one": "Application ({{count}})",
+      "title_other": "Applications ({{count}})"
     },
     "card": {
       "createAppelation": "Create appeal",
@@ -77,7 +77,7 @@
       "close": "Close",
       "delete": "Delete",
       "reject": "Reject",
-      "save": "Save"
+      "save": "common.actions.save"
     },
     "cancel": "Cancel",
     "sex": {
@@ -238,7 +238,6 @@
   },
   "mainPage": "Main page",
   "New application": "New application",
-  "No documents found": "No documents found",
   "notFound": {
     "backToMain": "Back to main page",
     "content": "The page you are looking for does not exist.",
@@ -299,13 +298,29 @@
       "success": "Ticket approved successfully",
       "title": "Approve ticket"
     },
-    "backToTickets": "Back to tickets",
+    "arrest": {
+      "action": "Arrest",
+      "error": "ticket.arrest.error",
+      "pending": "ticket.arrest.pending",
+      "reason": {
+        "placeholder": "Describe arrest reason (at least {{min}} characters)"
+      },
+      "success": "ticket.arrest.success",
+      "title": "Are you sure want to arrest ticket author?"
+    },
+    "backToTickets": "ticket.backToTickets",
+    "create": {
+      "error": "ticket.create.error",
+      "pending": "ticket.create.pending",
+      "success": "ticket.create.success"
+    },
     "details": {
       "deadline": "Deadline",
       "priority": "Priority",
       "title": "Details"
     },
     "documents": {
+      "createRelated": "Delegate document",
       "empty": "No documents attached",
       "error": "Failed to load documents",
       "loading": "Loading documents…",

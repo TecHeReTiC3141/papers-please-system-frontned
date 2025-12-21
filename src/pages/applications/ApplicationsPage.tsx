@@ -1,11 +1,13 @@
-import { useGetApplications } from '@/features/applications/model'
-import { ApplicationsBoard, ApplicationsGallery } from '@/features/applications/ui'
+import { TicketStatus, type Ticket } from '@/entities/ticket'
+import { useCloseApplicationMutation, useGetApplications } from '@/features/applications/model'
+import { ApplicationsBoard, ApplicationsGallery, CloseApplicationModal } from '@/features/applications/ui'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaPlus } from 'react-icons/fa6'
 import { TbTable, TbLayoutGrid } from 'react-icons/tb'
 import { Link } from 'react-router'
+import { toast } from 'react-toastify'
 
 const APPLICATIONS_VIEW_VAR_NAME = 'applications_view'
 type ApplicationsView = 'gallery' | 'board'
@@ -22,6 +24,26 @@ export function ApplicationsPage() {
     queryKey: ['applications'],
     queryFn: fetchApplications
   })
+
+  const [applicationToDelete, setApplicationToDelete] = useState<Ticket | null>(null)
+
+  const [showClosed, setShowClosed] = useState(false)
+
+  const closeMutation = useCloseApplicationMutation()
+
+  const handleCloseCancel = () => setApplicationToDelete(null)
+
+  const handleCloseApplication = async () => {
+    if (!applicationToDelete) return
+
+    await toast.promise(closeMutation.mutateAsync(applicationToDelete.id), {
+      pending: t('applications.close.pending'),
+      success: t('applications.close.success'),
+      error: t('applications.close.error')
+    })
+
+    setApplicationToDelete(null)
+  }
 
   useEffect(() => {
     localStorage.setItem(APPLICATIONS_VIEW_VAR_NAME, view)
@@ -53,15 +75,40 @@ export function ApplicationsPage() {
           </button>
         </div>
         <div className="flex-1"></div>
+        <label className="label text-sm">
+          <input
+            type="checkbox"
+            className="checkbox checkbox-sm"
+            checked={showClosed}
+            onChange={(event) => setShowClosed(event.target.checked)}
+          />
+          {t('application.showEmpty')}
+        </label>
         <Link to="/applications/create" className="btn btn-primary rounded-lg">
           <FaPlus /> {t('applications.create')}
         </Link>
       </div>
       {view === 'gallery' ? (
-        <ApplicationsGallery tickets={applications.data?.items ?? []} loading={applications.isPending} />
+        <ApplicationsGallery
+          tickets={(applications.data?.items ?? []).filter(
+            (application) => application.status !== TicketStatus.CLOSED || showClosed
+          )}
+          loading={applications.isPending}
+          onCloseApplication={setApplicationToDelete}
+        />
       ) : (
-        <ApplicationsBoard tickets={applications.data?.items ?? []} loading={applications.isPending} />
+        <ApplicationsBoard
+          tickets={applications.data?.items ?? []}
+          loading={applications.isPending}
+          showClosed={showClosed}
+          onCloseApplication={setApplicationToDelete}
+        />
       )}
+      <CloseApplicationModal
+        open={!!applicationToDelete}
+        onCancel={handleCloseCancel}
+        onClose={handleCloseApplication}
+      />
     </div>
   )
 }

@@ -5,12 +5,14 @@ import { useQuery } from '@tanstack/react-query'
 import { Loader } from '@/shared/ui'
 import { DocumentsAccordion } from '@/features/applications/ui'
 import { useTranslation } from 'react-i18next'
+import type { AnyDocument } from '@/entities/document/types'
 
 type Props = {
   ticket: Ticket
+  onCreateRelatedTicket: (doc: AnyDocument) => void
 }
 
-export function TicketEntryContent({ ticket }: Props) {
+export function TicketEntryContent({ ticket, onCreateRelatedTicket }: Props) {
   const { t } = useTranslation()
   const fetchTicketDocuments = useGetTicketDocuments()
 
@@ -24,7 +26,7 @@ export function TicketEntryContent({ ticket }: Props) {
   })
 
   return (
-    <div className="flex-2">
+    <div className="flex-2 h-full">
       <TicketSectionWrapper title={t('ticket.documents.title')}>
         {ticket.resolution && (
           <div>
@@ -43,7 +45,7 @@ export function TicketEntryContent({ ticket }: Props) {
         {documents && documents.length > 0 && (
           <div>
             <p className="text-lg mb-1">{t('ticket.documents.title')}</p>
-            <DocumentsAccordion documents={documents} inspectorMode />
+            <DocumentsAccordion documents={documents} inspectorMode onCreateRelatedTicket={onCreateRelatedTicket} />
           </div>
         )}
       </TicketSectionWrapper>

@@ -12,7 +12,6 @@
     "empty": "Нет задач в расписании",
     "loading": "Загрузка расписания…"
   },
-
   "application": {
     "backToApplication": "Назад к заявлению",
     "documents": {
@@ -21,14 +20,17 @@
     "error": "Не удалось загрузить заявление",
     "loading": "Загрузка заявления…"
   },
-
   "applications": {
     "appelations": {
       "title_one": "Апелляция",
+      "title_few": "",
+      "title_many": "",
       "title_other": "Апелляции"
     },
     "application": {
       "title_one": "Заявление",
+      "title_few": "",
+      "title_many": "",
       "title_other": "Заявления"
     },
     "card": {
@@ -60,9 +62,7 @@
       "gallery": "Галерея"
     }
   },
-
   "close": "Закрыть",
-
   "closeShift": {
     "closeButton": "Подтвердить и закрыть смену",
     "title": "Закрытие смены №{{id}}",
@@ -72,7 +72,6 @@
       "success": "Смена успешно закрыта"
     }
   },
-
   "common": {
     "actions": {
       "add": "Добавить",
@@ -101,10 +100,11 @@
       "filterTotatl": "Всего фильтров"
     }
   },
-
   "createApplication": {
     "attachExistingModal": {
       "attachButton_one": "Прикрепить документ",
+      "attachButton_few": "",
+      "attachButton_many": "",
       "attachButton_other": "Прикрепить документы",
       "error": "Не удалось прикрепить документ",
       "loading": "Прикрепление документа…",
@@ -140,7 +140,6 @@
       "placeholder": "Выберите тип"
     }
   },
-
   "documents": {
     "certificate": {
       "additionalInfo": "Дополнительная информация",
@@ -195,12 +194,10 @@
       "workerName": "Имя работника"
     }
   },
-
   "employeesTable": {
     "inspector": "Инспектор",
     "specialization": "Специализация"
   },
-
   "employessTable": {
     "addModal": {
       "employeeId": {
@@ -213,11 +210,9 @@
     },
     "empty": "Сотрудники не найдены"
   },
-
   "footer": {
     "text": "Papers, Please {{date}} © Все права защищены"
   },
-
   "header": {
     "shiftStatus": {
       "cantClose": "Смену можно закрыть через 7 часов",
@@ -235,30 +230,24 @@
       "userInfo": "Профиль"
     }
   },
-
   "login": {
     "email": "Email",
     "login": "Войти",
     "password": "Пароль",
     "title": "Вход"
   },
-
   "logout": {
     "content": "Вы уверены, что хотите выйти?",
     "logoutBtn": "Выйти",
     "title": "Выход"
   },
-
   "mainPage": "Главная страница",
   "New application": "Новое заявление",
-  "No documents found": "Документы не найдены",
-
   "notFound": {
     "backToMain": "На главную",
     "content": "Страница, которую вы ищете, не существует.",
     "title": "Страница не найдена"
   },
-
   "openShift": {
     "agenda": {
       "assignSpecializationError": "Каждый пункт расписания должен иметь специализацию",
@@ -276,7 +265,6 @@
     "openBtn": "Открыть смену",
     "title": "Открытие смены"
   },
-
   "register": {
     "email": "Email",
     "name": "Имя",
@@ -286,9 +274,7 @@
     "title": "Регистрация",
     "upkId": "ID УПК"
   },
-
   "Related work": "Связанная работа",
-
   "shiftData": {
     "passedCrossChecks": "Пройдено проверок",
     "penalty": "Штраф",
@@ -297,7 +283,6 @@
     "userId": "ID пользователя",
     "wage": "Зарплата"
   },
-
   "shiftInfo": {
     "boss": "Начальник",
     "date": "Дата",
@@ -310,7 +295,6 @@
     "loading": "Загрузка информации о смене…",
     "upk": "УПК"
   },
-
   "ticket": {
     "approve": {
       "content": "Вы хотите одобрить этот тикет?",
@@ -319,13 +303,29 @@
       "success": "Тикет одобрен",
       "title": "Одобрить тикет"
     },
-    "backToTickets": "Назад к тикетам",
+    "arrest": {
+      "action": "",
+      "error": "",
+      "pending": "",
+      "reason": {
+        "placeholder": ""
+      },
+      "success": "",
+      "title": ""
+    },
+    "backToTickets": "",
+    "create": {
+      "error": "",
+      "pending": "",
+      "success": ""
+    },
     "details": {
       "deadline": "Дедлайн",
       "priority": "Приоритет",
       "title": "Детали"
     },
     "documents": {
+      "createRelated": "",
       "empty": "Документы не прикреплены",
       "error": "Не удалось загрузить документы",
       "loading": "Загрузка документов…",
@@ -350,13 +350,16 @@
       "reason": {
         "placeholder": "Введите причину отклонения"
       },
-      "success": "Тикет отклонён",
+      "success": "",
       "title": "Отклонить тикет"
     },
     "related": {
       "empty": "Связанные тикеты отсутствуют",
       "error": "Не удалось загрузить связанные тикеты",
       "loading": "Загрузка связанных тикетов…"
+    },
+    "resolution": {
+      "title": ""
     },
     "save": {
       "error": "Не удалось сохранить тикет",
@@ -381,7 +384,6 @@
       "internal": "Внутренний"
     }
   },
-
   "tickets": {
     "filters": {
       "priority": "Приоритет",
@@ -402,7 +404,6 @@
       "table": "Таблица"
     }
   },
-
   "userInfo": {
     "boss": "Начальник",
     "documents": {
