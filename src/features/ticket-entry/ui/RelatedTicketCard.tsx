@@ -1,10 +1,10 @@
 import type { Ticket } from '@/entities/ticket'
 import { Link } from 'react-router'
-import { typeConfig } from '@/entities/ticket/constants'
 import classNames from 'classnames'
 import { formatTicketDeadlineAt, formatTicketId } from '@/entities/ticket/lib'
 import { TicketStatusBadge } from '@/features/tickets/ui/TicketStatus'
 import { useTranslation } from 'react-i18next'
+import { useTypeConfig } from '@/entities/ticket/hooks'
 
 type Props = {
   ticket: Ticket
@@ -12,6 +12,7 @@ type Props = {
 
 export const RelatedTicketCard = ({ ticket }: Props) => {
   const { t } = useTranslation()
+  const typeConfig = useTypeConfig()
   const { icon: TypeIcon, blColor, label, iconColor } = typeConfig[ticket.ticketType]
 
   return (

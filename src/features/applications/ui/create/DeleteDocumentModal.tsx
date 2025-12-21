@@ -1,5 +1,5 @@
 import { type AnyDocument } from '@/entities/document/types'
-import { documentTitleMap } from '@/features/documents/model'
+import { useDocumentTypeTitles } from '@/features/documents/model'
 import { useTranslation } from 'react-i18next'
 
 type Props = {
@@ -11,6 +11,7 @@ type Props = {
 
 export function DeleteDocumentModal({ open, document, onClose, onConfirm }: Props) {
   const { t } = useTranslation()
+  const documentTitleMap = useDocumentTypeTitles()
 
   if (!open || !document) return null
 

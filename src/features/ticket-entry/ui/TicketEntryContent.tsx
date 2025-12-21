@@ -26,6 +26,12 @@ export function TicketEntryContent({ ticket }: Props) {
   return (
     <div className="flex-2">
       <TicketSectionWrapper title={t('ticket.documents.title')}>
+        {ticket.resolution && (
+          <div>
+            <p className="text-lg mb-1">{t('ticket.resolution.title')}</p>
+            <p>{ticket.resolution}</p>
+          </div>
+        )}
         {isLoading && <Loader text={t('ticket.documents.loading')} />}
 
         {isError && <div className="py-6 text-center text-error">{t('ticket.documents.error')}</div>}

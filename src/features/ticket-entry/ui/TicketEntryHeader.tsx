@@ -1,5 +1,4 @@
 import { TicketStatus, type Ticket } from '@/entities/ticket'
-import { statusConfig, typeConfig } from '@/entities/ticket/constants'
 import type { User } from '@/entities/user'
 import { UserPreview } from '@/shared/ui/UserPreview'
 import classNames from 'classnames'
@@ -14,6 +13,7 @@ import { RejectModal } from './RejectModal'
 import { useState } from 'react'
 import { TicketStatusBadge } from '@/features/tickets/ui/TicketStatus'
 import { useTranslation } from 'react-i18next'
+import { useStatusConfig, useTypeConfig } from '@/entities/ticket/hooks'
 
 type Props = {
   ticket: Ticket
@@ -21,7 +21,7 @@ type Props = {
   onStatusChange: (status: TicketStatus) => void
   onSave: () => void
   onApprove: () => void
-  onReject: () => void
+  onReject: (reason: string) => void
   isSaveInProgress: boolean
   canSave: boolean
 }
@@ -40,6 +40,9 @@ export function TicketEntryHeader({
   const userData = useAuthUser<User | null>()
   const [approveOpen, setApproveOpen] = useState(false)
   const [rejectOpen, setRejectOpen] = useState(false)
+
+  const typeConfig = useTypeConfig()
+  const statusConfig = useStatusConfig()
 
   const { icon: TypeIcon, blColor, label, iconColor } = typeConfig[ticket.ticketType]
   const { reason } = statusConfig[status]
@@ -61,7 +64,7 @@ export function TicketEntryHeader({
         </select>
       )
     },
-    { label: t('ticket.header.reason'), value: <p className="text-base-content/80">{t(reason)}</p> }
+    { label: t('ticket.header.reason'), value: <p className="text-base-content/80">{reason}</p> }
   ]
 
   return (

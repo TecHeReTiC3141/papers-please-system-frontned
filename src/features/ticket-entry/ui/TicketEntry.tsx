@@ -62,12 +62,13 @@ export function TicketEntry({ ticket }: Props) {
     )
   }
 
-  const handleReject = () => {
+  const handleReject = (reason: string) => {
     toast.promise(
       updateTicketMutation.mutateAsync({
         ticketId: ticket.id,
         body: {
-          status: TicketStatus.REJECTED
+          status: TicketStatus.REJECTED,
+          resolution: reason
         }
       }),
       {

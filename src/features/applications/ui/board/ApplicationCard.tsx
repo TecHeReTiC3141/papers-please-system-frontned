@@ -3,12 +3,12 @@ import { ApplicationStatusBadge } from '../ApplicationStatus'
 import { Link } from 'react-router'
 import classNames from 'classnames'
 import { formatTicketId } from '@/entities/ticket/lib'
-import { statusConfig } from '@/entities/ticket/applications'
 import { getApplicationStatus } from '../../model'
 import { formatDate } from '@/shared/lib'
 import { DetailsList } from '@/shared/ui'
 import { MdDescription, MdPublic } from 'react-icons/md'
 import { useTranslation } from 'react-i18next'
+import { useApplicationStatusConfig } from '@/entities/ticket/hooks'
 
 type Props = {
   ticket: Ticket
@@ -17,6 +17,7 @@ type Props = {
 export const ApplicationCard = ({ ticket }: Props) => {
   const { t } = useTranslation()
   const applicationStatus = getApplicationStatus(ticket)
+  const statusConfig = useApplicationStatusConfig()
 
   const { borderColor } = statusConfig[applicationStatus]
 

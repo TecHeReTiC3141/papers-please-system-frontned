@@ -9,66 +9,75 @@
       },
       "time": "Время"
     },
-    "empty": "Нет пунктов в повестке",
-    "loading": "Загрузка повестки…"
+    "empty": "Нет задач в расписании",
+    "loading": "Загрузка расписания…"
   },
+
   "application": {
-    "backToApplication": "Назад к заявке",
+    "backToApplication": "Назад к заявлению",
     "documents": {
       "title": "Документы"
     },
-    "error": "Не удалось загрузить заявку",
-    "loading": "Загрузка заявки…"
+    "error": "Не удалось загрузить заявление",
+    "loading": "Загрузка заявления…"
   },
+
   "applications": {
     "appelations": {
       "title_one": "Апелляция",
       "title_other": "Апелляции"
     },
     "application": {
-      "title_one": "Заявка",
-      "title_other": "Заявки"
+      "title_one": "Заявление",
+      "title_other": "Заявления"
     },
     "card": {
       "createAppelation": "Создать апелляцию",
       "createdAt": "Дата создания",
       "status": "Статус",
-      "title": "Название",
+      "title": "Заголовок",
       "updatedAt": "Дата обновления"
     },
     "close": {
-      "error": "Не удалось закрыть заявку",
-      "pending": "Закрытие заявки…",
-      "success": "Заявка успешно закрыта"
+      "error": "Не удалось закрыть заявление",
+      "pending": "Закрытие заявления…",
+      "success": "Заявление успешно закрыто"
     },
     "closeModal": {
-      "content": "Вы уверены, что хотите закрыть эту заявку?",
-      "title": "Закрыть заявку"
+      "content": "Вы уверены, что хотите закрыть это заявление?",
+      "title": "Закрыть заявление"
     },
-    "create": "Создать заявку",
-    "loading": "Загрузка заявок…",
-    "title": "Заявки",
+    "create": "Создать заявление",
+    "loading": "Загрузка заявлений…",
+    "status": {
+      "active": "Активно",
+      "approved": "Одобрено",
+      "rejected": "Отклонено"
+    },
+    "title": "Заявления",
     "view": {
       "board": "Доска",
       "gallery": "Галерея"
     }
   },
+
   "close": "Закрыть",
+
   "closeShift": {
     "closeButton": "Подтвердить и закрыть смену",
     "title": "Закрытие смены №{{id}}",
     "toast": {
+      "error": "Не удалось закрыть смену",
       "pending": "Закрытие смены…",
-      "success": "Смена успешно закрыта",
-      "error": "Не удалось закрыть смену"
+      "success": "Смена успешно закрыта"
     }
   },
+
   "common": {
     "actions": {
       "add": "Добавить",
       "approve": "Одобрить",
       "cancel": "Отмена",
-      "cancle": "Отмена",
       "close": "Закрыть",
       "delete": "Удалить",
       "reject": "Отклонить",
@@ -92,6 +101,7 @@
       "filterTotatl": "Всего фильтров"
     }
   },
+
   "createApplication": {
     "attachExistingModal": {
       "attachButton_one": "Прикрепить документ",
@@ -101,15 +111,15 @@
       "title": "Прикрепить существующий документ"
     },
     "attachToProfile": "Прикрепить к профилю",
-    "backToApplications": "Назад к заявкам",
+    "backToApplications": "Назад к заявлениям",
     "create": {
       "btn": "Создать",
-      "error": "Не удалось создать заявку",
-      "pending": "Создание заявки…",
-      "success": "Заявка успешно создана"
+      "error": "Не удалось создать заявление",
+      "pending": "Создание заявления…",
+      "success": "Заявление успешно создано"
     },
     "deleteModal": {
-      "title": "Удалить заявку"
+      "title": "Удалить заявление"
     },
     "documents": {
       "add": "Добавить документ",
@@ -119,17 +129,18 @@
     },
     "editModal": {
       "saveButton": "Сохранить изменения",
-      "title": "Редактировать заявку"
+      "title": "Редактировать заявление"
     },
     "fillNewModal": {
       "addButton": "Добавить",
       "title": "Создать документ"
     },
     "typeSelect": {
-      "label": "Тип заявки",
+      "label": "Тип заявления",
       "placeholder": "Выберите тип"
     }
   },
+
   "documents": {
     "certificate": {
       "additionalInfo": "Дополнительная информация",
@@ -144,7 +155,7 @@
       "country": "Страна",
       "dateOfBirth": "Дата рождения",
       "issuingRegion": "Регион выдачи",
-      "name": "ФИО",
+      "name": "Полное имя",
       "passportNumber": "Номер паспорта",
       "selectRegion": "Выберите регион",
       "sex": "Пол"
@@ -153,6 +164,14 @@
       "imageUrl": "URL изображения",
       "ownerName": "Имя владельца",
       "resolution": "Разрешение"
+    },
+    "type": {
+      "certificate": "Сертификат",
+      "draft": "Черновик",
+      "passport": "Паспорт",
+      "photo": "Фотография",
+      "visa": "Виза",
+      "workPermit": "Разрешение на работу"
     },
     "validFrom": "Действителен с",
     "validUntil": "Действителен до",
@@ -176,10 +195,12 @@
       "workerName": "Имя работника"
     }
   },
+
   "employeesTable": {
     "inspector": "Инспектор",
     "specialization": "Специализация"
   },
+
   "employessTable": {
     "addModal": {
       "employeeId": {
@@ -192,9 +213,11 @@
     },
     "empty": "Сотрудники не найдены"
   },
+
   "footer": {
     "text": "Papers, Please {{date}} © Все права защищены"
   },
+
   "header": {
     "shiftStatus": {
       "cantClose": "Смену можно закрыть через 7 часов",
@@ -206,50 +229,56 @@
     },
     "title": "Papers, Please",
     "userAvatar": {
-      "application": "Заявки",
+      "application": "Заявления",
       "logout": "Выйти",
       "tickets": "Тикеты",
-      "userInfo": "Информация о пользователе"
+      "userInfo": "Профиль"
     }
   },
+
   "login": {
-    "email": "Электронная почта",
+    "email": "Email",
     "login": "Войти",
     "password": "Пароль",
     "title": "Вход"
   },
+
   "logout": {
     "content": "Вы уверены, что хотите выйти?",
     "logoutBtn": "Выйти",
     "title": "Выход"
   },
+
   "mainPage": "Главная страница",
-  "New application": "Новая заявка",
+  "New application": "Новое заявление",
   "No documents found": "Документы не найдены",
+
   "notFound": {
     "backToMain": "На главную",
     "content": "Страница, которую вы ищете, не существует.",
     "title": "Страница не найдена"
   },
+
   "openShift": {
     "agenda": {
-      "assignSpecializationError": "Каждому пункту повестки должна быть назначена специализация",
-      "description": "Описание повестки"
+      "assignSpecializationError": "Каждый пункт расписания должен иметь специализацию",
+      "description": "Описание задачи"
     },
     "inspectors": {
-      "minInspectorAssignError": "Необходимо назначить хотя бы одного инспектора",
+      "minInspectorAssignError": "Должен быть назначен хотя бы один инспектор",
       "title": "Инспекторы"
     },
     "open": {
+      "error": "Не удалось открыть смену",
       "pending": "Открытие смены…",
-      "success": "Смена успешно открыта",
-      "error": "Не удалось открыть смену"
+      "success": "Смена успешно открыта"
     },
     "openBtn": "Открыть смену",
     "title": "Открытие смены"
   },
+
   "register": {
-    "email": "Электронная почта",
+    "email": "Email",
     "name": "Имя",
     "password": "Пароль",
     "register": "Зарегистрироваться",
@@ -257,7 +286,9 @@
     "title": "Регистрация",
     "upkId": "ID УПК"
   },
+
   "Related work": "Связанная работа",
+
   "shiftData": {
     "passedCrossChecks": "Пройдено проверок",
     "penalty": "Штраф",
@@ -266,6 +297,7 @@
     "userId": "ID пользователя",
     "wage": "Зарплата"
   },
+
   "shiftInfo": {
     "boss": "Начальник",
     "date": "Дата",
@@ -278,12 +310,13 @@
     "loading": "Загрузка информации о смене…",
     "upk": "УПК"
   },
+
   "ticket": {
     "approve": {
       "content": "Вы хотите одобрить этот тикет?",
+      "error": "Не удалось одобрить тикет",
       "pending": "Одобрение тикета…",
       "success": "Тикет одобрен",
-      "error": "Не удалось одобрить тикет",
       "title": "Одобрить тикет"
     },
     "backToTickets": "Назад к тикетам",
@@ -293,7 +326,7 @@
       "title": "Детали"
     },
     "documents": {
-      "empty": "Документы отсутствуют",
+      "empty": "Документы не прикреплены",
       "error": "Не удалось загрузить документы",
       "loading": "Загрузка документов…",
       "title": "Документы"
@@ -304,13 +337,20 @@
     },
     "headersStatus": "Статус",
     "loading": "Загрузка тикета…",
+    "reason": {
+      "closed": "Закрыт",
+      "inProgress": "В работе",
+      "needInfo": "Требуется информация",
+      "open": "Открыт",
+      "rejected": "Отклонён"
+    },
     "reject": {
-      "pending": "Отклонение тикета…",
-      "success": "Тикет отклонён",
       "error": "Не удалось отклонить тикет",
+      "pending": "Отклонение тикета…",
       "reason": {
         "placeholder": "Введите причину отклонения"
       },
+      "success": "Тикет отклонён",
       "title": "Отклонить тикет"
     },
     "related": {
@@ -319,13 +359,13 @@
       "loading": "Загрузка связанных тикетов…"
     },
     "save": {
+      "error": "Не удалось сохранить тикет",
       "pending": "Сохранение тикета…",
-      "success": "Тикет сохранён",
-      "error": "Не удалось сохранить тикет"
+      "success": "Тикет сохранён"
     },
     "status": {
       "closed": "Закрыт",
-      "inProgress": "В процессе",
+      "inProgress": "В работе",
       "needInfo": "Требуется информация",
       "open": "Открыт",
       "rejected": "Отклонён"
@@ -335,9 +375,13 @@
     },
     "type": {
       "appeal": "Апелляция",
-      "external": "Внешний"
+      "arrest": "Арест",
+      "crosscheck": "Перепроверка",
+      "external": "Внешний",
+      "internal": "Внутренний"
     }
   },
+
   "tickets": {
     "filters": {
       "priority": "Приоритет",
@@ -350,7 +394,7 @@
       "id": "ID",
       "priority": "Приоритет",
       "status": "Статус",
-      "title": "Название"
+      "title": "Заголовок"
     },
     "title": "Тикеты",
     "view": {
@@ -358,14 +402,15 @@
       "table": "Таблица"
     }
   },
+
   "userInfo": {
     "boss": "Начальник",
     "documents": {
       "add": "Добавить документ",
       "title": "Документы"
     },
-    "email": "Электронная почта",
-    "loading": "Загрузка информации о пользователе…",
+    "email": "Email",
+    "loading": "Загрузка профиля…",
     "shiftData": {
       "boss": "Начальник",
       "noShifts": "Смены не найдены",
@@ -377,7 +422,7 @@
       "upk": "УПК",
       "upkId": "ID УПК"
     },
-    "shiftInfo": "Информация о сменах",
+    "shiftInfo": "Информация о смене",
     "subordinates": "Подчинённые",
     "upk": "УПК"
   }

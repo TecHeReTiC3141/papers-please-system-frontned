@@ -47,6 +47,11 @@
     },
     "create": "Create application",
     "loading": "Loading applications…",
+    "status": {
+      "active": "Active",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
     "title": "Applications",
     "view": {
       "board": "Board view",
@@ -58,9 +63,9 @@
     "closeButton": "Approve and close shift",
     "title": "Close shift №{{id}}",
     "toast": {
+      "error": "Failed to close shift",
       "pending": "Closing shift…",
-      "success": "Shift closed successfully",
-      "error": "Failed to close shift"
+      "success": "Shift closed successfully"
     }
   },
   "common": {
@@ -68,7 +73,7 @@
       "add": "Add",
       "approve": "Approve",
       "cancel": "Cancel",
-      "cancle": "Cancel",
+      "cancle": "common.actions.cancle",
       "close": "Close",
       "delete": "Delete",
       "reject": "Reject",
@@ -153,6 +158,14 @@
       "imageUrl": "Image URL",
       "ownerName": "Owner name",
       "resolution": "Resolution"
+    },
+    "type": {
+      "certificate": "Certificate",
+      "draft": "Draft",
+      "passport": "Passport",
+      "photo": "Photo",
+      "visa": "Visa",
+      "workPermit": "Work permit"
     },
     "validFrom": "Valid from",
     "validUntil": "Valid until",
@@ -241,9 +254,9 @@
       "title": "Inspectors"
     },
     "open": {
+      "error": "Failed to open shift",
       "pending": "Opening shift…",
-      "success": "Shift opened successfully",
-      "error": "Failed to open shift"
+      "success": "Shift opened successfully"
     },
     "openBtn": "Open shift",
     "title": "Open shift"
@@ -281,9 +294,9 @@
   "ticket": {
     "approve": {
       "content": "Do you want to approve this ticket?",
+      "error": "Failed to approve ticket",
       "pending": "Approving ticket…",
       "success": "Ticket approved successfully",
-      "error": "Failed to approve ticket",
       "title": "Approve ticket"
     },
     "backToTickets": "Back to tickets",
@@ -304,13 +317,20 @@
     },
     "headersStatus": "Status",
     "loading": "Loading ticket…",
+    "reason": {
+      "closed": "Closed",
+      "inProgress": "In progress",
+      "needInfo": "Needs information",
+      "open": "Open",
+      "rejected": "Rejected"
+    },
     "reject": {
-      "pending": "Rejecting ticket…",
-      "success": "Ticket rejected",
       "error": "Failed to reject ticket",
+      "pending": "Rejecting ticket…",
       "reason": {
         "placeholder": "Enter rejection reason"
       },
+      "success": "Ticket rejected",
       "title": "Reject ticket"
     },
     "related": {
@@ -318,10 +338,13 @@
       "error": "Failed to load related tickets",
       "loading": "Loading related tickets…"
     },
+    "resolution": {
+      "title": "ticket.resolution.title"
+    },
     "save": {
+      "error": "Failed to save ticket",
       "pending": "Saving ticket…",
-      "success": "Ticket saved",
-      "error": "Failed to save ticket"
+      "success": "Ticket saved"
     },
     "status": {
       "closed": "Closed",
@@ -335,7 +358,10 @@
     },
     "type": {
       "appeal": "Appeal",
-      "external": "External"
+      "arrest": "Arrest",
+      "crosscheck": "Cross-check",
+      "external": "External",
+      "internal": "Internal"
     }
   },
   "tickets": {

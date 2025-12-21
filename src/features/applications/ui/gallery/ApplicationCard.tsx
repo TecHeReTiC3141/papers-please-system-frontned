@@ -1,13 +1,14 @@
 import type { Ticket } from '@/entities/ticket'
 import { ApplicationStatusBadge } from '../ApplicationStatus'
 import { getApplicationStatus } from '../../model/get-application-status'
-import { ApplicationStatus, statusConfig } from '@/entities/ticket/applications'
-import { FaArrowRight, FaPlus, FaTrash } from 'react-icons/fa6'
+import { ApplicationStatus } from '@/entities/ticket/applications'
+import { FaPlus, FaTrash } from 'react-icons/fa6'
 import { formatDate } from '@/shared/lib'
 import classNames from 'classnames'
 import { DetailsList } from '@/shared/ui'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
+import { useApplicationStatusConfig } from '@/entities/ticket/hooks'
 
 type Props = {
   ticket: Ticket
@@ -17,6 +18,7 @@ type Props = {
 export const ApplicationCard = ({ ticket, onClose }: Props) => {
   const { t } = useTranslation()
 
+  const statusConfig = useApplicationStatusConfig()
   const applicationStatus = getApplicationStatus(ticket)
 
   const { borderColor } = statusConfig[applicationStatus]
