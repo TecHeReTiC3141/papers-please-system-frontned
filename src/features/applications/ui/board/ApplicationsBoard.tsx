@@ -43,6 +43,7 @@ export const ApplicationsBoard = ({ tickets, loading, showClosed, onCloseApplica
     <div className="flex items-stretch w-full gap-4">
       {columnsConfig.map(({ status, filter }) => (
         <ApplicationsBoardColumn
+          key={status}
           status={status}
           tickets={tickets.filter(filter)}
           onCloseApplication={onCloseApplication}

@@ -12,6 +12,7 @@ import { CreateApplicationPage } from '@/pages/create-application'
 import { BasePage } from '../layouts/BasePage'
 import { ApplicationPage } from '@/pages/application'
 import { OpenShiftPage } from '@/pages/open-shift'
+import { CreateAppalationPage } from '@/pages/create-appealation'
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/applications" element={<ApplicationsPage />} />
           <Route path="/applications/:id" element={<ApplicationPage />} />
           <Route path="/applications/create" element={<CreateApplicationPage />} />
+          <Route path="/applications/:id/appealation" element={<CreateAppalationPage />} />
 
           <Route path="/shifts/open" element={<OpenShiftPage />} />
         </Route>

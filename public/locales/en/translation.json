@@ -18,7 +18,8 @@
       "title": "Documents"
     },
     "error": "Failed to load application",
-    "loading": "Loading application…"
+    "loading": "Loading application…",
+    "showEmpty": "Show empty state"
   },
   "applications": {
     "appelations": {
@@ -32,7 +33,6 @@
     "card": {
       "createAppelation": "Create appeal",
       "createdAt": "Created at",
-      "status": "Status",
       "title": "Title",
       "updatedAt": "Updated at"
     },
@@ -50,6 +50,8 @@
     "status": {
       "active": "Active",
       "approved": "Approved",
+      "closed": "Closed",
+      "reject": "Rejected",
       "rejected": "Rejected"
     },
     "title": "Applications",
@@ -73,11 +75,10 @@
       "add": "Add",
       "approve": "Approve",
       "cancel": "Cancel",
-      "cancle": "common.actions.cancle",
       "close": "Close",
       "delete": "Delete",
       "reject": "Reject",
-      "save": "common.actions.save"
+      "save": "Save"
     },
     "cancel": "Cancel",
     "sex": {
@@ -96,6 +97,27 @@
       },
       "filterTotatl": "Total filters"
     }
+  },
+  "createAppealation": {
+    "backToApplications": "Back to applications",
+    "create": {
+      "btn": "Create",
+      "error": "Failed to create appeal",
+      "pending": "Creating appeal…",
+      "success": "Appeal created successfully",
+      "tooShoftAppealation": "The appeal reason must be at least {{mingLength}} characters"
+    },
+    "description": {
+      "label": "Reason",
+      "placeholder": "Enter appealation reason (at least {{minLenght}} characters"
+    },
+    "documents": {
+      "add": "Add document",
+      "attachExisting": "Attach existing",
+      "fillNew": "Create new",
+      "title": "Documents"
+    },
+    "title": "Create appeal"
   },
   "createApplication": {
     "attachExistingModal": {
@@ -130,6 +152,7 @@
       "addButton": "Add",
       "title": "Create document"
     },
+    "title": "Create application",
     "typeSelect": {
       "label": "Application type",
       "placeholder": "Select type"
@@ -237,7 +260,6 @@
     "title": "Log out"
   },
   "mainPage": "Main page",
-  "New application": "New application",
   "notFound": {
     "backToMain": "Back to main page",
     "content": "The page you are looking for does not exist.",
@@ -299,20 +321,20 @@
       "title": "Approve ticket"
     },
     "arrest": {
-      "action": "Arrest",
-      "error": "ticket.arrest.error",
-      "pending": "ticket.arrest.pending",
+      "action": "Arrest ticket successfully created",
+      "error": "Failed to create arrest ticket",
+      "pending": "Creating arrest ticket…",
       "reason": {
         "placeholder": "Describe arrest reason (at least {{min}} characters)"
       },
-      "success": "ticket.arrest.success",
-      "title": "Are you sure want to arrest ticket author?"
+      "success": "Arrest completed",
+      "title": "Are you sure you want to arrest the ticket author?"
     },
-    "backToTickets": "ticket.backToTickets",
+    "backToTickets": "Back to tickets",
     "create": {
-      "error": "ticket.create.error",
-      "pending": "ticket.create.pending",
-      "success": "ticket.create.success"
+      "error": "Failed to create ticket",
+      "pending": "Creating ticket…",
+      "success": "Ticket created successfully"
     },
     "details": {
       "deadline": "Deadline",
@@ -354,7 +376,7 @@
       "loading": "Loading related tickets…"
     },
     "resolution": {
-      "title": "ticket.resolution.title"
+      "title": "Resolution"
     },
     "save": {
       "error": "Failed to save ticket",

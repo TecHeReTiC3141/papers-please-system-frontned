@@ -16,15 +16,26 @@ type Props = {
 export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: Props) {
   const { t } = useTranslation()
 
+  const toDateInput = (value: string | null) => {
+    if (!value) return ''
+    return value.split('T')[0]
+  }
+
   if (!documentToEdit) return null
 
   const CurrentFields = renderDocumentFields(documentToEdit)
 
+  const initialValues = {
+    ...documentToEdit,
+    validFrom: toDateInput(documentToEdit.validFrom),
+    validUntil: toDateInput(documentToEdit.validUntil)
+  } as AnyDocument
+
   return (
     <dialog className="modal" open={open}>
-      <div className="modal-box w-[500px]">
+      <div className="modal-box w-[500px] px-8">
         <Formik<AnyDocument>
-          initialValues={documentToEdit}
+          initialValues={initialValues}
           enableReinitialize
           validateOnChange
           validateOnBlur
@@ -58,7 +69,7 @@ export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: P
                     control={
                       <input
                         disabled
-                        className="input input-bordered bg-neutral-800"
+                        className="input input-bordered bg-neutral-800 w-full"
                         value={documentToEdit.documentType
                           .toLowerCase()
                           .replace('_', ' ')
@@ -76,7 +87,7 @@ export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: P
                         type="date"
                         name="validFrom"
                         disabled={documentToEdit.documentType === ''}
-                        className="input input-bordered bg-neutral-800"
+                        className="input input-bordered bg-neutral-800 w-full"
                       />
                     }
                   />
@@ -88,7 +99,7 @@ export function EditDocumentModal({ open, onClose, documentToEdit, onSubmit }: P
                         type="date"
                         name="validUntil"
                         disabled={documentToEdit.documentType === ''}
-                        className="input input-bordered bg-neutral-800"
+                        className="input input-bordered bg-neutral-800 w-full"
                       />
                     }
                   />

@@ -85,7 +85,7 @@ export function AttachExistingModal({ open, onClose, onAttach, attachedDocuments
 
         <div className="modal-action">
           <button className="btn btn-ghost" onClick={onClose}>
-            {t('common.actions.cancle')}
+            {t('common.actions.cancel')}
           </button>
 
           <button className="btn btn-primary" disabled={!selected.length} onClick={handleAttach}>

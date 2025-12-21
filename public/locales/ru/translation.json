@@ -18,7 +18,8 @@
       "title": "Документы"
     },
     "error": "Не удалось загрузить заявление",
-    "loading": "Загрузка заявления…"
+    "loading": "Загрузка заявления…",
+    "showEmpty": ""
   },
   "applications": {
     "appelations": {
@@ -27,16 +28,15 @@
       "title_many": "",
       "title_other": "Апелляции"
     },
-    "application": {
-      "title_one": "Заявление",
+    "applications": {
+      "title_one": "",
       "title_few": "",
       "title_many": "",
-      "title_other": "Заявления"
+      "title_other": ""
     },
     "card": {
       "createAppelation": "Создать апелляцию",
       "createdAt": "Дата создания",
-      "status": "Статус",
       "title": "Заголовок",
       "updatedAt": "Дата обновления"
     },
@@ -54,6 +54,8 @@
     "status": {
       "active": "Активно",
       "approved": "Одобрено",
+      "closed": "",
+      "reject": "",
       "rejected": "Отклонено"
     },
     "title": "Заявления",
@@ -100,6 +102,27 @@
       "filterTotatl": "Всего фильтров"
     }
   },
+  "createAppealation": {
+    "backToApplications": "",
+    "create": {
+      "btn": "",
+      "error": "",
+      "pending": "",
+      "success": "",
+      "tooShoftAppealation": ""
+    },
+    "description": {
+      "label": "",
+      "placeholder": ""
+    },
+    "documents": {
+      "add": "",
+      "attachExisting": "",
+      "fillNew": "",
+      "title": ""
+    },
+    "title": ""
+  },
   "createApplication": {
     "attachExistingModal": {
       "attachButton_one": "Прикрепить документ",
@@ -135,6 +158,7 @@
       "addButton": "Добавить",
       "title": "Создать документ"
     },
+    "title": "",
     "typeSelect": {
       "label": "Тип заявления",
       "placeholder": "Выберите тип"
@@ -242,7 +266,6 @@
     "title": "Выход"
   },
   "mainPage": "Главная страница",
-  "New application": "Новое заявление",
   "notFound": {
     "backToMain": "На главную",
     "content": "Страница, которую вы ищете, не существует.",

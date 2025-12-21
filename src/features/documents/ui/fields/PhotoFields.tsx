@@ -6,7 +6,7 @@ export function PhotoFields() {
   const { t } = useTranslation()
 
   return (
-    <div className="flex flex-col gap-4 mt-2">
+    <div className="flex flex-col gap-4 mt-2  w-full">
       <Field
         label={t('documents.photo.ownerName')}
         control={<FormikField name="body.ownerName" className="input input-bordered bg-neutral-800 w-full" />}

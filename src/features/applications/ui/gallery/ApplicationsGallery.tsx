@@ -24,7 +24,7 @@ export function ApplicationsGallery({ tickets, loading, onCloseApplication }: Pr
           <ApplicationCard ticket={application} onClose={onCloseApplication} />
         ))}
       </div>
-      <h4 className="text-xl">{t('applications.appelations.title', { count: applications.length })}</h4>
+      <h4 className="text-xl">{t('applications.appelations.title', { count: appealations.length })}</h4>
       <div className="w-full grid grid-cols-4 grid-col items-center gap-x-6 gap-y-4">
         {appealations.map((appealations) => (
           <ApplicationCard ticket={appealations} onClose={onCloseApplication} />

@@ -6,7 +6,7 @@ export function WorkPermitFields() {
   const { t } = useTranslation()
 
   return (
-    <div className="flex flex-col gap-4 mt-2">
+    <div className="flex flex-col gap-4 mt-2  w-full">
       <Field
         label={t('documents.workPermit.workerName')}
         control={<FormikField name="body.workerName" className="input input-bordered bg-neutral-800 w-full" />}

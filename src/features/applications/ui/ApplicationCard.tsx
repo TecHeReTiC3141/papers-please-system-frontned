@@ -46,10 +46,10 @@ export const ApplicationCard = ({ ticket, onClose }: Props) => {
           <ApplicationStatusBadge status={applicationStatus} />
           <div className="flex-1"></div>
           {applicationStatus === ApplicationStatus.Rejected && (
-            <button className="btn btn-xs btn-primary">
+            <Link to={`/applications/${ticket.id}/appealation`} className="btn btn-xs btn-primary">
               <FaPlus />
               {t('applications.card.createAppelation')}
-            </button>
+            </Link>
           )}
           {applicationStatus === ApplicationStatus.Active && (
             <button

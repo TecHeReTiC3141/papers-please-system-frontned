@@ -1,5 +1,5 @@
 import type { AnyDocument } from '@/entities/document/types'
-import { useCreateApplicationMutation } from '@/features/applications/model'
+import { useCreateAppealationMutation, useGetApplicationDocuments } from '@/features/applications/model'
 import {
   AttachExistingModal,
   DeleteDocumentModal,
@@ -7,18 +7,26 @@ import {
   EditDocumentModal,
   FillNewDocumentModal
 } from '@/features/applications/ui'
-import { useState } from 'react'
+import { Loader } from '@/shared/ui'
+import { useQuery } from '@tanstack/react-query'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaArrowLeft } from 'react-icons/fa6'
 import { FiPlus } from 'react-icons/fi'
 import { MdAttachFile } from 'react-icons/md'
-import { Link } from 'react-router'
+import { Link, useNavigate, useParams } from 'react-router'
 import { toast } from 'react-toastify'
 
-export function CreateApplicationPage() {
+const MIN_APPEAL_DESCRIPTION_LENGTH = 50
+
+export function CreateAppalationPage() {
   const { t } = useTranslation()
+
   const [isFillNewOpen, setFillNewOpen] = useState(false)
   const [isAttachOpen, setAttachOpen] = useState(false)
+  const [appealDescription, setAppealDescription] = useState('')
+
+  const initializedRef = useRef(false)
 
   const [attachedDocuments, setAttachedDocuments] = useState<AnyDocument[]>([])
   const [editingDocument, setEditingDocument] = useState<AnyDocument | null>(null)
@@ -26,7 +34,59 @@ export function CreateApplicationPage() {
 
   const handleAddDocument = (doc: AnyDocument) => setAttachedDocuments((prev) => [...prev, doc])
 
-  const createApplicationMutation = useCreateApplicationMutation()
+  const createAppelationMutation = useCreateAppealationMutation()
+
+  const { id } = useParams()
+  const navigate = useNavigate()
+
+  const getApplicationDocuments = useGetApplicationDocuments()
+
+  const {
+    data: documents,
+    isLoading,
+    isError
+  } = useQuery<AnyDocument[]>({
+    queryKey: ['application-documents', [id]],
+    queryFn: () => getApplicationDocuments(id ?? ''),
+    enabled: !!id
+  })
+
+  useEffect(() => {
+    if (!documents || initializedRef.current) return
+
+    setAttachedDocuments(documents)
+    initializedRef.current = true
+  }, [documents])
+
+  if (!id) {
+    navigate('/not-found')
+
+    return
+  }
+
+  if (isLoading) {
+    return <Loader text={t('application.loading')} />
+  }
+
+  if (isError) {
+    return <div className="p-8 text-center text-error">{t('application.error')}</div>
+  }
+
+  const handleCreateAppelation = () => {
+    if (appealDescription.length < MIN_APPEAL_DESCRIPTION_LENGTH) {
+      toast.error(t('createAppealation.create.tooShoftAppealation', { minLength: MIN_APPEAL_DESCRIPTION_LENGTH }))
+
+      return
+    }
+    toast.promise(
+      createAppelationMutation.mutateAsync({ applicationId: id, attachedDocuments, description: appealDescription }),
+      {
+        success: t('createAppealation.create.success'),
+        pending: t('createAppealation.create.pending'),
+        error: t('createAppealation.create.error')
+      }
+    )
+  }
 
   const handleAttachDocuments = (docs: AnyDocument[]) =>
     setAttachedDocuments((prev) => [
@@ -46,51 +106,60 @@ export function CreateApplicationPage() {
   return (
     <div className="p-8 flex flex-col gap-8">
       <Link className="link link-hover link-info flex gap-x-2 items-center" to="/applications">
-        <FaArrowLeft /> {t('createApplication.backToApplications')}
+        <FaArrowLeft /> {t('createAppealation.backToApplications')}
       </Link>
-      <h1 className="text-3xl font-semibold text-center">{t('createApplication.title')}</h1>
+      <h1 className="text-3xl font-semibold text-center">{t('createAppealation.title')}</h1>
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-medium">{t('createApplication.documents.title')}</h2>
+        <h2 className="text-xl font-medium">{t('createAppealation.documents.title')}</h2>
 
         <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-sm btn-primary border rounded-lg">
-            {t('createApplication.documents.add')}
-          </div>
+          <button
+            tabIndex={0}
+            className="btn btn-sm btn-primary border rounded-lg"
+            disabled={attachedDocuments.length === 5}
+          >
+            {t('createAppealation.documents.add')}
+          </button>
 
           <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box shadow p-2 w-44">
             <li>
               <button className="flex items-center gap-2" onClick={() => setFillNewOpen(true)}>
-                <FiPlus /> {t('createApplication.documents.fillNew')}
+                <FiPlus /> {t('createAppealation.documents.fillNew')}
               </button>
             </li>
 
             <li>
               <button className="flex items-center gap-2" onClick={() => setAttachOpen(true)}>
-                <MdAttachFile /> {t('createApplication.documents.attachExisting')}
+                <MdAttachFile /> {t('createAppealation.documents.attachExisting')}
               </button>
             </li>
           </ul>
         </div>
       </div>
       <div className="bg-base-200 border border-base-300 rounded-xl p-4">
+        <fieldset className="fieldset bg-base-200 border border-base-300 rounded-xl p-4">
+          <legend className="fieldset-legend">{t('createAppealation.description.label')}</legend>
+
+          <textarea
+            className="textarea textarea-bordered w-full bg-neutral-800 min-h-[120px]"
+            placeholder={t('createAppealation.description.placeholder', { minLength: MIN_APPEAL_DESCRIPTION_LENGTH })}
+            value={appealDescription}
+            onChange={(e) => setAppealDescription(e.target.value)}
+          />
+        </fieldset>
+
         <DocumentsAccordion documents={attachedDocuments} onEdit={setEditingDocument} onDelete={setDeletingDocument} />
       </div>
 
       <button
         className="btn btn-primary self-end"
         disabled={attachedDocuments.length === 0}
-        onClick={() =>
-          toast.promise(createApplicationMutation.mutateAsync(attachedDocuments), {
-            success: t('createApplication.create.success'),
-            pending: t('createApplication.create.pending'),
-            error: t('createApplication.create.error')
-          })
-        }
+        onClick={handleCreateAppelation}
       >
-        {createApplicationMutation.isPending ? (
+        {createAppelationMutation.isPending ? (
           <span className="loading loading-spinner loading-sm"></span>
         ) : (
-          t('createApplication.create.btn')
+          t('createAppealation.create.btn')
         )}
       </button>
 

@@ -23,7 +23,7 @@ export function FillNewDocumentModal({ open, onClose, attachedDocuments, onSubmi
 
   return (
     <dialog className="modal" open={open}>
-      <div className="modal-box w-[500px]">
+      <div className="modal-box w-[500px] p-8">
         <Formik<AnyDocument>
           initialValues={{
             id: '',
@@ -87,7 +87,7 @@ export function FillNewDocumentModal({ open, onClose, attachedDocuments, onSubmi
                       <FormikField
                         as="select"
                         name="documentType"
-                        className="select select-bordered bg-neutral-800"
+                        className="select select-bordered bg-neutral-800 w-full"
                         onChange={handleSelectType}
                       >
                         <option value="" disabled>
@@ -111,7 +111,7 @@ export function FillNewDocumentModal({ open, onClose, attachedDocuments, onSubmi
                         type="date"
                         name="validFrom"
                         disabled={values.documentType === ''}
-                        className="input input-bordered bg-neutral-800"
+                        className="input input-bordered bg-neutral-800 w-full"
                       />
                     }
                   />
@@ -123,7 +123,7 @@ export function FillNewDocumentModal({ open, onClose, attachedDocuments, onSubmi
                         type="date"
                         name="validUntil"
                         disabled={values.documentType === ''}
-                        className="input input-bordered bg-neutral-800"
+                        className="input input-bordered bg-neutral-800 w-full"
                       />
                     }
                   />
