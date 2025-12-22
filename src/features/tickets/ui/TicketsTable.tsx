@@ -4,6 +4,7 @@ import { TicketStatusBadge } from './TicketStatus'
 import { Table } from '@/shared/ui'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
+import { formatTicketDeadlineAt } from '@/entities/ticket/lib'
 
 type TicketsTableProps = {
   tickets: Ticket[] | null
@@ -42,7 +43,8 @@ export function TicketsTable({ tickets, loading }: TicketsTableProps) {
     {
       label: t('tickets.table.deadline'),
       key: 'deadlineAt',
-      dataIndex: 'deadlineAt'
+      dataIndex: 'deadlineAt',
+      render: (ticket) => formatTicketDeadlineAt(ticket)
     }
   ]
 

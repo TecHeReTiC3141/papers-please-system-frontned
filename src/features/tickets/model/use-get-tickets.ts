@@ -17,7 +17,7 @@ export const useGetTickets = () => {
   }
 
   return async () => {
-    const { data } = await api.get<MultipleEntitiesResponse<Ticket>>(`/tickets?executorId=${userData.id}`)
+    const { data } = await api.get<MultipleEntitiesResponse<Ticket>>(`/tickets?executorId=${userData.id}&limit=100`)
 
     return data
   }

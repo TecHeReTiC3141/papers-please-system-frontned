@@ -3,7 +3,7 @@ import { TicketStatusBadge } from '../TicketStatus'
 import { useDraggable } from '@dnd-kit/core'
 import { Link } from 'react-router'
 import classNames from 'classnames'
-import { formatTicketDeadlineAt, formatTicketId } from '@/entities/ticket/lib'
+import { formatTicketId, formatTicketDeadlineAt } from '@/entities/ticket/lib'
 import { useTranslation } from 'react-i18next'
 import { useTypeConfig } from '@/entities/ticket/hooks'
 
@@ -46,6 +46,7 @@ export const TicketCard = ({ ticket }: Props) => {
       </div>
 
       <div className="mt-2 text-sm">{t('ticket.ticketCard.deadline', { date: formatTicketDeadlineAt(ticket) })}</div>
+      <div className="mt-2 text-sm">{t('ticket.ticketCard.priority', { priority: ticket.priority })}</div>
     </div>
   )
 }

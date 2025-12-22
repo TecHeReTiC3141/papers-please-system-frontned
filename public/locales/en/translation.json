@@ -88,7 +88,9 @@
     "specialization": {
       "boss": "Boss",
       "inspector": "Inspector",
+      "label": "Specialization",
       "migrant": "Migrant",
+      "placeholder": "Select specialization",
       "security": "Security"
     },
     "table": {
@@ -165,6 +167,10 @@
       "holderName": "Holder name",
       "issuedBy": "Issued by"
     },
+    "delegateDocumentModel": {
+      "descriptionPlaceholder": "Enter description",
+      "title": "Delegate document"
+    },
     "deleteDocumentModel": {
       "content": "Are you sure you want to delete this document?"
     },
@@ -217,6 +223,10 @@
     "specialization": "Specialization"
   },
   "employessTable": {
+    "actions": {
+      "add": "Add inspector",
+      "delete": "Delete inspector"
+    },
     "addModal": {
       "employeeId": {
         "placeholder": "Enter employee ID"
@@ -349,12 +359,13 @@
       "title": "Documents"
     },
     "header": {
-      "id": "Ticket ID",
+      "id": "Ticket {{id}}",
       "reason": "Reason"
     },
     "headersStatus": "Status",
     "loading": "Loading ticket…",
     "reason": {
+      "approved": "Approved",
       "closed": "Closed",
       "inProgress": "In progress",
       "needInfo": "Needs information",
@@ -384,6 +395,7 @@
       "success": "Ticket saved"
     },
     "status": {
+      "approved": "Approved",
       "closed": "Closed",
       "inProgress": "In progress",
       "needInfo": "Needs information",
@@ -391,7 +403,9 @@
       "rejected": "Rejected"
     },
     "ticketCard": {
-      "deadline": "Deadline"
+      "deadline": "Deadline: {{date}}",
+      "priority": "Prority: {{priority}}",
+      "updatedAt": "Updated at: {{date}}"
     },
     "type": {
       "appeal": "Appeal",

@@ -1,7 +1,7 @@
 import { Priority, type Ticket } from '@/entities/ticket'
 import { TicketSectionWrapper } from './TicketSectionWrapper'
 import { Field, Loader } from '@/shared/ui'
-import { formatTicketDeadlineAt } from '@/entities/ticket/lib'
+import { formatTicketDeadlineAt, formatTicketUpdatedAt } from '@/entities/ticket/lib'
 import { useGetTicketRelated } from '../model'
 import { useQuery } from '@tanstack/react-query'
 import { RelatedTicketCard } from './RelatedTicketCard'

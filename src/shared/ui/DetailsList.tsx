@@ -33,23 +33,17 @@ export function DetailsList({ items, inspectorMode = false }: DetailsListProps) 
 
         return (
           <div key={item.label} className="contents">
-            {/* Label */}
             <span className={classNames('text-sm', isWrong ? 'text-red-400' : 'text-gray-400')}>{item.label}</span>
 
-            {/* Value */}
             <div className={classNames(isWrong && 'text-red-400')}>{item.value}</div>
 
             {inspectorMode && item.fieldKey ? (
               <button
                 type="button"
                 onClick={() => toggleField(item.fieldKey!)}
-                className="btn btn-ghost btn-xs opacity-50 hover:opacity-100"
+                className={classNames('btn btn-ghost btn-xs opacity-50 hover:opacity-100', isWrong && 'opacity-100')}
               >
-                {isWrong ? (
-                  <FaCheck className="w-4 h-4 text-green-500" />
-                ) : (
-                  <FaXmark className="w-4 h-4 text-red-400" />
-                )}
+                <FaXmark className="w-4 h-4 text-red-400" />
               </button>
             ) : (
               <span />

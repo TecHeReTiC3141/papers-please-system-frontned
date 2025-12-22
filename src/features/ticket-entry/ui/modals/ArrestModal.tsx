@@ -7,7 +7,7 @@ type ArrestModalProps = {
   onArrest: (reason: string) => void
 }
 
-const MIN_REASON_LENGTH = 100
+const MIN_REASON_LENGTH = 10
 
 export function ArrestModal({ open, onClose, onArrest }: ArrestModalProps) {
   const { t } = useTranslation()

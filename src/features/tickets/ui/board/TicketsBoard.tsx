@@ -21,7 +21,8 @@ const columnsConfig = [
   },
   {
     status: TicketStatus.CLOSED,
-    filter: (t: Ticket) => t.status === TicketStatus.CLOSED || t.status === TicketStatus.REJECTED
+    filter: (t: Ticket) =>
+      t.status === TicketStatus.CLOSED || t.status === TicketStatus.REJECTED || t.status === TicketStatus.APPROVED
   }
 ]
 
@@ -46,7 +47,8 @@ export const TicketsBoard = ({ tickets, loading }: Props) => {
     const ticket = localTickets.find((t) => t.id === active.id)
     if (!ticket) return
 
-    if (ticket.status === newStatus) return
+    const statusFilter = columnsConfig.find(({ status }) => status === newStatus)!
+    if (statusFilter.filter(ticket)) return
 
     setLocalTickets((prev) => prev.map((t) => (t.id === active.id ? { ...t, status: newStatus } : t)))
 

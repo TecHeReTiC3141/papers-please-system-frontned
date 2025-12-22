@@ -92,7 +92,9 @@
     "specialization": {
       "boss": "Начальник",
       "inspector": "Инспектор",
+      "label": "",
       "migrant": "Мигрант",
+      "placeholder": "",
       "security": "Охрана"
     },
     "table": {
@@ -171,6 +173,10 @@
       "holderName": "Имя владельца",
       "issuedBy": "Кем выдан"
     },
+    "delegateDocumentModel": {
+      "descriptionPlaceholder": "",
+      "title": ""
+    },
     "deleteDocumentModel": {
       "content": "Вы уверены, что хотите удалить этот документ?"
     },
@@ -223,6 +229,10 @@
     "specialization": "Специализация"
   },
   "employessTable": {
+    "actions": {
+      "add": "",
+      "delete": ""
+    },
     "addModal": {
       "employeeId": {
         "placeholder": "Введите ID сотрудника"
@@ -350,9 +360,9 @@
     "documents": {
       "createRelated": "",
       "empty": "Документы не прикреплены",
-      "error": "Не удалось загрузить документы",
-      "loading": "Загрузка документов…",
-      "title": "Документы"
+      "error": "",
+      "loading": "",
+      "title": ""
     },
     "header": {
       "id": "ID тикета",
@@ -361,6 +371,7 @@
     "headersStatus": "Статус",
     "loading": "Загрузка тикета…",
     "reason": {
+      "approved": "",
       "closed": "Закрыт",
       "inProgress": "В работе",
       "needInfo": "Требуется информация",
@@ -390,6 +401,7 @@
       "success": "Тикет сохранён"
     },
     "status": {
+      "approved": "",
       "closed": "Закрыт",
       "inProgress": "В работе",
       "needInfo": "Требуется информация",
@@ -397,7 +409,9 @@
       "rejected": "Отклонён"
     },
     "ticketCard": {
-      "deadline": "Дедлайн"
+      "deadline": "Дедлайн",
+      "priority": "",
+      "updatedAt": ""
     },
     "type": {
       "appeal": "Апелляция",

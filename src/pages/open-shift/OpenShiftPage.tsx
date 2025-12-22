@@ -34,7 +34,7 @@ export function OpenShiftPage() {
   const openShiftMutation = useOpenShiftMutation()
 
   const handleOpenShift = () => {
-    if (eventsWithSpecializations && eventsWithSpecializations.some(({ specialization }) => specialization === null)) {
+    if (eventsWithSpecializations && eventsWithSpecializations.some(({ specialization }) => !specialization)) {
       toast.error(t('openShift.agenda.assignSpecializationError'))
       return
     }

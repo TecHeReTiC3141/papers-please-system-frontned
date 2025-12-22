@@ -7,7 +7,7 @@ type RejectModalProps = {
   onReject: (reason: string) => void
 }
 
-const MIN_REASON_LENGTH = 100
+const MIN_REASON_LENGTH = 10
 
 export function RejectModal({ open, onClose, onReject }: RejectModalProps) {
   const { t } = useTranslation()
@@ -17,6 +17,7 @@ export function RejectModal({ open, onClose, onReject }: RejectModalProps) {
 
   const handleReject = () => {
     onReject(reason)
+    onClose()
     setReason('')
   }
 

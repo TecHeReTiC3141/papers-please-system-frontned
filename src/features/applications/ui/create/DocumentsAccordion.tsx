@@ -1,16 +1,17 @@
 import { FiEdit2, FiTrash2 } from 'react-icons/fi'
-import { type AnyDocument } from '@/entities/document/types'
+import { DocumentType, type AnyDocument } from '@/entities/document/types'
 import { useDocumentTypeTitles } from '@/features/documents/model'
 import { renderDocumentData } from '@/features/documents/lib'
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 import { FaPlus } from 'react-icons/fa6'
+import { useMemo } from 'react'
 
 type Props = {
   documents: AnyDocument[]
   onEdit?: (doc: AnyDocument) => void
   onDelete?: (doc: AnyDocument) => void
-  onCreateRelatedTicket?: (doc: AnyDocument) => void
+  onOpenDelegate?: () => void
 
   /** attach-existing mode */
   selectable?: boolean
@@ -21,11 +22,22 @@ type Props = {
   inspectorMode?: boolean
 }
 
+const DOCUMENT_DO_NOT_REQUIRE_DELEGATION: string[] = [DocumentType.PASSPORT, DocumentType.PHOTO]
+
+const DOCUMENT_TYPE_ORDER: AnyDocument['documentType'][] = [
+  DocumentType.PASSPORT,
+  DocumentType.VISA,
+  DocumentType.CERTIFICATE,
+  DocumentType.WORK_PERMIT,
+  DocumentType.PHOTO,
+  ''
+]
+
 export function DocumentsAccordion({
   documents,
   onEdit,
   onDelete,
-  onCreateRelatedTicket,
+  onOpenDelegate,
   selectable = false,
   selected = [],
   onToggleSelect,
@@ -35,13 +47,19 @@ export function DocumentsAccordion({
   const { t } = useTranslation()
   const documentTitleMap = useDocumentTypeTitles()
 
-  if (!documents.length) {
+  const sortedDocuments = useMemo(() => {
+    return [...documents].sort((a, b) => {
+      return DOCUMENT_TYPE_ORDER.indexOf(a.documentType) - DOCUMENT_TYPE_ORDER.indexOf(b.documentType)
+    })
+  }, [documents])
+
+  if (!sortedDocuments.length) {
     return <div className="text-center text-base-content/60 py-6">{t('ticket.documents.empty')}</div>
   }
 
   return (
     <div className="join join-vertical w-full">
-      {documents.map((doc, index) => {
+      {sortedDocuments.map((doc, index) => {
         const isSelected = selected.some((d) => d.id === doc.id)
 
         return (
@@ -73,40 +91,19 @@ export function DocumentsAccordion({
               {!selectable && (
                 <div className="flex items-center gap-1">
                   {onEdit && (
-                    <button
-                      className="btn btn-xs btn-ghost"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        e.stopPropagation()
-                        onEdit(doc)
-                      }}
-                    >
+                    <button className="btn btn-xs btn-ghost" onClick={() => onEdit(doc)}>
                       <FiEdit2 />
                     </button>
                   )}
 
                   {onDelete && (
-                    <button
-                      className="btn btn-xs btn-ghost text-error"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        e.stopPropagation()
-                        onDelete(doc)
-                      }}
-                    >
+                    <button className="btn btn-xs btn-ghost text-error" onClick={() => onDelete(doc)}>
                       <FiTrash2 />
                     </button>
                   )}
 
-                  {onCreateRelatedTicket && (
-                    <button
-                      className="btn btn-xs btn-ghost btn-primary"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        e.stopPropagation()
-                        onCreateRelatedTicket(doc)
-                      }}
-                    >
+                  {onOpenDelegate && !DOCUMENT_DO_NOT_REQUIRE_DELEGATION.includes(doc.documentType) && (
+                    <button className="btn btn-xs btn-ghost btn-primary" onClick={onOpenDelegate}>
                       <FaPlus />
                       {t('ticket.documents.createRelated')}
                     </button>

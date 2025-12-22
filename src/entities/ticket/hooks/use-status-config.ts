@@ -22,15 +22,20 @@ export const useStatusConfig = (): Record<TicketStatus, TicketStatusConfig> => {
       className: 'status-warning',
       reason: t('ticket.reason.needInfo')
     },
-    [TicketStatus.CLOSED]: {
-      label: t('ticket.status.rejected'),
+    [TicketStatus.APPROVED]: {
+      label: t('ticket.status.approved'),
       className: 'status-success',
-      reason: t('ticket.reason.rejected')
+      reason: t('ticket.reason.approved')
+    },
+    [TicketStatus.CLOSED]: {
+      label: t('ticket.status.closed'),
+      className: 'status-base-content',
+      reason: t('ticket.reason.closed')
     },
     [TicketStatus.REJECTED]: {
-      label: t('ticket.status.closed'),
+      label: t('ticket.status.rejected'),
       className: 'status-error',
-      reason: t('ticket.reason.closed')
+      reason: t('ticket.reason.rejected')
     }
   }
 }

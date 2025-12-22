@@ -33,7 +33,7 @@ export function LogoutModal({ isOpen, onClose, onConfirm }: LogoutModalProps) {
             {t('common.cancel')}
           </button>
 
-          <button className="btn btn-error" onClick={handleLogout}>
+          <button className="btn btn-info" onClick={handleLogout}>
             {t('logout.logoutBtn')}
           </button>
         </div>

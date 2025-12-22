@@ -11,6 +11,11 @@ export function ApproveModal({ open, onClose, onConfirm }: ModalProps) {
 
   if (!open) return null
 
+  const handleConfirm = () => {
+    onConfirm()
+    onClose()
+  }
+
   return (
     <dialog className="modal modal-open">
       <div className="modal-box">
@@ -22,7 +27,7 @@ export function ApproveModal({ open, onClose, onConfirm }: ModalProps) {
           <button className="btn btn-ghost" onClick={onClose}>
             {t('common.actions.cancel')}
           </button>
-          <button className="btn btn-success" onClick={onConfirm}>
+          <button className="btn btn-success" onClick={handleConfirm}>
             {t('common.actions.approve')}
           </button>
         </div>

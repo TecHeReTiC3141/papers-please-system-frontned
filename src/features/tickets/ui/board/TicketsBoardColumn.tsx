@@ -23,6 +23,7 @@ export const TicketsBoardColumn = ({ status, tickets, loading }: Props) => {
     [TicketStatus.IN_PROGRESS]: t('ticket.status.inProgress'),
     [TicketStatus.NEED_INFO]: t('ticket.status.needInfo'),
     [TicketStatus.REJECTED]: t('ticket.status.rejected'),
+    [TicketStatus.APPROVED]: t('ticket.status.approved'),
     [TicketStatus.CLOSED]: t('ticket.status.closed')
   }[status]
 

@@ -54,17 +54,18 @@ export function EmployeesTable({ employees, availableEmployees, loading = false,
         }}
         toolbarButtons={[
           {
-            text: 'employessTable.actions.add',
+            text: t('employessTable.actions.add'),
             onClick: () => setShowAddEmployee(true),
             icon: <FaPlus />
           },
           {
-            text: 'employessTable.actions.delete',
+            text: t('employessTable.actions.delete'),
             onClick: handleDelete,
             icon: <FaDeleteLeft />,
             disabled: selectedRows.length === 0
           }
         ]}
+        filterable={false}
       />
 
       <AddEmployeeModal
