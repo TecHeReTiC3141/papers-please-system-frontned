@@ -1,6 +1,6 @@
 import { DndContext, PointerSensor, useSensor, useSensors, type DragEndEvent } from '@dnd-kit/core'
 import type { Ticket } from '@/entities/ticket'
-import { TicketStatus } from '@/entities/ticket'
+import { TicketStatus, TicketType } from '@/entities/ticket'
 import { TicketsBoardColumn } from './TicketsBoardColumn'
 import { useEffect, useState } from 'react'
 import { useUpdateTicketStatusMutation } from '../../model/use-update-ticket-status-mutation'
@@ -8,25 +8,10 @@ import { useUpdateTicketStatusMutation } from '../../model/use-update-ticket-sta
 type Props = {
   tickets: Ticket[]
   loading: boolean
+  showCrossChecks: boolean
 }
 
-const columnsConfig = [
-  {
-    status: TicketStatus.OPEN,
-    filter: (t: Ticket) => t.status === TicketStatus.OPEN
-  },
-  {
-    status: TicketStatus.IN_PROGRESS,
-    filter: (t: Ticket) => t.status === TicketStatus.IN_PROGRESS || t.status === TicketStatus.NEED_INFO
-  },
-  {
-    status: TicketStatus.CLOSED,
-    filter: (t: Ticket) =>
-      t.status === TicketStatus.CLOSED || t.status === TicketStatus.REJECTED || t.status === TicketStatus.APPROVED
-  }
-]
-
-export const TicketsBoard = ({ tickets, loading }: Props) => {
+export const TicketsBoard = ({ tickets, loading, showCrossChecks }: Props) => {
   const sensors = useSensors(useSensor(PointerSensor))
 
   const [localTickets, setLocalTickets] = useState(tickets)
@@ -36,6 +21,37 @@ export const TicketsBoard = ({ tickets, loading }: Props) => {
   }, [tickets])
 
   const updateStatusMutation = useUpdateTicketStatusMutation()
+
+  const columnsConfig = [
+    {
+      status: TicketStatus.OPEN,
+      type: undefined,
+      filter: (t: Ticket) => t.ticketType !== TicketType.CROSSCHECK && t.status === TicketStatus.OPEN
+    },
+    {
+      status: TicketStatus.IN_PROGRESS,
+      type: undefined,
+      filter: (t: Ticket) =>
+        (t.ticketType !== TicketType.CROSSCHECK && t.status === TicketStatus.IN_PROGRESS) ||
+        t.status === TicketStatus.NEED_INFO
+    },
+    {
+      status: TicketStatus.CLOSED,
+      type: undefined,
+      filter: (t: Ticket) =>
+        (t.ticketType !== TicketType.CROSSCHECK && t.status === TicketStatus.CLOSED) ||
+        t.status === TicketStatus.REJECTED ||
+        t.status === TicketStatus.APPROVED
+    }
+  ]
+
+  if (showCrossChecks) {
+    columnsConfig.push({
+      status: TicketStatus.CLOSED,
+      type: TicketType.CROSSCHECK,
+      filter: (t: Ticket) => t.ticketType === TicketType.CROSSCHECK
+    })
+  }
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event
@@ -58,8 +74,14 @@ export const TicketsBoard = ({ tickets, loading }: Props) => {
   return (
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
       <div className="flex items-stretch w-full gap-4">
-        {columnsConfig.map(({ status, filter }) => (
-          <TicketsBoardColumn key={status} status={status} tickets={localTickets.filter(filter)} loading={loading} />
+        {columnsConfig.map(({ status, filter, type }) => (
+          <TicketsBoardColumn
+            key={status}
+            status={status}
+            tickets={localTickets.filter(filter)}
+            loading={loading}
+            type={type}
+          />
         ))}
       </div>
     </DndContext>

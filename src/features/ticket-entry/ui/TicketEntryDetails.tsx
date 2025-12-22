@@ -1,4 +1,4 @@
-import { Priority, type Ticket } from '@/entities/ticket'
+import { Priority, TicketType, type Ticket } from '@/entities/ticket'
 import { TicketSectionWrapper } from './TicketSectionWrapper'
 import { Field, Loader } from '@/shared/ui'
 import { formatTicketDeadlineAt, formatTicketUpdatedAt } from '@/entities/ticket/lib'
@@ -6,6 +6,9 @@ import { useGetTicketRelated } from '../model'
 import { useQuery } from '@tanstack/react-query'
 import { RelatedTicketCard } from './RelatedTicketCard'
 import { useTranslation } from 'react-i18next'
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser'
+import type { User } from '@/entities/user'
+import { FINISH_STATUSES } from '@/entities/ticket/constants'
 
 type Props = {
   ticket: Ticket
@@ -15,6 +18,7 @@ type Props = {
 
 export function TicketEntryDetails({ ticket, priority, onPriorityChange }: Props) {
   const { t } = useTranslation()
+  const user = useAuthUser<User>()
   const fetchTicketRelated = useGetTicketRelated()
 
   const {
@@ -24,6 +28,12 @@ export function TicketEntryDetails({ ticket, priority, onPriorityChange }: Props
   } = useQuery({
     queryKey: ['tickets', 'related', ticket.id],
     queryFn: () => fetchTicketRelated(ticket.id)
+  })
+
+  const filteredRelated = (related ?? []).filter((ticket) => {
+    if (ticket.ticketType !== TicketType.CROSSCHECK) return true
+
+    return ticket.executor?.id === user?.id || FINISH_STATUSES.includes(ticket.status)
   })
 
   return (
@@ -57,9 +67,9 @@ export function TicketEntryDetails({ ticket, priority, onPriorityChange }: Props
           <div className="py-6 text-center text-base-content/60">{t('ticket.related.empty')}</div>
         )}
 
-        {related && related.length > 0 && (
+        {filteredRelated.length > 0 && (
           <div className="flex flex-col gap-y-3">
-            {related.map((ticket) => (
+            {filteredRelated.map((ticket) => (
               <RelatedTicketCard ticket={ticket} />
             ))}
           </div>

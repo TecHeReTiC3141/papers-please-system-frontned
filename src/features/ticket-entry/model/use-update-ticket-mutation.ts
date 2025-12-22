@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import type { Ticket } from '@/entities/ticket'
+import { type Ticket } from '@/entities/ticket'
 import { useApi } from '@/shared/api/axios'
+import { useCreateCrossCheckTicket } from './use-create-cross-check'
+import { FINISH_STATUSES } from '@/entities/ticket/constants'
 
 type UpdateTicketArgs = {
   ticketId: string
@@ -10,10 +12,15 @@ type UpdateTicketArgs = {
 export function useUpdateTicketMutation() {
   const api = useApi()
   const queryClient = useQueryClient()
+  const createCrossCheckTicket = useCreateCrossCheckTicket()
 
   return useMutation({
     mutationFn: async ({ ticketId, body }: UpdateTicketArgs) => {
       const { data } = await api.patch<Ticket>(`/tickets/${ticketId}`, body)
+
+      if (body.status && FINISH_STATUSES.includes(body.status)) {
+        await createCrossCheckTicket({ ticketId })
+      }
       return data
     },
 

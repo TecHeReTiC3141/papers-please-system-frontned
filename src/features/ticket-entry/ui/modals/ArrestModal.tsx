@@ -18,6 +18,7 @@ export function ArrestModal({ open, onClose, onArrest }: ArrestModalProps) {
   const handleArrest = () => {
     onArrest(reason)
     setReason('')
+    onClose()
   }
 
   return (

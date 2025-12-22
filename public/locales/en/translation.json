@@ -107,11 +107,11 @@
       "error": "Failed to create appeal",
       "pending": "Creating appeal…",
       "success": "Appeal created successfully",
-      "tooShoftAppealation": "The appeal reason must be at least {{mingLength}} characters"
+      "tooShoftAppealation": "The appeal reason must be at least {{minLength}} characters"
     },
     "description": {
       "label": "Reason",
-      "placeholder": "Enter appealation reason (at least {{minLenght}} characters"
+      "placeholder": "Enter appealation reason (at least {{minLength}} characters"
     },
     "documents": {
       "add": "Add document",
@@ -246,6 +246,7 @@
       "cantClose": "Shift can be closed after 7 hours",
       "close": "Close shift",
       "loading": "Loading shift…",
+      "noShiftToday": "No shift today",
       "openNew": "Open new shift",
       "shiftDuration": "Shift duration — {{duration}}",
       "shiftInfo": "Shift information"
@@ -303,14 +304,17 @@
   },
   "Related work": "Related work",
   "shiftData": {
+    "name": "Name",
     "passedCrossChecks": "Passed cross-checks",
     "penalty": "Penalty",
     "resolvedTickets": "Resolved tickets",
     "specialization": "Specialization",
-    "userId": "User ID",
     "wage": "Wage"
   },
   "shiftInfo": {
+    "agenda": {
+      "title": "Daily agenda"
+    },
     "boss": "Boss",
     "date": "Date",
     "id": "Shift ID",
@@ -320,6 +324,7 @@
       "title": "Inspectors"
     },
     "loading": "Loading shift info…",
+    "specialization": "shiftInfo.specialization",
     "upk": "UPK"
   },
   "ticket": {
@@ -422,6 +427,7 @@
       "types": "Type"
     },
     "loading": "Loading tickets…",
+    "showCrossChecks": "Show cross checks",
     "table": {
       "deadline": "Deadline",
       "id": "ID",

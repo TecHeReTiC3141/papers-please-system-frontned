@@ -9,7 +9,7 @@ import {
 } from '@/features/applications/ui'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FaArrowLeft } from 'react-icons/fa6'
+import { FaArrowLeft, FaChevronDown } from 'react-icons/fa6'
 import { FiPlus } from 'react-icons/fi'
 import { MdAttachFile } from 'react-icons/md'
 import { Link } from 'react-router'
@@ -53,9 +53,14 @@ export function CreateApplicationPage() {
         <h2 className="text-xl font-medium">{t('createApplication.documents.title')}</h2>
 
         <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-sm btn-primary border rounded-lg">
+          <button
+            tabIndex={0}
+            className="btn btn-sm btn-primary border rounded-lg"
+            disabled={attachedDocuments.length === 5}
+          >
             {t('createApplication.documents.add')}
-          </div>
+            <FaChevronDown />
+          </button>
 
           <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box shadow p-2 w-44">
             <li>

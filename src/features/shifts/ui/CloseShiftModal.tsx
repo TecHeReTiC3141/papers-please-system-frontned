@@ -48,16 +48,16 @@ export function CloseShiftModal() {
 
     return shiftData.inspectors.map((i) => ({
       ...i,
-      wage: edited[i.id]?.wage ?? i.wage,
-      penalty: edited[i.id]?.penalty ?? i.penalty
+      wage: edited[i.userId]?.wage ?? i.wage,
+      penalty: edited[i.userId]?.penalty ?? i.penalty
     }))
   }, [shiftData, edited])
 
   const columns: TableColumn<ExtendedInspectorParticipation>[] = [
     {
-      key: 'user',
-      label: t('shiftData.userId'),
-      dataIndex: 'userId',
+      key: 'name',
+      label: t('shiftData.name'),
+      dataIndex: 'name',
       isSortable: true
     },
     {
@@ -86,8 +86,8 @@ export function CloseShiftModal() {
         <input
           type="number"
           className="input input-bordered input-sm w-24"
-          value={edited[row.id]?.wage ?? row.wage}
-          onChange={(e) => handleChange(row.id, 'wage', Number(e.target.value))}
+          value={edited[row.userId]?.wage ?? row.wage}
+          onChange={(e) => handleChange(row.userId, 'wage', Number(e.target.value))}
         />
       )
     },
@@ -100,8 +100,8 @@ export function CloseShiftModal() {
         <input
           type="number"
           className="input input-bordered input-sm w-24"
-          value={edited[row.id]?.penalty ?? row.penalty}
-          onChange={(e) => handleChange(row.id, 'penalty', Number(e.target.value))}
+          value={edited[row.userId]?.penalty ?? row.penalty}
+          onChange={(e) => handleChange(row.userId, 'penalty', Number(e.target.value))}
         />
       )
     }

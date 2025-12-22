@@ -11,13 +11,13 @@ import { Loader } from '@/shared/ui'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FaArrowLeft } from 'react-icons/fa6'
+import { FaArrowLeft, FaChevronDown } from 'react-icons/fa6'
 import { FiPlus } from 'react-icons/fi'
 import { MdAttachFile } from 'react-icons/md'
 import { Link, useNavigate, useParams } from 'react-router'
 import { toast } from 'react-toastify'
 
-const MIN_APPEAL_DESCRIPTION_LENGTH = 50
+const MIN_APPEAL_DESCRIPTION_LENGTH = 10
 
 export function CreateAppalationPage() {
   const { t } = useTranslation()
@@ -119,6 +119,7 @@ export function CreateAppalationPage() {
             disabled={attachedDocuments.length === 5}
           >
             {t('createAppealation.documents.add')}
+            <FaChevronDown />
           </button>
 
           <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box shadow p-2 w-44">

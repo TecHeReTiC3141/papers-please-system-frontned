@@ -28,46 +28,48 @@ export function Header() {
         <img src="/logo.png" />
         <div className="flex-1 flex justify-end items-center gap-x-3">
           <LocaleToggle />
-          {userData?.role === UserRole.BOSS && <ShiftStatus />}
           {userData && (
-            <div className="dropdown dropdown-end">
-              <div tabIndex={0} role="button">
-                <UserPreview user={userData} showName={false} />
+            <>
+              {userData?.role !== UserRole.MIGRANT && <ShiftStatus />}
+              <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button">
+                  <UserPreview user={userData} showName={false} />
+                </div>
+                <ul
+                  tabIndex={-1}
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-fix p-2 shadow text-nowrap"
+                >
+                  <li>
+                    <Link to="/profile" className="justify-end text-nowrap">
+                      <FaUser />
+                      {t('header.userAvatar.userInfo')}
+                    </Link>
+                  </li>
+                  {EMPLOYEES_ROLES.includes(userData.role) && (
+                    <li>
+                      <Link to="/tickets" className="justify-end text-nowrap">
+                        <IoTicketSharp />
+                        {t('header.userAvatar.tickets')}
+                      </Link>
+                    </li>
+                  )}
+                  {userData.role === UserRole.MIGRANT && (
+                    <li>
+                      <Link to="/applications" className="justify-end text-nowrap">
+                        <IoTicketSharp />
+                        {t('header.userAvatar.application')}
+                      </Link>
+                    </li>
+                  )}
+                  <li>
+                    <button onClick={() => setIsLogoutModalOpened(true)} className="justify-end text-nowrap">
+                      <MdLogout />
+                      {t('header.userAvatar.logout')}
+                    </button>
+                  </li>
+                </ul>
               </div>
-              <ul
-                tabIndex={-1}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-fix p-2 shadow text-nowrap"
-              >
-                <li>
-                  <Link to="/profile" className="justify-end text-nowrap">
-                    <FaUser />
-                    {t('header.userAvatar.userInfo')}
-                  </Link>
-                </li>
-                {EMPLOYEES_ROLES.includes(userData.role) && (
-                  <li>
-                    <Link to="/tickets" className="justify-end text-nowrap">
-                      <IoTicketSharp />
-                      {t('header.userAvatar.tickets')}
-                    </Link>
-                  </li>
-                )}
-                {userData.role === UserRole.MIGRANT && (
-                  <li>
-                    <Link to="/applications" className="justify-end text-nowrap">
-                      <IoTicketSharp />
-                      {t('header.userAvatar.application')}
-                    </Link>
-                  </li>
-                )}
-                <li>
-                  <button onClick={() => setIsLogoutModalOpened(true)} className="justify-end text-nowrap">
-                    <MdLogout />
-                    {t('header.userAvatar.logout')}
-                  </button>
-                </li>
-              </ul>
-            </div>
+            </>
           )}
         </div>
       </header>

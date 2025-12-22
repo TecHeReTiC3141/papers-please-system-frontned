@@ -1,7 +1,7 @@
 // features/tickets/board/ui/TicketsBoardColumn.tsx
 import { useDroppable } from '@dnd-kit/core'
 import { TicketStatus } from '@/entities/ticket'
-import type { Ticket } from '@/entities/ticket'
+import type { Ticket, TicketType } from '@/entities/ticket'
 import { TicketCard } from './TicketCard'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import classNames from 'classnames'
@@ -9,11 +9,12 @@ import { t } from 'i18next'
 
 type Props = {
   status: TicketStatus
+  type?: TicketType
   tickets: Ticket[]
   loading: boolean
 }
 
-export const TicketsBoardColumn = ({ status, tickets, loading }: Props) => {
+export const TicketsBoardColumn = ({ status, tickets, loading, type }: Props) => {
   const { setNodeRef } = useDroppable({
     id: status
   })
@@ -29,7 +30,7 @@ export const TicketsBoardColumn = ({ status, tickets, loading }: Props) => {
 
   return (
     <div className="w-1/3 px-4 ">
-      <h2 className="text-lg font-bold mb-2">{title}</h2>
+      <h2 className="text-lg font-bold mb-2">{type ? t('ticket.type.crosscheck') : title}</h2>
 
       <SortableContext items={tickets.map((t) => t.id)} strategy={verticalListSortingStrategy}>
         <div

@@ -252,6 +252,7 @@
       "cantClose": "Смену можно закрыть через 7 часов",
       "close": "Закрыть смену",
       "loading": "Загрузка смены…",
+      "noShiftToday": "Сегодня нет смены",
       "openNew": "Открыть новую смену",
       "shiftDuration": "Длительность смены — {{duration}}",
       "shiftInfo": "Информация о смене"
@@ -307,16 +308,19 @@
     "title": "Регистрация",
     "upkId": "ID УПК"
   },
-  "Related work": "Связанная работа",
+  "Related work": "",
   "shiftData": {
+    "name": "Имя",
     "passedCrossChecks": "Пройдено проверок",
     "penalty": "Штраф",
     "resolvedTickets": "Решённые тикеты",
     "specialization": "Специализация",
-    "userId": "ID пользователя",
     "wage": "Зарплата"
   },
   "shiftInfo": {
+    "agenda": {
+      "title": ""
+    },
     "boss": "Начальник",
     "date": "Дата",
     "id": "ID смены",
@@ -326,6 +330,7 @@
       "title": "Инспекторы"
     },
     "loading": "Загрузка информации о смене…",
+    "specialization": "",
     "upk": "УПК"
   },
   "ticket": {
@@ -353,9 +358,9 @@
       "success": ""
     },
     "details": {
-      "deadline": "Дедлайн",
-      "priority": "Приоритет",
-      "title": "Детали"
+      "deadline": "",
+      "priority": "",
+      "title": ""
     },
     "documents": {
       "createRelated": "",
@@ -388,9 +393,9 @@
       "title": "Отклонить тикет"
     },
     "related": {
-      "empty": "Связанные тикеты отсутствуют",
-      "error": "Не удалось загрузить связанные тикеты",
-      "loading": "Загрузка связанных тикетов…"
+      "empty": "",
+      "error": "",
+      "loading": ""
     },
     "resolution": {
       "title": ""
@@ -428,6 +433,7 @@
       "types": "Тип"
     },
     "loading": "Загрузка тикетов…",
+    "showCrossChecks": "",
     "table": {
       "deadline": "Дедлайн",
       "id": "ID",

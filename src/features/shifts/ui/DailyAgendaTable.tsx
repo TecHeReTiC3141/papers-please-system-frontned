@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 type Props = {
   data: Event[] | null
   loading: boolean
-  onSpecializationChange: (eventId: string, specialization: Specialization | null) => void
+  onSpecializationChange?: (eventId: string, specialization: Specialization | null) => void
 }
 
 export function DailyAgendaTable({ data, loading, onSpecializationChange }: Props) {
@@ -35,20 +35,25 @@ export function DailyAgendaTable({ data, loading, onSpecializationChange }: Prop
       key: 'specialization',
       label: t('agenda.data.specialization.label'),
       dataIndex: 'specialization',
-      render: (e) => (
-        <select
-          className="select select-bordered select-sm"
-          value={e.specialization ?? ''}
-          onChange={(ev) => onSpecializationChange(e.id, ev.target.value ? (ev.target.value as Specialization) : null)}
-        >
-          <option value="">{t('agenda.data.specialization.placeholder')}</option>
-          {Object.values(Specialization).map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
-          ))}
-        </select>
-      )
+      render: (e) =>
+        onSpecializationChange ? (
+          <select
+            className="select select-bordered select-sm"
+            value={e.specialization ?? ''}
+            onChange={(ev) =>
+              onSpecializationChange(e.id, ev.target.value ? (ev.target.value as Specialization) : null)
+            }
+          >
+            <option value="">{t('agenda.data.specialization.placeholder')}</option>
+            {Object.values(Specialization).map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <p>{e.specialization}</p>
+        )
     }
   ]
 

@@ -10,6 +10,7 @@ export const useCloseShiftMutation = () => {
       const { data } = await api.patch(`/shifts/${shiftId}`, {
         endTime: new Date().toISOString()
       })
+      // TODO: update participations
       return data
     },
     onSuccess: () => {

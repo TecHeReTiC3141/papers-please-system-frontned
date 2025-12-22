@@ -2,13 +2,18 @@ import type { Event } from '@/entities/event'
 import type { ShiftEmployee, Specialization } from '@/entities/user'
 import { useGetBossEmployees, useGetDailyAgenda, useOpenShiftMutation } from '@/features/shifts/model'
 import { DailyAgendaTable, EmployeesTable } from '@/features/shifts/ui'
+import { useQuery } from '@tanstack/react-query'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 
 export function OpenShiftPage() {
   const { t } = useTranslation()
-  const { data: events, isLoading: eventsLoading } = useGetDailyAgenda()
+  const fetchDailyAgenda = useGetDailyAgenda()
+  const { data: events, isLoading: eventsLoading } = useQuery({
+    queryKey: ['daily-agenda'],
+    queryFn: () => fetchDailyAgenda()
+  })
   const { data: allEmployees = [], isLoading: employeesLoading } = useGetBossEmployees()
 
   const [eventSpecializations, setEventSpecializations] = useState<Record<string, Specialization | null>>({})
